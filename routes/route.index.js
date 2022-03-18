@@ -1,4 +1,5 @@
 let express = require('express');
+const { route } = require('express/lib/application');
 let routeIndex = express.Router();
 let contIndex = require('../controllers/controller.index');
 
@@ -6,6 +7,8 @@ let contIndex = require('../controllers/controller.index');
 
 
 routeIndex.get('/', contIndex.renderIndex);
+routeIndex.get('/adminIndex', contIndex.adminIndex);
+routeIndex.get('/adminProduccion', contIndex.adminProduccion);
 routeIndex.get('/usuarios', contIndex.usuarios);
 routeIndex.get('/store', contIndex.store);
 routeIndex.get('/buy', contIndex.buy);

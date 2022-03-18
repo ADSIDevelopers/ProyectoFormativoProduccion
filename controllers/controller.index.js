@@ -6,10 +6,16 @@ controllerIndex.autenticar = (req, res) => {
 }
 
 controllerIndex.renderIndex = (req, resp) => {
+    resp.render('index');
+}
+controllerIndex.adminIndex = (req, resp) => {
     resp.render('admin/index');
 }
 controllerIndex.usuarios = (req, resp) => {
     resp.render('admin/usuarios')
+}
+controllerIndex.adminProduccion = (req, resp) => {
+    resp.render('admin/produccion')
 }
 controllerIndex.store = (req, res) => {
     res.render('store');
