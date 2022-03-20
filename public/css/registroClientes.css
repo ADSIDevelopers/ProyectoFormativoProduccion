@@ -1,0 +1,77 @@
+.box{
+    font-family: helvetica;
+    box-shadow: 5px 4px 5px 2px rgba(0, 0, 0, 0.412);
+    border: 1px solid rgba(128, 128, 128, 0.218);
+    border-radius: 15px;
+    padding: 20px;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+.box{
+   height: 50vh;
+   display: grid;
+   grid-template-columns: "10px 100px 50px 100px" ;
+   grid-template-rows: "10px 10px 10px 10px";
+   grid-template: "nombre nombreinput apellido apellidoinput"
+                  "tipoDocumento tipoDocumentoinput numeroDocumento numeroDocumentoinput";
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=text]{
+    box-shadow: 5px 2px 5px 1px rgba(0, 0, 0, 0.344);
+    border: 1px solid rgba(128, 128, 128, 0.681);
+    border-radius: 4px;
+    padding: 2px;
+}
+input[type=number]{
+    box-shadow: 5px 2px 5px 1px rgba(0, 0, 0, 0.344);
+    border: 1px solid rgba(128, 128, 128, 0.681);
+    border-radius: 4px;
+    padding: 2px;
+}
+select{
+    background-color: #fff;
+    box-shadow: 5px 2px 5px 1px rgba(0, 0, 0, 0.344);
+    border: 1px solid rgba(128, 128, 128, 0.681);
+    border-radius: 4px;
+    padding: 2px;
+}
+.box > div{
+    display: grid;
+}
+
+
+.a{
+    grid-area: nombre;
+}
+.b{
+    height: 25px;
+    grid-area: nombreinput;
+}
+.c{
+    margin-left: 10px;
+    grid-area: apellido;
+}
+.d{
+    height: 25px;
+    grid-area: apellidoinput;
+}
+.e{
+    grid-area: tipoDocumento;
+}
+.f{
+    height: 25px;
+    grid-area: tipoDocumentoinput;
+}
+.g{
+    margin-left: 10px;
+    grid-area: numeroDocumento;
+}
+.h{
+    height: 25px;
+    grid-area: numeroDocumentoinput;
+}

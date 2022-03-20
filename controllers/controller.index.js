@@ -29,4 +29,8 @@ controllerIndex.uds = (req, res) => {
 controllerIndex.ud = (req, res) => {
     res.render('ud');
 }
+controllerIndex.registroClientes = (req, res) => {
+    res.render('admin/registroClientes');
+}
+
 module.exports = controllerIndex;
