@@ -28,7 +28,7 @@
                             <a href="/admin/punto-venta">Punto de Venta</a>
                         </li>
                         <li>
-                            <a href="/">Cerrar Sesión</a>
+                            <a href="#" id="logout">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </nav>
@@ -41,7 +41,7 @@
                     <nav>
                         <ul>
                             <li>
-                                <a href="admin">Usuario</a>
+                                <a href="admin" id="profile">Profile</a>
                             </li>
                         </ul>
                     </nav>
@@ -78,3 +78,47 @@
             </div>
         </section>
 <%- include('../partials/footer'); %>
+<script>
+    let logoutBtn = document.getElementById('logout');
+    logoutBtn.addEventListener('click', ()=> logOut());
+
+    function getSessionData(){
+        let url = 'http://localhost:3000/auth/profile';
+        let token = sessionStorage.getItem('token');
+        let data = {token}
+        let config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }
+        fetch(url, config)
+        .then(res => res.json())
+        .then(data => {
+            if(data.status == 'error') return window.location.href = '/'
+            document.getElementById('profile').innerHTML = data.user.Nombres
+        })
+        .catch(err => console.log(err))
+    }
+    function logOut(){
+        sessionStorage.removeItem('token');
+        let url = 'http://localhost:3000/auth/logout';
+        let config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: ''
+        }
+        fetch(url, config)
+        .then(res => res.json())
+        .then(data => {
+            if(data.status == 'error') return window.location.href = '/'
+            document.getElementById('profile').innerHTML = data.user.Nombres
+        })
+        .catch(err => console.log(err))
+        window.location.href = '/';
+    }
+    getSessionData();
+</script>

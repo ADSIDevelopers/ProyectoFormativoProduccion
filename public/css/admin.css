@@ -85,6 +85,9 @@ a.btn-delete{
 }
 
 /* ---------------------- */
+.padding-wrapper {
+    padding: 10px;
+}
 .wrapper-form-data {
 	background: #fff;
     width: 100%;

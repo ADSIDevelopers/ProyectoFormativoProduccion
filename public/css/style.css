@@ -2,6 +2,12 @@
 	margin: 0;
 	padding: 0;
 }
+/* SPAN */
+.danger-span {
+	text-shadow: 0 0 10px #ffeff2;
+	font-weight: bold;
+	color: #ce002d;
+}
 /* UNIDAD PRODUCTIVA */
 .ud-container{
 	display: grid;
