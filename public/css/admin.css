@@ -6,6 +6,10 @@
     width: 100%;
 }
 
+.mt-1 {
+    margin-top: 10px;
+}
+
 .table-admin a {
     text-decoration: none;
     color: #7c7c7c;
@@ -25,10 +29,18 @@
     box-shadow: 0px 0px 10px rgb(53, 53, 53);
 }
 
+.table-admin .option:hover {
+    box-shadow: 0px 0px 10px rgb(53, 53, 53);
+}
+
 .table-admin .option .option-logo {
     width: 25px;
     height: 25px;
     background-color: rgb(87, 163, 25);
+}
+
+.table-admin .option .titulo {
+    margin: 0 10px;
 }
 
 .table-admin .option .titulo {
@@ -44,6 +56,10 @@
 .table-info thead th {
     background-color: rgb(87, 163, 25);
     color: #fff;
+    padding: 10px 5px;
+}
+
+.table-info tbody tr td {
     padding: 10px 5px;
 }
 
@@ -79,6 +95,20 @@ a.btn-delete {
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
 }
 
+
+/* ---------- */
+
+.border-box {
+    padding: 1rem 1.2rem;
+    border: solid 1px #dbdbdb;
+}
+
+.row-box {
+    display: grid;
+    grid-gap: .8rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
 .form-control {
     display: block;
     width: 100%;
@@ -87,6 +117,15 @@ a.btn-delete {
     border-bottom-right-radius: 5px;
     color: grey;
     font-size: 1rem;
+    border: 0;
+    border: 1px solid #fff;
+}
+
+.form-control:hover {
+    box-shadow: 0;
+}
+
+.design-1 {
     border: 0;
     border: 1px solid #fff;
 }
@@ -164,3 +203,64 @@ a.btn-delete {
 
 
 /* Estilos del Formulario de Administracion de Ventas */
+
+
+/* ---------------------- */
+
+.wrapper-form-data {
+    background: #fff;
+    width: 100%;
+    display: inline-flex;
+    margin: 10px 0;
+}
+
+.wrapper-form-data .input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+}
+
+.wrapper-form-data .input-data input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid silver;
+}
+
+.input-data input:focus~label,
+.input-data input:valid~label {
+    transform: translateY(-25px);
+    font-size: 15px;
+}
+
+.wrapper-form-data .input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: grey;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.input-data .underline {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+}
+
+.input-data .underline:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.input-data input:focus~.underline:before,
+.input-data input:valid~.underline:before {
+    transform: scaleX(1);
+}
