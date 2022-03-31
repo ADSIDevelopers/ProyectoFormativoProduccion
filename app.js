@@ -13,6 +13,7 @@ servidor.set('view engine', 'ejs');
 servidor.set('views', __dirname + '/views');
 
 servidor.use(require('./routes/route.index'));
+
 servidor.use('/auth', require('./routes/route.auth'));
 
 servidor.listen(3000, () => {
