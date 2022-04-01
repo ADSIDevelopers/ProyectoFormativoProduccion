@@ -4,6 +4,7 @@ let conexion = mysql.createConnection({
     user: '',
     password: '',
     database: 'produccion'
+
 });
 
 conexion.connect((err) => {

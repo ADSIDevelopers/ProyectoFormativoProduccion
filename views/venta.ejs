@@ -1,0 +1,46 @@
+<%- include('./partials/head'); %>
+    <%- include('./partials/header'); %>
+        <section class="body-info-section">
+            <div class="content-secton-info">
+                <div class="full-container">
+                    <div class="breadcrumb">
+                        <a href="store" class="go-home">Volver al inicio</a> | <a href="ud">Agroindustria</a> > <a href="categoria">Alimentos</a>
+                    </div>
+                    <div class="buy-box">
+                        <div class="prod-cart">
+                            <div class="card-prod">
+                                <div><img class="img-prods" src="https://picsum.photos/150/150?random" alt="image"></div>
+                                <div>
+                                    <div>Producto</div>
+                                    <div> Precio Unidad: $ 120.000</div>
+                                </div>
+                                <div>
+                                    <div><input type="number" name="cantidad" id="cantidad" placeholder="1234..."></div>
+                                    <div><a title="Eliminar este producto" href="/eliminarProdCart">Eliminar</a></div>
+                                </div>
+                            </div>
+                            <div class="card-prod">
+                                <div><img class="img-prods" src="https://picsum.photos/150/150?random" alt="image"></div>
+                                <div>
+                                    <div>Producto</div>
+                                    <div> Precio Unidad: $ 120.000</div>
+                                </div>
+                                <div>
+                                    <div><input type="number" name="cantidad" id="cantidad" placeholder="1234..."></div>
+                                    <div><a title="Eliminar este producto" href="/eliminarProdCart">Eliminar</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-tb">
+                            <div>Costo Total</div>
+                            <div>$123.456</div>
+                            <div>Envio Seguro.</div>
+                            <div><input type="button" value="Comprar"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </section>
+        <%- include('./partials/footer'); %>

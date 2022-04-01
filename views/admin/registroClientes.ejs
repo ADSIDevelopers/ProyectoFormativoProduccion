@@ -1,4 +1,5 @@
 <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/registroClientes.css">
 
     <body>
         <div class="container">
@@ -39,43 +40,25 @@
                                 <div class="icon-align"><span class="icon-menu"></span></div>
                             </a>
                         </div>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <a href="admin">Usuario</a>
-                                </li>
-                            </ul>
-                        </nav>
+
                     </div>
                 </header>
             </div>
             <div class="separator"></div>
             <section class="body-info-section">
-                <div class="content-secton-info" style="min-height: 50vh;">
-                    <div class="full-container">
-                        <h1 class="h-title">Panel de Administración</h1>
-                        <hr class="separador-text">
-                        <div class="table-admin">
-                            <a href="admin/usuarios">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Asignar</div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Seguimiento</div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Consultas</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                <div class="box">
+                    <div class="a"><label>Nombre</label></div>
+                    <div class="b"><input type="text" id="" placeholder="Ingrese el Nombre"></div>
+                    <div class="c"><label>Apellidos</label></div>
+                    <div class="d"><input type="text" id="" placeholder="Ingrese el Apellidos"></div>
+                    <!--tipo documento-->
+                    <div class="e"><label>Tipo Documento</label></div>
+                    <div class="f"><select id="">
+                    <option value="">cedula</option>
+                    <option value="">Tarjeta Identidad</option>
+                </select></div>
+                    <div class="g"><label>Numero Documento</label></div>
+                    <div class="h"><input type="number" id="" placeholder="Ingrese Numero Documento"></div>
                 </div>
             </section>
             <%- include('../partials/footer'); %>

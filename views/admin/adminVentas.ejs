@@ -53,29 +53,19 @@
             <section class="body-info-section">
                 <div class="content-secton-info" style="min-height: 50vh;">
                     <div class="full-container">
-                        <h1 class="h-title">Panel de Administración</h1>
+                        <h1 class="h-title">Ventas</h1>
                         <hr class="separador-text">
-                        <div class="table-admin">
-                            <a href="admin/usuarios">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Asignar</div>
+                        <div class="admin -ventas">
+                            <form action="/registrarVenta" method="post">
+                                <div class="form-body">
+                                    <div><label for="idcompra">ID de Venta</label><input id="idcompra" type="text"></div>
+                                    <div></div>
                                 </div>
-                            </a>
-                            <a href="#">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Seguimiento</div>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="option">
-                                    <div class="option-logo"></div>
-                                    <div class="titulo">Consultas</div>
-                                </div>
-                            </a>
+                            </form>
                         </div>
+                        </a>
                     </div>
                 </div>
-            </section>
-            <%- include('../partials/footer'); %>
+        </div>
+        </section>
+        <%- include('../partials/footer'); %>
