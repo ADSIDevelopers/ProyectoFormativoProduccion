@@ -7,7 +7,6 @@ controllerIndex.autenticar = (req, resp) => {
 controllerIndex.autenticar = (req, res) => {
     res.send('autenticar');
 }
-
 controllerIndex.renderIndex = (req, resp) => {
     resp.render('index');
 }

@@ -1,13 +1,10 @@
 let express = require('express');
-const { route } = require('express/lib/application');
 let routeIndex = express.Router();
+let authMiddleware = require('../middlewares/middleware.auth');
 let contIndex = require('../controllers/controller.index');
 
-
-
-
 routeIndex.get('/', contIndex.renderIndex);
-routeIndex.get('/adminIndex', contIndex.adminIndex);
+routeIndex.get('/admin', authMiddleware.authToken, contIndex.adminIndex);
 routeIndex.get('/adminProduccion', contIndex.adminProduccion);
 routeIndex.get('/usuarios', contIndex.usuarios);
 routeIndex.get('/store', contIndex.store);
