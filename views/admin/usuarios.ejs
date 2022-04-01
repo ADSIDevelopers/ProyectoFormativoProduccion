@@ -1,80 +1,80 @@
 <%- include('../partials/head-admin'); %>
-    <%- include('../partials/admin-header'); %>
-        <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
-                <div class="full-container">
-                    <h1 class="h-title">Panel de Administración - Asignar</h1>
-                    <hr class="separador-text">
-                    <div class="border-box">
-                        <div class="row-box">
-                            <div class="wrapper-form-data">
-                                <div class="input-data">
-                                    <input type="text" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                    <label>Nombres</label>
-                                </div>
+<%- include('../partials/admin-header'); %>
+<section class="body-info-section">
+	<div class="content-secton-info" style="min-height: 50vh;">
+		<div class="full-container">
+			<h1 class="h-title">Panel de Administración - Asignar</h1>
+			<hr class="separador-text">
+            <div class="border-box">
+                <div class="row-box">
+                    <div class="wrapper-form-data">
+                        <div class="input-data">
+                          <input type="text" name="nombres" size="40" maxlength="50" required="">
+                            <div class="underline">
                             </div>
-                            <div class="wrapper-form-data">
-                                <div class="input-data">
-                                    <input type="text" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                    <label>Apellidos</label>
-                                </div>
-                            </div>
+                          <label>Nombres</label>
                         </div>
-                        <div class="row-box">
-                            <div class="wrapper-form-data">
-                                <select class="form-control">
+                    </div>
+                    <div class="wrapper-form-data">
+                        <div class="input-data">
+                          <input type="text" name="nombres" size="40" maxlength="50" required="">
+                            <div class="underline">
+                            </div>
+                          <label>Apellidos</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-box">
+                    <div class="wrapper-form-data">
+                        <select class="form-control">
                             <option value="c.c">C.C</option>
                             <option value="t.i">T.I</option>
                             <option value="c.e">C.E</option>
                         </select>
+                    </div>
+                    <div class="wrapper-form-data">
+                        <div class="input-data">
+                          <input type="text" name="nombres" size="40" maxlength="50" required="">
+                            <div class="underline">
                             </div>
-                            <div class="wrapper-form-data">
-                                <div class="input-data">
-                                    <input type="text" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                    <label>Número de documento</label>
-                                </div>
-                            </div>
+                          <label>Número de documento</label>
                         </div>
-                        <div>
-                            <select class="form-control design-1">
+                    </div>
+                </div>
+                <div>
+                    <select class="form-control design-1">
                         <option value="aprendiz">Aprendiz</option>
                         <option value="instructor">Instructor</option>
                         <option value="lider">Lider</option>
                     </select>
-                        </div>
-                        <button>Registrar</button>
-                    </div>
-                    <div class="table-admin mt-1">
-                        <table class="table-info">
-                            <thead>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Documento</th>
-                                <th>Rol</th>
-                                <th>Acción</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Alfonso</td>
-                                    <td>25555</td>
-                                    <td>Administrador</td>
-                                    <td>
-                                        <a href="#" class="btn-edit">Editar</a>
-                                        <a href="#" class="btn-delete">Eliminar</a>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+                <button>Registrar</button>
             </div>
-        </section>
-        <%- include('../partials/footer-admin'); %>
+            <div class="table-admin mt-1">
+                <table class="table-info">
+                    <thead>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Documento</th>
+                        <th>Rol</th>
+                        <th>Acción</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Alfonso</td>
+                            <td>25555</td>
+                            <td>Administrador</td>
+                            <td>
+                                <a href="#" class="btn-edit">Editar</a>
+                                <a href="#" class="btn-delete">Eliminar</a>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+		</div>
+	</div>
+</section>
+<%- include('../partials/footer-admin'); %>

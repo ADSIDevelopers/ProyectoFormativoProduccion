@@ -1,7 +1,7 @@
-const controlador = {};
+const controlador ={};
 
-controlador.renderizarFrmReservas = (req, res) => {
+controlador.renderizarFrmReservas=(req,res)=>{
     res.render("reservas.ejs");
 }
 
-module.exports = controlador;
+module.exports=controlador;

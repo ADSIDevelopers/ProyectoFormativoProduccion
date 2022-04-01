@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../img/logos/1200px-Sena_Colombia_logo.svg.png" type="image/x-icon">
-    <link rel="stylesheet" href="../css/reservas.css">
+    <!-- <link rel="stylesheet" href="../css/reservas.css"> -->
 
     <title>Reservas</title>
 </head>
-
 <body>
     <%- include('./partials/head'); %>
         <div class="container">
@@ -38,29 +36,36 @@
                             </nav>
                         </div>
                 </header><br>
-            </div>
-            <div class="content-main">
-                <form action="registrar-info.php" method="get">
-                    <fieldset>
-                        <legend>REALIZAR RESERVA</legend>
-                        <br> Tipo de Documento <br>
-                        <select name="Documento" class="input-width">
+    </div>
+    <!-- <div class="content-main">
+        <form action="registrar-info.php" method="get">
+            <fieldset>
+                <legend>REALIZAR RESERVA</legend>
+                <br>
+            
+                Tipo de Documento <br>
+                <select name="Documento" class="input-width">
                     <option value="Cédula de Ciudadania">Cédula de Ciudadania</option>
                     <option value="Cédula de Extrangería">Cédula de Extrangería</option>
                     <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
                     <option value="Número ciego SENA">Número ciego SENA</option>
                     <option value="Número Nacional de Identificación">Número Nacional de Identificación</option>
                     <option value="Pasaporte">Pasaporte</option>
-                    <option value="PEP">PEP</option></select><br><br> Tipo de Usuario <br>
-                        <select name="Documento" class="input-width">
+                    <option value="PEP">PEP</option></select><br><br>
+                
+                Tipo de Usuario <br>
+                <select name="Documento" class="input-width">
                     <option value="Aprendiz">Aprendiz</option>
                     <option value="Instructor">Instructor</option>
                     <option value="Invitado">Invitado</option>
                     <option value="Invitado">Adminstrador</option>
-                </select> <br><br> Número de documento <br>
-                        <input type="text" name="nombres" placeholder="Número de Documento" class="input-width"> <br><br> Cantidad <br>
-                        <input type="number" name="cantidad" class="input-width" placeholder="Número de unidades"><br><br> Unidad Productiva <br>
-                        <select name="Documento" class="input-width">
+                </select> <br><br>
+                Número de documento <br>
+                <input type="text" name="nombres" placeholder="Número de Documento" class="input-width"> <br><br>
+               Cantidad <br>
+               <input type="number" name="cantidad" class="input-width" placeholder="Número de unidades"><br><br>
+               Unidad Productiva <br>
+               <select name="Documento" class="input-width">
                    <option value="Pecuaria">Pecuaria</option>
                    <option value="Gastronomía">Gastronomía</option>
                    <option value="Agroindustira">Agroindustira</option>
@@ -70,52 +75,46 @@
                    <option value="Empresa de Servicios Públicos">Empresa de Servicios Públicos</option>
                    <option value="Moda – Comercio y Servicios">Moda – Comercio y Servicios</option>
                </select> <br><br>
-                        <button type="submit">Confirmar Reserva</button><br><br>
-                    </fieldset>
-                </form><br>
-            </div>
-            <div class="tablaProducto">
-                <table>
-                    <tr>
-                        <th class="head-horizonal">PRODUCTO</th>
-                        <th class="head-horizonal">IMAGEN</th>
-                        <th class="head-horizonal">PRECIO</th>
-                        <th class="head-horizonal">STOCK</th>
-                        <th class="head-horizonal">DESCRIPCIÓN</th>
-                        <th class="head-horizonal"> <img src="../img/reservas/carrito-de-compras.png" width="20px" height="20px" alt=""></th>
-                    </tr>
-                    <tr>
-                        <td>YOGURTH</td>
-                        <td class="img"><img src="../img/reservas/avena.jpg" alt="yogurth"></td>
-                        <td>$500.00</td>
-                        <td class="alin-center">120</td>
-                        <td class="alain-justificado">Yogurth con frutas.</td>
-                        <th class="head-horizonal">
-                            <a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a>
-                        </th>
-                    </tr>
-
-                    <tr>
-                        <td>AVENA</td>
-                        <td class="img"> <img src="../img/reservas/avena.jpg" alt="freestyle"></td>
-                        <td>$2.000.00</td>
-                        <td class="alin-center">600</td>
-                        <td class="alain-justificado">Avena en vaso</td>
-                        <th class="head-horizonal">
-                            <a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>CILANTRO</td>
-                        <td class="img"><img src="../img/reservas/avena.jpg" alt="cilantros"></td>
-                        <td>$500.00</td>
-                        <td class="alin-center">300</td>
-                        <td class="alain-justificado">Hortalizas y verduras por Manojo</td>
-                        <th class="head-horizonal">
-                            <a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a>
-                        </th>
-                    </tr>
-                </table><br>
-            </div>
+                <button type="submit">Confirmar Reserva</button><br><br>
+            </fieldset>
+        </form><br>
+    </div>
+    <div class="tablaProducto">
+        <table>
+            <tr>
+                <th class="head-horizonal">PRODUCTO</th>
+                <th class="head-horizonal">IMAGEN</th>
+                <th class="head-horizonal">PRECIO</th>
+                <th class="head-horizonal">STOCK</th>
+                <th class="head-horizonal">DESCRIPCIÓN</th>
+                <th class="head-horizonal"> <img src="../img/reservas/carrito-de-compras.png" width="20px" height="20px" alt=""></th>
+            </tr>
+            <tr>
+                <td >YOGURTH</td>
+                <td class="img"><img src="../img/reservas/avena.jpg" alt="yogurth" ></td>
+                <td>$500.00</td>
+                <td class="alin-center">120</td>
+                <td class="alain-justificado">Yogurth con frutas.</td>
+                <th class="head-horizonal"><a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a></th>  
+            </tr>
+        
+            <tr>
+                <td >AVENA</td>
+                <td class="img"> <img src="../img/reservas/avena.jpg" alt="freestyle" ></td>
+                <td>$2.000.00</td>
+                <td  class="alin-center">600</td>
+                <td class="alain-justificado">Avena en vaso</td>
+                <th class="head-horizonal"><a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a></th>  
+            </tr>
+            <tr>
+                <td >CILANTRO</td>
+                <td class="img"><img src="../img/reservas/avena.jpg" alt="cilantros" ></td>
+                <td>$500.00</td>
+            <td class="alin-center">300</td>
+                <td class="alain-justificado">Hortalizas y verduras por Manojo</td>
+                <th class="head-horizonal"><a href="#"><img src="../img/reservas/agregar-carrito.png" width="20px" height="20px" alt=""></a></th>    
+            </tr>
+        </table><br>
+    </div> -->
 </body>
 <script src="../js/menu.js"></script>
