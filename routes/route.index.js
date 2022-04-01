@@ -15,5 +15,8 @@ routeIndex.get('/buy', contIndex.buy);
 routeIndex.get('/uds', contIndex.uds);
 routeIndex.get('/ud', contIndex.ud);
 routeIndex.get('/auth', contIndex.autenticar);
+routeIndex.get('/adminVentas', contIndex.adminVentas);
+routeIndex.get('/venta', contIndex.venta);
+routeIndex.get('/registroClientes', contIndex.registroClientes);
 
 module.exports = routeIndex;

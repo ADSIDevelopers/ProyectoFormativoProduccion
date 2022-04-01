@@ -1,86 +1,174 @@
 <%- include('./partials/head'); %>
-<%- include('./partials/header'); %>
-<section class="body-info-section">
-	<div class="content-secton-info">
-		<div class="full-container">
-            <div class="breadcrumb">
-                <a href="store" class="go-home">Volver al inicio</a>  | <a href="ud">Agroindustria</a>  > <a href="categoria">Alimentos</a>
-            </div>
-            <div class="buy-box">
-                <div class="product-image">
-                    <div class="container-image">
-                        <img src="img/products/tomate1.jpg" alt="prodcuto">
+    <%- include('./partials/header'); %>
+        <section class="body-info-section">
+            <div class="content-secton-info">
+                <div class="full-container">
+                    <div class="breadcrumb">
+                        <a href="store" class="go-home">Volver al inicio</a> | <a href="ud">Agroindustria</a> > <a href="categoria">Alimentos</a>
                     </div>
-                    
+                    <div class="buy-box">
+
+                        <div class="product-image">
+                            <div class="container-image">
+                                <img src="img/products/tomate1.jpg" alt="prodcuto">
+                            </div>
+
+                        </div>
+                        <form action="/venta">
+                            <div class="product-description">
+                                <div class="description-box">
+                                    <div class="name">Tomate premium SENA</div>
+                                    <div class="price">$42.000</div>
+                                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sit repellendus dolorum numquam, nesciunt tempora laudantium provident doloribus qui placeat officia, debitis, incidunt animi natus.</div>
+                                    <div class="stock">
+                                        <h3>Stock disponible</h3>
+                                        <div class="desc">
+                                            Cantidad: <span>1 Unidad</span>
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <input type="submit" class="btn btn-block btn-primary" value="Comprar Ahora">
+                                        <input type="submit" class="btn btn-block btn-secondary" value="Agregar al Carrito">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <h1 class="h-title mt-3">Productos Similares</h1>
+                    <hr class="separador-text">
+                    <div class="products-container">
+                        <a href="buy">
+                            <div class="item-container">
+                                <div class="image-container">
+                                    <img src="img/products/product.jpg" alt="producto">
+                                </div>
+                                <div class="info-container">
+                                    <div class="price-container">
+                                        <h3>$ 3.500</h3>
+                                    </div>
+                                    <div class="description-container">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="buy">
+                            <div class="item-container">
+                                <div class="image-container">
+                                    <img src="img/products/product.jpg" alt="producto">
+                                </div>
+                                <div class="info-container">
+                                    <div class="price-container">
+                                        <h3>$ 3.500</h3>
+                                    </div>
+                                    <div class="description-container">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="buy">
+                            <div class="item-container">
+                                <div class="image-container">
+                                    <img src="img/products/product.jpg" alt="producto">
+                                </div>
+                                <div class="info-container">
+                                    <div class="price-container">
+                                        <h3>$ 3.500</h3>
+                                    </div>
+                                    <div class="description-container">
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="product-description">
-                    <div class="description-box">
-                        <div class="name">Tomate premium SENA</div>
-                        <div class="price">$42.000</div>
-                        <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sit repellendus dolorum numquam, nesciunt tempora laudantium provident doloribus qui placeat officia, debitis, incidunt animi natus.</div>
-                        <div class="stock">
-                            <h3>Stock disponible</h3> 
-                            <div class="desc">
-                                Cantidad: <span>1 Unidad</span> 
+            </div>
+        </section>
+        <%- include('./partials/footer'); %>
+            <%- include('./partials/header'); %>
+                <section class="body-info-section">
+                    <div class="content-secton-info">
+                        <div class="full-container">
+                            <div class="breadcrumb">
+                                <a href="store" class="go-home">Volver al inicio</a> | <a href="ud">Agroindustria</a> > <a href="categoria">Alimentos</a>
+                            </div>
+                            <div class="buy-box">
+                                <div class="product-image">
+                                    <div class="container-image">
+                                        <img src="img/products/tomate1.jpg" alt="prodcuto">
+                                    </div>
+
+                                </div>
+                                <div class="product-description">
+                                    <div class="description-box">
+                                        <div class="name">Tomate premium SENA</div>
+                                        <div class="price">$42.000</div>
+                                        <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea sit repellendus dolorum numquam, nesciunt tempora laudantium provident doloribus qui placeat officia, debitis, incidunt animi natus.</div>
+                                        <div class="stock">
+                                            <h3>Stock disponible</h3>
+                                            <div class="desc">
+                                                Cantidad: <span>1 Unidad</span>
+                                            </div>
+                                        </div>
+                                        <div class="buttons">
+                                            <button class="btn btn-block btn-primary">Comprar Ahora</button>
+                                            <button class="btn btn-block btn-secondary">Agregar al Carrito</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="h-title mt-3">Productos Similares</h1>
+                            <hr class="separador-text">
+                            <div class="products-container">
+                                <a href="buy">
+                                    <div class="item-container">
+                                        <div class="image-container">
+                                            <img src="img/products/product.jpg" alt="producto">
+                                        </div>
+                                        <div class="info-container">
+                                            <div class="price-container">
+                                                <h3>$ 3.500</h3>
+                                            </div>
+                                            <div class="description-container">
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="buy">
+                                    <div class="item-container">
+                                        <div class="image-container">
+                                            <img src="img/products/product.jpg" alt="producto">
+                                        </div>
+                                        <div class="info-container">
+                                            <div class="price-container">
+                                                <h3>$ 3.500</h3>
+                                            </div>
+                                            <div class="description-container">
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="buy">
+                                    <div class="item-container">
+                                        <div class="image-container">
+                                            <img src="img/products/product.jpg" alt="producto">
+                                        </div>
+                                        <div class="info-container">
+                                            <div class="price-container">
+                                                <h3>$ 3.500</h3>
+                                            </div>
+                                            <div class="description-container">
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
-                        <div class="buttons">
-                            <button class="btn btn-block btn-primary">Comprar Ahora</button>
-                            <button class="btn btn-block btn-secondary">Agregar al Carrito</button>
-                        </div>
                     </div>
-                </div>
-            </div>
-			<h1 class="h-title mt-3">Productos Similares</h1>
-			<hr class="separador-text">
-			<div class="products-container">
-				<a href="buy">
-					<div class="item-container">
-						<div class="image-container">
-							<img src="img/products/product.jpg" alt="producto">
-						</div>
-						<div class="info-container">
-							<div class="price-container">
-								<h3>$ 3.500</h3>
-							</div>
-							<div class="description-container">
-								Lorem, ipsum dolor sit amet consectetur adipisicing.
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="buy">
-					<div class="item-container">
-						<div class="image-container">
-							<img src="img/products/product.jpg" alt="producto">
-						</div>
-						<div class="info-container">
-							<div class="price-container">
-								<h3>$ 3.500</h3>
-							</div>
-							<div class="description-container">
-								Lorem, ipsum dolor sit amet consectetur adipisicing.
-							</div>
-						</div>
-					</div>
-				</a>
-				<a href="buy">
-					<div class="item-container">
-						<div class="image-container">
-							<img src="img/products/product.jpg" alt="producto">
-						</div>
-						<div class="info-container">
-							<div class="price-container">
-								<h3>$ 3.500</h3>
-							</div>
-							<div class="description-container">
-								Lorem, ipsum dolor sit amet consectetur adipisicing.
-							</div>
-						</div>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-</section>
-<%- include('./partials/footer'); %>
+                </section>
+                <%- include('./partials/footer'); %>
