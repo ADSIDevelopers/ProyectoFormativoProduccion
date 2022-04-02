@@ -2,7 +2,7 @@ let mysql = require('mysql');
 let conexion = mysql.createConnection({
     host: '',
     user: '',
-    password: '',
+    password: 'passsword',
     database: 'sena_empresa_2'
 });
 
