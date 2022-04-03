@@ -276,20 +276,25 @@ input:checked + .slider:before {
     color: #7a7a7a;
 }
 
+
 .pd-none {
     padding: 0;
+}
+
+.row-info-box.cursor-none{
+    cursor: default;
 }
 .title-info-box,
 .box-info-row {
     color: #585858;
 }
 .row-info-box {
+    cursor: pointer;
     display: flex;
     padding: 1.2rem 1rem;
     border-bottom: 1px solid var(--light-gray-color);
 }
 .row-info-box:hover {
-    cursor: pointer;
     background-color: #f8f8f8;
 }
 .row-info-box:last-child{
