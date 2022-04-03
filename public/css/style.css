@@ -203,8 +203,8 @@
 header {
 	display: block;
 	font-family: 'Roboto Condensed';
-	max-width: 1920px;
 	margin: auto;
+	position: relative;
 }
 .header-page{
 	width: 100%;
@@ -594,7 +594,7 @@ div {
 }
 .content-secton-info {
 	max-width: 1360px;
-	margin: auto;
+	margin: 20px auto;
 }
 
 /* tarjeta */
@@ -848,13 +848,7 @@ select {
 	}
 }
 /* PANTALLAS GRANDES */
-@media screen and (max-width: 868px) {
-	.menu-visible nav{
-		display: none;
-	}
-}
-
-@media screen and (max-width: 2850px) {
+@media screen and (max-width: 4850px) {
 	.content-header {
         background: linear-gradient(to bottom, #fff 90px, rgb(77, 146, 20) 1px, rgb(87, 167, 21), rgb(77, 146, 20)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 		width: calc(100% - 40px);
@@ -941,7 +935,6 @@ select {
 	header,
 	.logo-nav {
 		height: 50px;
-		overflow: hidden;
 	}
 	.logo {
 		display: none;
