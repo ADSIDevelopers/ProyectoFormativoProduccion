@@ -112,7 +112,6 @@
         .then(data => {return data.json()})
         .then(res => {
             if(res.status == 'error') return createErrorMessage();
-            sessionStorage.setItem("token", res.token);
             if(res.user.role == 'Aprendiz') window.location.href = "aprendiz";
             if(res.user.role == 'Instructor') window.location.href = "instructor";
             if(res.user.role == 'Visitante') window.location.href = "visitante";
