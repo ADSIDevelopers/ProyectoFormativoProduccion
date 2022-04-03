@@ -1,0 +1,29 @@
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: grey;
+    font-size: 1rem;
+    border: 0;    
+    border: 1px solid #fff;
+}
+.form-control:hover{
+    box-shadow: 0;
+}
+.table-info{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.table-info thead th{
+    background-color: rgb(87, 163, 25);
+    color: #fff;
+    padding: 10px 5px;
+    text-align: center;
+}
+.table-info tbody tr td{
+    padding: 10px 5px;
+    text-align: center;
+}

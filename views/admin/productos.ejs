@@ -1,4 +1,5 @@
 <%- include('../partials/head'); %>
+<link rel="stylesheet" href="css/btn.admin.css">
 <body>
     <div class="container">
         <div class="content-header">
@@ -44,43 +45,36 @@
                             <div class="icon-align"><span class="icon-menu"></span></div>
                         </a>
                     </div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="admin">Usuario</a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </header>
         </div>
         <div class="separator"></div>
         <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
+            <div class="content-secton-info">
                 <div class="full-container">
-                    <h1 class="h-title">Panel de Administración</h1>
-                    <hr class="separador-text">
-                    <div class="table-admin">
-                        <a href="admin/usuarios">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Asignar</div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Seguimiento</div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Consultas</div>
-                            </div>
-                        </a>
+                    <div class="breadcrumb">
+                        <a href="store" class="go-home">Volver al inicio</a>  | <a href="#">Productos</a>
                     </div>
+                    <div class="buy-box">
+                        <div class="product-image">
+                            <div class="container-image">
+                                <img src="img/products/tomate1.jpg" alt="prodcuto">
+                            </div>
+                            
+                        </div>
+                        <div class="product-description">
+                            <div class="description-box">
+                                <div class="name">Productos</div>
+                                <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore blanditiis, dignissimos quisquam impedit tempora nam iure ullam dolores magni veritatis quae cupiditate, maiores earum similique rerum. Laboriosam maiores maxime, cumque reprehenderit, unde natus, iure doloribus eveniet blanditiis voluptates harum tenetur dignissimos incidunt nulla rerum. Iure voluptatibus dicta totam similique culpa mollitia quas, provident nisi libero repellendus consectetur optio doloribus. Voluptas odit voluptate quos nostrum nesciunt maxime cum vitae maiores quasi?</div>
+                                <div class="buttons">
+                                    <button class="btn btn-block btn-primary"><a href="/Registrar_productos" class="registrar">Registrar Productos</a></button>
+                                    <button class="btn btn-block btn-secondary"><a href="/Lista_productos" class="lista">Ver Lista de Productos Disponibles</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>
-<%- include('../partials/footer'); %>
+<%- include('../partials/footer-info-admin'); %>

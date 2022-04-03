@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="css/tabla_lista.css">
 <%- include('../partials/head'); %>
 <body>
     <div class="container">
@@ -44,43 +45,45 @@
                             <div class="icon-align"><span class="icon-menu"></span></div>
                         </a>
                     </div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="admin">Usuario</a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </header>
         </div>
         <div class="separator"></div>
         <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
+            <div class="content-secton-info">
                 <div class="full-container">
-                    <h1 class="h-title">Panel de Administración</h1>
-                    <hr class="separador-text">
-                    <div class="table-admin">
-                        <a href="admin/usuarios">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Asignar</div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Seguimiento</div>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Consultas</div>
-                            </div>
-                        </a>
+                    <div class="breadcrumb">
+                        <a href="store" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Punto de Venta</a> > <a href="#">Ver Puntos de Venta Disponibles</a>
                     </div>
-                </div>
+                        <h1 class="h-title">Lista de Puntos de Venta Disponibles</h1>
+                        <div class="table-admin mt-1">
+                            <table class="table-info">
+                                <thead>
+                                    <th>Id Punto Venta</th>
+                                    <th>Nombre</th>
+                                    <th>Direccion</th>
+                                    <th>Sede</th>
+                                    <th>Encargado(a)</th>
+                                    <th>Admin</th>
+                                </thead>
+                                <tbody>
+                                        <tr>
+                                            <td >#</td>
+                                            <td >#</td>
+                                            <td >#</td>
+                                            <td >#</td>
+                                            <td >#</td>
+                                            <td>
+                                                <a class="btn-edit" href="#">Editar</a>
+                                                <a href="#" class="btn-delete">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </section>
-<%- include('../partials/footer'); %>
+    </div>
+<%- include('../partials/footer-admin'); %>

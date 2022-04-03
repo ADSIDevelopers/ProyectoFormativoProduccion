@@ -1,0 +1,70 @@
+.content_form_unidades{
+    display: grid;
+    gap: 15px;
+    padding: 12px;
+    grid-template: "codigo  unidadname " auto
+                   "imagen descripcion " auto
+                   "tittlesede tittlepersencar " 20px
+                   "sede personaunidad " auto
+                   "boton boton" 50px/ 1fr 1fr;
+}
+.word_file{
+    text-align: center;
+    cursor: pointer;
+}
+.content_file{
+    margin-top: 15px;
+    position: relative;
+    padding: 10px;
+    height: 20px;
+    width: 150px;
+    background-color: rgb(255, 143, 0);
+    border-radius: 5px;
+}
+#img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.codigounidad{
+    grid-area: codigo;
+}
+.nombreunidad{
+    grid-area: unidadname;
+}
+.img{
+    grid-area: imagen;
+}
+.descripcionunidad{
+    grid: descripcion;
+}
+.label_sede{
+    grid-area: tittlesede;
+}
+.sedeunidad{
+    grid-area: sede;
+}
+.label_persEncar{
+    grid-area: tittlepersencar;
+}
+.label_sede, .label_persEncar, .content_file, .boton_registro{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 1.1em;
+}
+.personaunidad{
+    grid-area: personaunidad;
+}
+.boton_registro{
+    background-color: rgb(83, 159, 20);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    grid-area: boton;
+}
