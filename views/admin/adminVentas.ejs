@@ -1,4 +1,4 @@
-<%- include('../partials/head'); %>
+<%- include('../partials/head-admin'); %>
 
     <body>
         <div class="container">
@@ -52,20 +52,122 @@
             <div class="separator"></div>
             <section class="body-info-section">
                 <div class="content-secton-info" style="min-height: 50vh;">
-                    <div class="full-container">
-                        <h1 class="h-title">Ventas</h1>
-                        <hr class="separador-text">
-                        <div class="admin -ventas">
-                            <form action="/registrarVenta" method="post">
-                                <div class="form-body">
-                                    <div><label for="idcompra">ID de Venta</label><input id="idcompra" type="text"></div>
-                                    <div></div>
+                    <div class="border-box">
+                        <h2>Informacion de Venta</h2>
+
+                        <div class="row-box-v">
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="idventa" id="idventa" size="10" maxlength="50" required="" disabled>
+                                    <div class="underline">
+                                    </div>
+                                    <label>ID de Venta</label>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="nombres" id="idcliente" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                    <label>ID de Cliente</label>
+                                </div>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <label>Fecha de Compra</label>
+                                <div class="input-data">
+
+                                    <input type="date" id="fechacompra" name="nombres" size="40" maxlength="50" required="">
+
+                                </div>
+                            </div>
                         </div>
-                        </a>
+                        <div class="row-box-v">
+                            <div class="wrapper-form-data">
+                                <select class="form-control">
+                            <option value="" disabled selected>Estado de Compra...</option>
+                            <option value="Reserva">Reservado</option>
+                            <option value="Compra">Compra</option>
+                        </select>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <select class="form-control">
+                            <option value="" disabled selected>Tipo de Compra</option>
+                            <option value="Individual">Individual</option>
+                            <option value="Grupal">Grupal</option>
+                        </select>
+                            </div>
+                        </div>
+                        <h2>Detalle de Compra</h2>
+                        <div class="row-box-v">
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="idventa" id="idventa" size="10" maxlength="50" required="" disabled>
+                                    <div class="underline">
+                                    </div>
+                                    <label>ID de Venta</label>
+                                </div>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="nombres" id="idcliente" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                    <label>ID de Compra</label>
+                                </div>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="nombres" id="idcliente" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                    <label>ID de Inventario</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box-f">
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="text" name="idventa" id="idpersona" size="10" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                    <label>Persona Comprador</label>
+                                </div>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <select class="form-control" name="estadocompra" id="estadocompra">
+                                        <option value="" selected disabled>Entregado</option>
+                                        <option value="Si">Si</option><option value="No">No</option>
+                                    </select>
+                                    <div class="underline">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="wrapper-form-data">
+                                <div class="input-data">
+                                    <input type="number" name="nombres" id="idinventariod" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                    <label>Costo Total</label>
+                                </div>
+                            </div>
+                        </div>
+                        <h2>Productos de Esta Compra</h2>
+                        <div class="">
+                            <div class="card-prod">
+                                <div>
+                                    <div>Papa Economica</div>
+                                    <div class=""> Precio Unidad: $ 120.000</div>
+                                </div>
+                                <div>
+                                    <div><input type="number" name="cantidad" id="cantidad" placeholder="1234..."></div>
+                                    <div><a title="Eliminar este producto" href="/eliminarProdCart">Eliminar</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">Actualizar</button>
                     </div>
                 </div>
-        </div>
-        </section>
-        <%- include('../partials/footer'); %>
+            </section>
+            <%- include('../partials/footer'); %>

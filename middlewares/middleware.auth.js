@@ -4,9 +4,9 @@ let jwt = require('jsonwebtoken');
 module.exports = {
     async authToken(req, res, next) {
         let token = storage.getItem('token');
-        if(!token) return res.redirect('/');
+        if (!token) return res.redirect('/');
         jwt.verify(token, authConfig.secret, (err, decoded) => {
-            if(err) return res.redirect('/');
+            if (err) return res.redirect('/');
             else next();
         })
     }

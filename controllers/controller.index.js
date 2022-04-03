@@ -39,6 +39,10 @@ controllerIndex.venta = (req, resp) => {
 }
 
 
+controllerIndex.listarVentas = (req, resp) => {
+    resp.render('admin/listarVentas');
+}
+
 
 
 
