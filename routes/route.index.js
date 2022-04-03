@@ -5,6 +5,7 @@ let contIndex = require('../controllers/controller.index');
 
 routeIndex.get('/', contIndex.renderIndex);
 routeIndex.get('/admin', authMiddleware.authToken, contIndex.adminIndex);
+routeIndex.get('/perfil', authMiddleware.authToken, contIndex.perfil)
 routeIndex.get('/adminProduccion', contIndex.adminProduccion);
 routeIndex.get('/usuarios', contIndex.usuarios);
 routeIndex.get('/store', contIndex.store);
