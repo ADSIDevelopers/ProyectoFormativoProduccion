@@ -1,7 +1,7 @@
 const controlador ={};
 
 controlador.renderizarFrmReservas=(req,res)=>{
-    res.render("reservas.ejs");
+    res.render("venta.ejs");
 }
 
 module.exports=controlador;
