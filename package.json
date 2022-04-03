@@ -1,0 +1,31 @@
+{
+  "name": "sena",
+  "version": "1.0.0",
+  "description": "Proyecto de ADSI - IMPORTANTE LEER ESTE DOCUMENTO ANTES DE REALIZAR CAMBIOS\r Una vez creado el repositorio local, descargar este repositorio desde git bash con git pull desde su respectiva rama.\r Por ejemplo: El grupo 1 va a descargarlo asi:   git pull origin grupo1\r              El grupo 2 va a descargarlo asi:   git pull origin grupo2\r              El grupo 3 va a descargarlo asi:   git pull origin grupo3\r              El grupo 4 va a descargarlo asi:   git pull origin grupo4\r              El grupo 5 va a descargarlo asi:   git pull origin grupo5",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon add",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ADSIDevelopers/ProyectoFormativoProduccion.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ADSIDevelopers/ProyectoFormativoProduccion/issues"
+  },
+  "homepage": "https://github.com/ADSIDevelopers/ProyectoFormativoProduccion#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
+    "node-sessionstorage": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

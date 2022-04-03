@@ -1,0 +1,146 @@
+.mt-1{
+    margin-top: 10px;
+}
+.table-admin{
+    width: 100%;
+}
+.table-admin a{
+    text-decoration: none;
+    color: #7c7c7c;
+    font-size: 1.2em;
+}
+.table-admin .option{
+    border-radius: 5px;
+    padding: 5px;
+    margin: 20px 0;
+    display: flex;
+    border-bottom: 1px solid rgb(87, 163, 25);
+    transition: all 0.5s;
+}
+.table-admin .option:hover{
+    box-shadow: 0px 0px 10px rgb(53, 53, 53);
+}
+.table-admin .option .option-logo{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(87, 163, 25);
+}
+.table-admin .option .titulo{
+    margin: 0 10px;
+}
+
+.table-info{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.table-info thead th{
+    background-color: rgb(87, 163, 25);
+    color: #fff;
+    padding: 10px 5px;
+}
+.table-info tbody tr td{
+    padding: 10px 5px;
+}
+.table-info tbody tr:last-child{
+    border-bottom: 3px solid #f5f5f5;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+a.btn-edit{
+    padding: 10px;
+    color: white;
+    background-color: rgb(64, 192, 224);
+    border-radius: 5px;
+}
+a.btn-delete{
+    padding: 10px;
+    color: white;
+    background-color: rgb(224, 64, 64);
+    border-radius: 5px;
+}
+/* ---------- */
+.border-box{
+    padding: 1rem 1.2rem;
+    border: solid 1px #dbdbdb;
+}
+.row-box{
+    display: grid;
+    grid-gap: .8rem;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: grey;
+    font-size: 1rem;
+    border: 0;    
+    border: 1px solid #fff;
+}
+.form-control:hover{
+    box-shadow: 0;
+}
+.design-1{
+    border-right: 2px solid silver;
+    border-left: 2px solid silver;
+    border-bottom: 2px solid silver;
+}
+
+/* ---------------------- */
+.padding-wrapper {
+    padding: 10px;
+}
+.wrapper-form-data {
+	background: #fff;
+    width: 100%;
+	display: inline-flex;
+    margin: 10px 0;
+}
+.wrapper-form-data .input-data {
+	height: 40px;
+	width: 100%;
+	position: relative;
+}
+.wrapper-form-data .input-data input {
+	height: 100%;
+	width: 100%;
+	border: none;
+	font-size: 17px;
+	border-bottom: 2px solid silver;
+}
+.input-data input:focus ~ label,
+.input-data input:valid ~ label {
+	transform: translateY(-25px);
+	font-size: 15px;
+}
+.wrapper-form-data .input-data label {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	color: grey;
+	pointer-events: none;
+	transition: all 0.3s ease;
+}
+.input-data .underline {
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	bottom: 0;
+}
+.input-data .underline:before {
+	position: absolute;
+	content: '';
+	height: 100%;
+	width: 100%;
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before {
+	transform: scaleX(1);
+}
