@@ -15,6 +15,7 @@ servidor.set('views', __dirname + '/views');
 servidor.use(require('./routes/route.index'));
 servidor.use('/reportes', require('./routes/route.reportes'));
 servidor.use(require('./routes/route_estadisticas'));
+servidor.use(require('./routes/route.reportes'));
 
 
 
