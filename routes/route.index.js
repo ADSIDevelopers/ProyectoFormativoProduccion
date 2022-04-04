@@ -17,4 +17,8 @@ routeIndex.get('/venta', contIndex.venta);
 routeIndex.get('/registroClientes', contIndex.registroClientes);
 routeIndex.get('/listarVentas', contIndex.listarVentas);
 
+routeIndex.get('/UnidadesProductivas', contIndex.unidadesproductivas);
+routeIndex.get('/inventario', contIndex.inventario);
+routeIndex.get('/productos', contIndex.productos);
+routeIndex.get('/puntoventa', contIndex.puntoventa);
 module.exports = routeIndex;

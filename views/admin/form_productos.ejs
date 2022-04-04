@@ -1,0 +1,129 @@
+<%- include('../partials/head'); %>
+<link rel="stylesheet" href="css/form_productos.css">
+<link rel="stylesheet" href="css/style.input.css">
+<body>
+    <div class="container">
+        <div class="content-header">
+            <div class="limiter-width-page">
+                <div class="header-page">
+                    <div class="header-logo"></div>
+                    <div class="empresa-nombre"></div>
+                    <div class="right-logo"></div>
+                </div>
+            </div>
+            <header>
+                <nav id="menu">
+                    <ul>
+                        <li>
+                            <a href="#" class="bt-close"><span class="icon-cross"></span></a>
+                        </li>
+                        <li>
+                            <a href="/admin">Inicio</a>
+                        </li>
+                        <li>
+                            <a href="/admin/usuarios">Usuarios</a>
+                        </li>
+                        <li>
+                            <a href="/UnidadesProductivas">Unidades Productivas</a>
+                        </li>
+                        <li>
+                            <a href="/inventario">Inventario</a>
+                        </li>
+                        <li>
+                            <a href="/productos">Productos</a>
+                        </li>
+                        <li>
+                            <a href="/puntoventa">Punto de Venta</a>
+                        </li>
+                        <li>
+                            <a href="/">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="menu-visible">
+                    <div class="menu_bar open-close">
+                        <a href="#e" class="bt-menu" id="btn-menu">
+                            <div class="icon-align"><span class="icon-menu"></span></div>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="separator"></div>
+        <section class="body-info-section">
+            <div class="content-secton-info">
+                <div class="full-container">
+                    <div class="breadcrumb">
+                        <a href="store" class="go-home">Volver al inicio</a>  | <a href="productos">Productos</a> > <a href="#">Registrar Productos</a>
+                    </div>
+                        <h1 class="h-title">Registrar Productos</h1>
+                        <form action="#" method="post" class="content_form_productos" enctype="multipart/form-data">
+                            <div class="content_data codigoproducto">
+                                <div class="input-data">
+                                  <input type="number" id="codigoproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Codigo Producto</label>
+                                </div>
+                            </div>
+                            <div class="content_data nombreproducto">
+                                <div class="input-data">
+                                  <input type="text" id="nombreproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Nombre Producto</label>
+                                </div>
+                            </div>
+                            <div class="content_data descripcionproducto">
+                                <div class="input-data">
+                                  <input type="text" id="descripcionproducto" name="nombres" size="40" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Descripcion</label>
+                                </div>
+                            </div>
+                            <div class="content_file img">
+                                <p class="word_file">Añadir Imagen</p>
+                                <input type="file" id="img" placeholder="Logo">
+                            </div>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadoproducto design-1">
+                                <select id="estadoproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <label class="label_reservaproducto">Reserva</label>
+                            <div class="content_data reservaproducto design-1">
+                                <select id="reservaproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="content_data valorproducto">
+                                <div class="input-data">
+                                  <input type="text" id="valorproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Valor del Producto</label>
+                                </div>
+                            </div>
+                            <label class="label_unidaproductiva">Unidad Productiva</label>
+                            <div class="content_data unidadproductiva design-1">
+                                <select id="unidadproductiva" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Escuela de Cafe</option>
+                                    <option>Pecuaria</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
+                        </form>
+                    </div>
+                </div> 
+            </div>
+        </section>
+    </div>
+<%- include('../partials/footer-admin'); %>
+<script src="js/capturador.productos.js"></script>

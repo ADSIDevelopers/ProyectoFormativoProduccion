@@ -1,9 +1,6 @@
 let controllerIndex = {};
 
 
-controllerIndex.autenticar = (req, resp) => {
-    resp.send('autenticar');
-}
 controllerIndex.autenticar = (req, res) => {
     res.send('autenticar');
 }
@@ -46,18 +43,19 @@ controllerIndex.listarVentas = (req, resp) => {
 
 
 
-controllerIndex.store = (req, res) => {
-    res.render('store');
+controllerIndex.unidadesproductivas = (req, resp) => {
+    resp.render('admin/UnidadesProductivas')
 }
-controllerIndex.buy = (req, res) => {
-    res.render('buy');
+controllerIndex.inventario = (req, resp) => {
+    resp.render('admin/inventario')
 }
-controllerIndex.uds = (req, res) => {
-    res.render('uds');
+controllerIndex.productos = (req, resp) => {
+    resp.render('admin/productos')
 }
-controllerIndex.ud = (req, res) => {
-    res.render('ud');
+controllerIndex.puntoventa = (req, resp) => {
+    resp.render('admin/puntoventa')
 }
+
 controllerIndex.registroClientes = (req, res) => {
     res.render('admin/registroClientes');
 }

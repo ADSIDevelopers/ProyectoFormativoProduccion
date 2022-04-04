@@ -19,6 +19,10 @@ servidor.use(require('./routes/route.reportes'));
 
 
 
+servidor.use(require('./routes/route.unidadesproductivas'));
+servidor.use(require('./routes/route.inventario'));
+servidor.use(require('./routes/route.productos'));
+servidor.use(require('./routes/route.puntoventa'));
 servidor.listen(3000, () => {
     console.log('Servidor 3000 activo.')
 });
