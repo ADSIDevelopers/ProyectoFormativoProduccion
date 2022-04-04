@@ -32,7 +32,7 @@ controllerIndex.adminVentas = (req, resp) => {
     resp.render('admin/adminVentas');
 }
 controllerIndex.venta = (req, resp) => {
-    resp.render('venta');
+    resp.render('ventas');
 }
 
 
