@@ -13,9 +13,10 @@ servidor.set('view engine', 'ejs');
 servidor.set('views', __dirname + '/views');
 
 servidor.use(require('./routes/route.index'));
-servidor.use(require('./routes/route.buy'));
+servidor.use('/reportes', require('./routes/route.reportes'));
+servidor.use(require('./routes/route_estadisticas'));
 
-servidor.use('/auth', require('./routes/route.auth'));
+
 
 servidor.listen(3000, () => {
     console.log('Servidor 3000 activo.')

@@ -68,6 +68,8 @@
 /* BUY */
 
 .buy-box {
+    display: flex;
+    grid-template-columns: repeat(2, 1fr);
     width: 100%;
     background-color: #F5F5F5;
     border-radius: 5px;
@@ -148,112 +150,6 @@
     border: none;
     border-radius: 5px;
     padding: 15px 0;
-    transition: all 0.5s;
-    cursor: pointer;
-}
-
-.btn:hover {
-    opacity: .5;
-}
-
-.btn-block {
-    width: 100%;
-}
-
-.btn-primary {
-    color: white;
-    background-color: #40a3ff;
-}
-
-.btn-secondary {
-    color: #40a3ff;
-    background-color: #d5ebff;
-}
-
-.buy-box {
-    display: flex;
-    grid-template-columns: repeat(2, 1fr);
-    width: 100%;
-    background-color: #F5F5F5;
-    border-radius: 5px;
-    padding: 20px;
-    -webkit-box-shadow: 0px 0px 1px rgb(121, 121, 121);
-    -moz-box-shadow: 1px 1px 3px #999;
-}
-
-.product-image {
-    background: #fff;
-    width: 100%;
-    padding: 10px;
-}
-
-.product-image .container-image {
-    margin: 10px auto;
-    width: 80%;
-}
-
-.product-image .container-image img {
-    width: 100%;
-    max-height: 100%;
-}
-
-.product-description {
-    width: 100%;
-    background: #fff;
-}
-
-.product-description .description-box {
-    color: rgb(54, 54, 54);
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 3px rgb(121, 121, 121);
-    -moz-box-shadow: 1px 1px 3px #999;
-}
-
-.product-description .description-box .name {
-    font-weight: bold;
-    font-size: 1.5em;
-    line-height: 3em;
-}
-
-.product-description .description-box .price {
-    font-size: 2em;
-    line-height: 1.5em;
-}
-
-.product-description .description-box .description {
-    margin-top: .5em;
-    text-align: justify;
-    font-size: 1em;
-    line-height: 1.5em;
-}
-
-.product-description .description-box .stock {
-    margin-top: .7em;
-    line-height: 1.5em;
-}
-
-.product-description .description-box .stock h3 {
-    font-size: 1.1em;
-}
-
-.product-description .description-box .stock .desc {
-    margin: 10px 0;
-}
-
-.product-description .description-box .stock .desc span {
-    font-weight: bold;
-}
-
-.btn {
-    width: 100%;
-    margin: 10px 0;
-    font-size: 1em;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 10px;
     transition: all 0.5s;
     cursor: pointer;
 }
