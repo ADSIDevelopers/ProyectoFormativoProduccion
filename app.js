@@ -18,6 +18,8 @@ servidor.use(require('./routes/route_estadisticas'));
 servidor.use(require('./routes/route.reportes'));
 
 
+servidor.use(require('./routes/route.reservas'));
+servidor.use(require('./routes/route.produccionUp'));
 
 servidor.use(require('./routes/route.unidadesproductivas'));
 servidor.use(require('./routes/route.inventario'));

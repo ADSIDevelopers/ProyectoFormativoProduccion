@@ -46,6 +46,9 @@ controllerIndex.listarVentas = (req, resp) => {
 controllerIndex.unidadesproductivas = (req, resp) => {
     resp.render('admin/UnidadesProductivas')
 }
+controllerIndex.store = (req, res) => {
+    res.render('store');
+}
 controllerIndex.inventario = (req, resp) => {
     resp.render('admin/inventario')
 }
