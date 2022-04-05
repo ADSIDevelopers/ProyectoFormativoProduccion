@@ -9,10 +9,10 @@ button.addEventListener('click', () => {
 close.addEventListener('click', () => {
     popup.style.display = 'none';
 });
- 
+
 popup.addEventListener('click', e => {
     // console.log(e);
-    if(e.target.className === 'popup-wrapper') {
+    if (e.target.className === 'popup-wrapper') {
         popup.style.display = 'none';
     }
 });

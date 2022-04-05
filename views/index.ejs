@@ -20,7 +20,7 @@
                             </div>
                             <nav>
                                 <ul>
-                                    <li><a href="#">opcion</a></li>
+                                    <li><a href="/reservas">Reservas</a></li>
                                     <li><a href="#">opcion</a></li>
                                 </ul>
                             </nav>
@@ -74,7 +74,7 @@
                         <h3>Login</h3>
                         <div class="wrapper-form-data">
                             <div class="input-data">
-                                <input type="text" name="nombres" size="40" maxlength="50" required="">
+                                <input type="text" id='user' size="40" maxlength="50" required="">
                                 <div class="underline">
                                 </div>
                                 <label>Usuario</label>
@@ -82,20 +82,21 @@
                         </div>
                         <div class="wrapper-form-data">
                             <div class="input-data">
-                                <input type="password" name="nombres" size="40" maxlength="50" required="">
-                                <div class="underline">
-                                </div>
+                                <input type="password" id="password" size="40" maxlength="50" required="">
+                                <div class="underline"></div>
                                 <label>Contraseña</label>
                             </div>
                         </div>
-                        <button onclick="redirect()">Iniciar Sesión</button>
+                        <div id="error-message"></div>
+                        <button id="btnSession">Iniciar Sesión</button>
                     </div>
                 </div>
             </div>
-            <script src="js/pop-up.js"></script>
-            <script>
-                function redirect() {
-                    window.location.href = "admin";
-                }
-            </script>
             <%- include('./partials/footer'); %>
+                <script src="js/pop-up.js"></script>
+                <script>
+                    let btnSession = document.getElementById("btnSession");
+                    btnSession.addEventListener("click", () => {
+                        window.location.href = "admin"
+                    })
+                </script>
