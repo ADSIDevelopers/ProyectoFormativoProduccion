@@ -1,0 +1,44 @@
+<%- include('./partials/head'); %>
+    <%- include('./partials/header'); %>
+        <section class="body-info-section">
+            <link rel="stylesheet" href="../css/produccionUp.css">
+            <div class="content-main"></div>
+            <div class="content-secton-info">
+                <div class="buy-box">
+                    <form action="#">
+                        <fieldset>
+                            <legend>
+                                <h1>Gastronomía </h1>
+                            </legend><br>
+
+                            <input type="text" placeholder="Código" class="codigo">
+                            <input type="text" placeholder="Nombre del producto" class="nombrePdto">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="Descripción del producto"></textarea>
+                            <input type="number" placeholder="Unidades en Stock" class="cantidad">
+                            <input type="number" placeholder="Nuevas Unidades" class="cantidad">
+                            <input type="date">
+                            <input type="button" value="Confirmar" class="boton">
+                        </fieldset>
+                    </form>
+
+                    <div class="card-prod">
+                        <div><img class="img-prods" src="https://picsum.photos/150/150?random" alt="image"></div>
+                        <div>
+                            <div>
+                                <h1>Unidad Productiva</h1>
+                            </div><br>
+                            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti, blanditiis aut possimus aspernatur a quia error porro laudantium. Corrupti nam nesciunt ipsam labore ea, perferendis possimus quidem quisquam vitae facilis?</div><br>
+                            <div>Cantidad de productos: 5 unidades</div><br>
+                            <div>Stock: 00</div><br>
+                            <div>Fecha de producción: 00/00/0000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            </div>
+        </section>
+        <div class="fin">
+            <%- include('./partials/footer'); %>
+        </div>

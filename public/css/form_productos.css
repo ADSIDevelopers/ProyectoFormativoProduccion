@@ -1,0 +1,81 @@
+.content_form_productos{
+    display: grid;
+    gap: 15px;
+    padding: 12px;
+    grid-template: "codigoproducto  nameproducto " auto
+                   "imagen descripcionproducto " auto
+                   "tittleestado tittlereserva " 20px
+                   "contentestado contentreserva " auto
+                   "tittleunidad empty1 " auto
+                   "contentunidad valorproducto " auto
+                   "boton boton" 50px/ 1fr 1fr;
+}
+.codigoproducto{
+    grid-area: codigoproducto;
+}
+.nombreproducto{
+    grid-area: nameproducto;
+}
+.descripcionproducto{
+    grid-area: descripcionproducto;
+}
+.img{
+    grid-area: imagen;
+}
+.label_estado{
+    grid-area: tittleestado;
+}
+.estadoproducto{
+    grid-area: contentestado;
+}
+.label_reservaproducto{
+    grid-area: tittlereserva;
+}
+.reservaproducto{
+    grid-area: contentreserva;
+}
+.valorproducto{
+    grid-area: valorproducto;
+}
+.label_unidaproductiva{
+    grid-area: tittleunidad;
+}
+.unidadproductiva{
+    grid-area: contentunidad;
+}
+.label_estado, .label_reservaproducto, .content_file, .boton_registro, .label_unidaproductiva{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 1.1em;
+}
+.word_file{
+    text-align: center;
+    cursor: pointer;
+}
+.content_file{
+    margin-top: 15px;
+    position: relative;
+    padding: 10px;
+    height: 20px;
+    width: 150px;
+    background-color: rgb(255, 143, 0);
+    border-radius: 5px;
+}
+#img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.boton_registro{
+    background-color: rgb(83, 159, 20);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    grid-area: boton;
+}

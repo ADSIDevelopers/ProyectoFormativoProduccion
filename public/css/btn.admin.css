@@ -1,0 +1,9 @@
+.registrar, .lista{
+    text-decoration: none;
+}
+.registrar{
+    color: whitesmoke;
+}
+.lista{
+    color: rgb(64, 163, 255);
+}
