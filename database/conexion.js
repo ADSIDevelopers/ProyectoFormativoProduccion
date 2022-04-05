@@ -1,9 +1,9 @@
 let mysql = require('mysql');
 let conexion = mysql.createConnection({
     host: 'localhost',
-    user: '',
+    user: 'root',
     password: '',
-    database: ''
+    database: 'produccion2'
 });
 
 conexion.connect((err) => {
