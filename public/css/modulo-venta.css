@@ -6,16 +6,16 @@
     flex-direction: row;
 }
     .prod-cart {
-        width: 60%;
+        width: 50%;
         border: 1px solid rgb(206, 206, 206);
         border-radius: 10px;
-        display: flex;
+        display: grid;
         flex-direction: column;
     }
     
     .card-prod {
         background: rgb(218, 218, 218);
-        width: 92%;
+        width: 90%;
         height: 100px;
         margin: 1em;
         padding: 1em;
@@ -72,13 +72,13 @@
         height: 100%;
         margin-right: 1em;
     }
-    
+     /*
     .cart-tb {
         margin-left: 2em;
-        /* padding: 1em; */
+         padding: 1em; 
         border-radius: 10px;
         width: 40%;
-        height: 450px;
+        height: 400px;
         background-color: rgb(250, 250, 246);
         border: 1px solid rgb(206, 206, 206);
         display: grid;
@@ -86,29 +86,37 @@
         justify-content: end;
     }
     
-    .cart-tb div:nth-child(1) {
-        /* text-align: end; */
+     .cart-tb div:nth-child(1) {
         font-size: 2.2em;
     }
-    
     .cart-tb div:nth-child(2) {
-        /* text-align: end; */
+        font-size: 1em;
+        justify-content: end;
+    }
+    .cart-tb div:nth-child(3) {
+        font-size: 1em;
+    }
+    .cart-tb div:nth-child(5) {
+         font-size: 1em; 
+        color: red;
+    }
+   
+    .cart-tb div:nth-child(2) {
         font-size: 1.8em;
         font-weight: lighter;
     }
     
     .cart-tb div:nth-child(6) {
-        /* text-align: end; */
         color: rgb(0, 172, 0);
     }
-    
+     */
     input[type="button"] {
         width: 100%;
         height: 60px;
         border-radius: 5px;
         border: none;
         background: rgb(19, 197, 19);
-        font-size: 1.3em;
+        font-size: 1.2em;
         color: white;
         cursor: pointer;
     }
@@ -123,10 +131,11 @@
         color: white;
         text-align: center;
     }
-    .InfoPdto{
+    .info-pdto{
         /* padding: 2px; */
         border: none;
-        /* margin: 3px; */
+        margin-top: 25px;
+        color: gray;
         background: none;
         width: 90%;
         margin-left: 25px;
