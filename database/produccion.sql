@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0-rc1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 04-04-2022 a las 18:22:57
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.13
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-04-2022 a las 18:16:27
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -64,10 +65,11 @@ INSERT INTO `cargo` (`idcargo`, `nombre_cargo`) VALUES
 
 CREATE TABLE `compra` (
   `Id_compra` int(11) NOT NULL,
-  `Estado` enum('Reserva','Compra') DEFAULT NULL,
+  `Estado` enum('Reservado','Facturado','Anulado') DEFAULT NULL,
   `Fecha` date DEFAULT NULL,
   `fk_persona` bigint(15) NOT NULL,
-  `tipo` enum('Grupal','Individual') DEFAULT NULL
+  `tipo` enum('Grupal','Individual') DEFAULT NULL,
+  `entregado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -80,8 +82,8 @@ CREATE TABLE `detalle` (
   `id_detalle` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `valor` decimal(10,2) NOT NULL,
-  `Entregado` enum('Si','No') DEFAULT NULL,
-  `Persona` bigint(15) DEFAULT NULL,
+  `Estado` enum('Entregado','No Entregado','Anulado') DEFAULT NULL,
+  `Aprendiz` bigint(15) DEFAULT NULL,
   `fk_Id_compra` int(11) NOT NULL,
   `fk_id_inventario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,18 +104,6 @@ CREATE TABLE `inventario` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `percios`
---
-
-CREATE TABLE `percios` (
-  `fk_cargo` int(11) DEFAULT NULL,
-  `fk_producto` int(11) DEFAULT NULL,
-  `precio` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `personas`
 --
 
@@ -126,9 +116,35 @@ CREATE TABLE `personas` (
   `Direccion` varchar(40) DEFAULT NULL,
   `Telefono` varchar(15) DEFAULT NULL,
   `Cargo` int(11) DEFAULT NULL,
-  `Rol` enum('Cliente','Lider Ficha','Unidad Productiva','Produccion','Punto Venta') DEFAULT NULL,
-  `Ficha` int(11) DEFAULT NULL,
-  `personascol` varchar(45) DEFAULT NULL
+  `Rol` enum('Invitado','Lider Ficha','Lider UP','Punto Venta',' Admin') DEFAULT NULL,
+  `Ficha` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`identificacion`, `Nombres`, `Correo`, `Login`, `Password`, `Direccion`, `Telefono`, `Cargo`, `Rol`, `Ficha`) VALUES
+(96361787, 'Wilson Martinez', NULL, '96361787', '96361787', NULL, NULL, 2, ' Admin', NULL),
+(1004419254, 'Jhon Mario', NULL, '1004419254', '1004419254', NULL, NULL, 1, ' Admin', 2252407),
+(1004442967, 'Francisco Plazas', NULL, '1004442967', '1004442967', 'casa', NULL, 1, ' Admin', 2252407),
+(1006524359, 'Andrea Figueroa', NULL, '1006524359', '1006524359', NULL, '3143841408', 1, ' Admin', 2252407),
+(1006947348, 'Edinson', 'krt847@gmail.com', '1006947348', '1006947348', '1234567890', '3102833525', 1, ' Admin', 2252407),
+(1007163272, 'Karen', 'kdortega14@gmail.com', '1007163272', '1007163272', 'pitalito', '3212681728', 1, ' Admin', 2252407),
+(1007163342, 'Evelin Manuela Bermeo Calderon', 'evelinbermeo05@gmail.com', '1007163342', '1007163342', NULL, '3167390108', 1, 'Lider Ficha', 2252407),
+(1083864069, 'Yeinery Daniela Machado Sotelo', 'danielasoteloms1211@gmail.com', '1083864069', '1083864069', NULL, '3144184632', 1, ' Admin', 2252407),
+(1116912148, 'Alejandro', 'cubillos@gmail.com', '1116912148', '123456', 'Mi casa', '313', 3, ' Admin', 2252407);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `precios`
+--
+
+CREATE TABLE `precios` (
+  `fk_cargo` int(11) DEFAULT NULL,
+  `fk_producto` int(11) DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -159,6 +175,8 @@ CREATE TABLE `productos` (
   `imagen` varchar(80) DEFAULT NULL,
   `Estado` enum('Activo','Inactivo') DEFAULT NULL,
   `Reserva` enum('Si','No') DEFAULT NULL,
+  `Entregado` tinyint(1) NOT NULL,
+  `MaxReserva` int(11) NOT NULL,
   `fk_codigo_up` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -188,6 +206,7 @@ CREATE TABLE `unidades_productivas` (
   `Logo` varchar(80) DEFAULT NULL,
   `Descripcion` varchar(100) DEFAULT NULL,
   `sede` enum('Yamboro','Centro') DEFAULT NULL,
+  `entrega_producto` tinyint(1) NOT NULL,
   `fk_persona` bigint(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -233,18 +252,18 @@ ALTER TABLE `inventario`
   ADD KEY `tiene_4` (`fk_codigo_pdto`);
 
 --
--- Indices de la tabla `percios`
---
-ALTER TABLE `percios`
-  ADD KEY `precio_cargo_idx` (`fk_cargo`),
-  ADD KEY `precio_prodcuto_idx` (`fk_producto`);
-
---
 -- Indices de la tabla `personas`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`identificacion`),
   ADD KEY `persona_cargo_idx` (`Cargo`);
+
+--
+-- Indices de la tabla `precios`
+--
+ALTER TABLE `precios`
+  ADD KEY `precio_cargo_idx` (`fk_cargo`),
+  ADD KEY `precio_prodcuto_idx` (`fk_producto`);
 
 --
 -- Indices de la tabla `produccion`
@@ -346,17 +365,17 @@ ALTER TABLE `inventario`
   ADD CONSTRAINT `tiene_4` FOREIGN KEY (`fk_codigo_pdto`) REFERENCES `productos` (`Codigo_pdto`);
 
 --
--- Filtros para la tabla `percios`
---
-ALTER TABLE `percios`
-  ADD CONSTRAINT `precio_cargo` FOREIGN KEY (`fk_cargo`) REFERENCES `cargo` (`idcargo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `precio_prodcuto` FOREIGN KEY (`fk_producto`) REFERENCES `productos` (`Codigo_pdto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
 -- Filtros para la tabla `personas`
 --
 ALTER TABLE `personas`
   ADD CONSTRAINT `persona_cargo` FOREIGN KEY (`Cargo`) REFERENCES `cargo` (`idcargo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `precios`
+--
+ALTER TABLE `precios`
+  ADD CONSTRAINT `precio_cargo` FOREIGN KEY (`fk_cargo`) REFERENCES `cargo` (`idcargo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `precio_prodcuto` FOREIGN KEY (`fk_producto`) REFERENCES `productos` (`Codigo_pdto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `produccion`

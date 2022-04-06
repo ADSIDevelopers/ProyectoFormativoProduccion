@@ -6,19 +6,14 @@ let controllerAuth = {}
 
 controllerAuth.signUp = (req, res) => {},
 controllerAuth.logIn = (req, res) => {
-    let credentials = {
-        user: 'Alejandro',
-        password: '123456'
-    }
-    if(req.body.user != credentials.user || req.body.password != credentials.password){ 
-        return res.json({
-            status: 'error', result: {msg: 'User or password incorrect'}
-        }) 
-    }
-    let json = {
-        id: 1116912148,
-        role: 'Administrativo'
-    }
+    var sql =`select identificacion, Rol from personas WHERE identificacion = '${req.body.user}' and password = '${req.body.password}'`;
+    conexion.query(sql,(err,rows)=>{
+        if(err) return res.json({status: 'error', message: 'Error with sql query'})
+        if(rows.length <= 0) return res.json({status: 'error', message: 'User not found'})
+        console.log('Validado')
+        return res.json({user: rows[0]})
+    });
+    
     let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
     var decoded = jwt.verify(token, authConfig.secret);
     storage.setItem('token', token)
