@@ -1,10 +1,16 @@
-<%- include('../partials/head'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>SENA</title>
+</head>
 <body>
-    <div class="container">
+    <div class="content-header">
         <%- include('../partials/header-admin') %> 
-        <div class="separator"></div>
+    </div>
+    <div class="container">
         <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
+            <div class="contnet-section-info" style="min-height: 50vh;">
                 <div class="full-container">
                     <h1 class="h-title">Panel de Administración</h1>
                     <hr class="separador-text">
@@ -31,4 +37,10 @@
                 </div>
             </div>
         </section>
-<%- include('../partials/footer-admin'); %>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>
+ 
+

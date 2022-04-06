@@ -1,10 +1,16 @@
-<%- include('../partials/head'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>SENA</title>
+</head>
 <body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
     <div class="container">
-        <%- include('../partials/header-admin')  %> 
-        <div class="separator"></div>
         <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
+            <div class="contnet-section-info" style="min-height: 50vh;">
                 <div class="full-container">
                     <h1 class="h-title">Perfíl de Usuario</h1>
                     <hr class="separador-text">
@@ -18,10 +24,7 @@
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">NOMBRE</div>
-                            <div class="last-column">
-                                <input style="font-size: 16px; font-family: 'Meera Inimai'; border: none;" 
-                                type="text" id="" value="Alejandro Cubillos">
-                            </div>
+                            <div class="last-column">Alejandro Cubillos</div>
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">CORREO</div>
@@ -34,7 +37,7 @@
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">LOGIN</div>
-                            <div class="last-column">Alejo46</div>
+                            <div class="last-column">1116912148</div>
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">ROL</div>
@@ -48,4 +51,8 @@
                 </div>
             </div>
         </section>
-<%- include('../partials/footer-admin'); %>
+    </div>
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>

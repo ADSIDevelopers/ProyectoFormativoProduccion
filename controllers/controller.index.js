@@ -1,8 +1,5 @@
 let controllerIndex = {};
 
-controllerIndex.autenticar = (req, res) => {
-    res.send('autenticar');
-}
 controllerIndex.renderIndex = (req, resp) => {
     resp.render('index');
 }

@@ -1,60 +1,62 @@
-<div class="content-header">
-            <div class="limiter-width-page">
-                <div class="header-page">
-                    <div class="header-logo"></div>
-                    <div class="empresa-nombre"></div>
-                    <div class="right-logo"></div>
+<div class="limiter-width-page">
+    <div class="header-page">
+        <div class="header-logo"></div>
+        <div class="empresa-nombre"></div>
+        <div class="right-logo"></div>
+    </div>
+</div>
+<div class="limiter-width-page">
+    <header>
+        <!-- NAVBAR OCULTABLE -->
+        <nav id="menu">
+            <ul>
+                <li>
+                    <a href="#" class="bt-close"><span class="icon-cross"></span></a>
+                </li>
+                <li>
+                    <a href="/admin">Inicio</a>
+                </li>
+                <li>
+                    <a href="/usuarios">Usuarios</a>
+                </li>
+                <li>
+                    <a href="/admin/productos">Productos</a>
+                </li>
+                <li>
+                    <a href="/admin/punto-venta">Punto de Venta</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- MENU DE USUARIO - SESSIÓN -->
+        <div class="menu-visible">
+            <div class="menu_bar open-close">
+                <a href="#e" class="bt-menu" id="btn-menu">
+                    <div class="icon-align"><span class="icon-menu"></span></div>
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" id="profile">< % = profile.Nombres %> </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="profile-box" id="profile-box">
+            <div class="profile-section">
+                <div class="user-name">< % =profile.Nombres%> </div>
+                <div class="user-rol">< % =profile.Cargo %> </div>
+                <a href="perfil">
+                    <div class="admin-profile">
+                        Administrar Perfíl
+                    </div>
+                </a>
+            </div>
+            <div class="profile-section">
+                <div class="logout-profile" id="logout">
+                    Cerrar Sesión
                 </div>
             </div>
-            <header>
-                <nav id="menu">
-                    <ul>
-                        <li>
-                            <a href="#" class="bt-close"><span class="icon-cross"></span></a>
-                        </li>
-                        <li>
-                            <a href="/admin">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="/usuarios">Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="/admin/productos">Productos</a>
-                        </li>
-                        <li>
-                            <a href="/admin/punto-venta">Punto de Venta</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="menu-visible">
-                    <div class="menu_bar open-close">
-                        <a href="#e" class="bt-menu" id="btn-menu">
-                            <div class="icon-align"><span class="icon-menu"></span></div>
-                        </a>
-                    </div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="#" id="profile"><%=profile.Nombres  %> </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="profile-box" id="profile-box">
-                    <div class="profile-section">
-                        <div class="user-name"><%=profile.Nombres%> </div>
-                        <div class="user-rol"><%=profile.Cargo %> </div>
-                        <a href="perfil">
-                            <div class="admin-profile">
-                                Administrar Perfíl
-                            </div>
-                        </a>
-                    </div>
-                    <div class="profile-section">
-                        <div class="logout-profile" id="logout">
-                            Cerrar Sesión
-                        </div>
-                    </div>
-                </div>
-            </header>
         </div>
+    </header>
+</div>
