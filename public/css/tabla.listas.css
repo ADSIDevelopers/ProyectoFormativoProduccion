@@ -1,0 +1,58 @@
+.form-control{
+    display: block;
+    width: 100%;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: grey;
+    font-size: 1rem;
+    border: 0;    
+    border: 1px solid #fff;
+}
+.form-control:hover{
+    box-shadow: 0;
+}
+.table-info{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.table-info thead th{
+    background-color: rgb(87, 163, 25);
+    color: #fff;
+    padding: 10px 5px;
+    text-align: center;
+}
+.table-info tbody tr td{
+    padding: 10px 5px;
+    text-align: center;
+}
+.popup-close-window {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: rgb(87, 163, 25);;
+}
+.content-form-subject{
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+}
+.content-main-form-subject{
+    width: 100%;
+    max-width: 900px;
+    top: 15%;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    position: relative;
+    border-radius: 5px;
+}

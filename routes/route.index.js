@@ -13,4 +13,9 @@ routeIndex.get('/buy', contIndex.buy);
 routeIndex.get('/uds', contIndex.uds);
 routeIndex.get('/ud', contIndex.ud);
 
+routeIndex.get('/productos',contIndex.productos);
+routeIndex.get('/unidadesproductivas',contIndex.unidadesproductivas);
+routeIndex.get('/puntoventa',contIndex.puntoventa)
+routeIndex.get('/inventario',contIndex.inventario);
+
 module.exports = routeIndex;

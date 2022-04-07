@@ -15,6 +15,18 @@ controllerIndex.usuarios = (req, resp) => {
 controllerIndex.adminProduccion = (req, resp) => {
     resp.render('admin/produccion')
 }
+controllerIndex.productos = (req, resp) => {
+    resp.render('admin/productos')
+}
+controllerIndex.unidadesproductivas = (req, resp) =>{
+    resp.render('admin/unidadesproductivas')
+}
+controllerIndex.puntoventa = (req, resp) =>{
+    resp.render('admin/puntoventa')
+}
+controllerIndex.inventario = (req, resp) =>{
+    resp.render('admin/inventario')
+}
 controllerIndex.store = (req, res) => {
     res.render('store');
 }

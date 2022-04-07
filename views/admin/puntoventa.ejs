@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/tabla.listas.css">
+    <link rel="stylesheet" href="css/style.input.css">
+    <link rel="stylesheet" href="css/form.puntoventa.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="container">
+        <div class="body-info-section">
+            <div class="full-container">
+                <div class="breadcrumb">
+                    <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Punto de Venta</a>
+                </div>
+                    <h1 class="h-title">Puntos de Venta Disponibles <span id="Openform" class="icon-filter_1"></span><span>Filtro</span></h1>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Id Punto Venta</th>
+                                <th>Nombre</th>
+                                <th>Direccion</th>
+                                <th>Sede</th>
+                                <th>Encargado(a)</th>
+                                <th>Admin</th>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td>
+                                            <a class="btn-edit" href="#">Editar</a>
+                                            <a href="#" class="btn-delete">Eliminar</a>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-form-subject">
+                    <div class="content-main-form-subject">
+                        <h1 class="h-title">Registrar Punto de Venta</h1><div class="popup-close-window">x</div>
+                        <form action="#" method="post" class="content_form_puntoventa">
+                            <div class="content_data nombrepunvnt">
+                                <div class="input-data">
+                                  <input type="text" id="nombrepunvnt" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Nombre</label>
+                                </div>
+                            </div>
+                            <div class="content_data direccionpunvnt">
+                                <div class="input-data">
+                                  <input type="text" id="direccionpunvnt" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Direccion</label>
+                                </div>
+                            </div>
+                            <label class="label_sedepuntventa">Sede</label>
+                            <div class="content_data content_sedepuntventa design-1">
+                                <select id="sedepuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Centro">Centro</option>
+                                    <option value="Yamboro">Yamboro</option>
+                                </select>
+                            </div>
+                            <label class="label_persEncar">Persona Encargada</label>
+                            <div class="content_data personapuntventa design-1">
+                                <select id="personapuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Laura</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarPuntoventa();">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>
+<script src="js/pop-up-forms.js"></script>

@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/tabla.listas.css">
+    <link rel="stylesheet" href="css/style.input.css">
+    <link rel="stylesheet" href="css/form.inventario.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="container">
+        <div class="body-info-section">
+            <div class="full-container">
+                <div class="breadcrumb">
+                    <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Inventario</a>
+                </div>
+                    <h1 class="h-title">inventarios Disponibles <span id="Openform" class="icon-plus-square-o"></span><span>Filtro</span></h1>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Id Inventario</th>
+                                <th>Stock</th>
+                                <th>Producto</th>
+                                <th>Punto de Venta</th>
+                                <th>Admin</th>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td>
+                                            <a class="btn-edit" href="#">Editar</a>
+                                            <a href="#" class="btn-delete">Eliminar</a>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-form-subject">
+                    <div class="content-main-form-subject">
+                        <h1 class="h-title">Registrar Inventario</h1><div class="popup-close-window">x</div>
+                        <form action="#" method="post" class="content_form_inventario">
+                            <div class="content_data inventStock">
+                                <div class="input-data">
+                                  <input type="number" id="inventStock" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Stock</label>
+                                </div>
+                            </div>
+                            <label class="label_producto">Producto</label>
+                            <div class="content_data content_producto design-1">
+                                <select id="fkproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Yogurth</option>
+                                    <option>Avena</option>
+                                </select>
+                            </div>
+                            <label class="label_puntventa">Punto de Venta</label>
+                            <div class="content_data content_puntventa design-1">
+                                <select id="fkpuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Yogurts del Norte</option>
+                                    <option>Pescados del Sena</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarUnidad();">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>
+<script src="js/pop-up-forms.js"></script>

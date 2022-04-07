@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/tabla.listas.css">
+    <link rel="stylesheet" href="css/style.input.css">
+    <link rel="stylesheet" href="css/form.unidadesproductivas.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="container">
+        <div class="body-info-section">
+            <div class="full-container">
+                <div class="breadcrumb">
+                    <a href="#" class="go-home">Volver al inicio</a>  | <a href="unidadesproductivas">Unidades Productivas</a>
+                </div>
+                    <h1 class="h-title">Lista de Unidaddes Productivas Disponibles <span id="Openform" class="icon-filter_1"></span><span>Filtro</span></h1>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Id Unidad Productiva</th>
+                                <th>Nombre Unidad Productiva</th>
+                                <th>Logo</th>
+                                <th>Descripcion</th>
+                                <th>Sede</th>
+                                <th>Persona Encargada</th>
+                                <th>Admin</th>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td ><img src="img/products/product.jpg" alt="" width="50px"></td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td>
+                                            <a class="btn-edit" href="#">Editar</a>
+                                            <a href="#" class="btn-delete">Eliminar</a>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-form-subject">
+                    <div class="content-main-form-subject">
+                        <h1 class="h-title">Registrar Unidad Productiva</h1><div class="popup-close-window">x</div>
+                        <form action="#" method="post" class="content_form_unidades" enctype="multipart/form-data">
+                            <div class="content_data codigounidad">
+                                <div class="input-data">
+                                  <input type="number" id="codigounidad" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Codigo Unidad</label>
+                                </div>
+                            </div>
+                            <div class="content_data nombreunidad">
+                                <div class="input-data">
+                                  <input type="text" id="nombreunidad" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Nombre Unidad</label>
+                                </div>
+                            </div>
+                            <div class=" img">
+                                <div class="content_file">
+                                    <p class="word_file">Añadir Imagen</p>
+                                    <input type="file" id="img" placeholder="Logo">
+                                </div>
+                                <div class="namefile">
+                                    <h2 id="originalfilename"></h2>
+                                </div>
+                            </div>
+                            <div class="content_data descripcionunidad">
+                                <div class="input-data">
+                                  <input type="text" id="descripcionunidad" name="nombres" size="40" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Descripcion</label>
+                                </div>
+                            </div>
+                            <label class="label_sede">Sede</label>
+                            <div class="content_data sedeunidad design-1">
+                                <select id="sedeunidad" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Yamboro">Yamboro</option>
+                                    <option value="Centro">Centro</option>
+                                </select>
+                            </div>
+                            <label class="label_persEncar">Persona Encargada</label>
+                            <div class="content_data personaunidad design-1">
+                                <select id="personaunidad" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Laura</option>
+                                    <option>Camila</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarUnidad();">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>
+<script src="js/pop-up-forms.js"></script>
