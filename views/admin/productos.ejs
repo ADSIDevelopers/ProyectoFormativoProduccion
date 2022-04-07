@@ -17,7 +17,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="productos">Productos</a>
                 </div>
-                    <h1 class="h-title">Lista de Productos Disponibles <span id="Openform" class="icon-add-outline"></span><span>Filtro</span></h1>
+                    <h1 class="h-title">Lista de Productos Disponibles <span class="icon-filter_alt"></span><span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -42,7 +42,7 @@
                                         <td >#</td>
                                         <td >#</td>
                                         <td>
-                                            <a class="btn-edit" href="#">Editar</a>
+                                            <a class="btn-edit" id="OpenAct" href="#">Editar</a>
                                             <a href="#" class="btn-delete">Desabilitar</a>
                                         </td>
                                     </tr>
@@ -123,6 +123,79 @@
                         </form>
                     </div>
                 </div>
+                <div class="content-form-subject-actul">
+                    <div class="content-main-form-subject-actul">
+                        <h1 class="h-title">Actualizar Producto</h1><div class="popup-close-window-act">x</div>
+                        <form action="#" method="post" class="content_form_productos" enctype="multipart/form-data">
+                            <div class="content_data codigoproducto">
+                                <div class="input-data">
+                                <input type="number" id="codigoproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Codigo Producto</label>
+                                </div>
+                            </div>
+                            <div class="content_data nombreproducto">
+                                <div class="input-data">
+                                <input type="text" id="nombreproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Nombre Producto</label>
+                                </div>
+                            </div>
+                            <div class="content_data descripcionproducto">
+                                <div class="input-data">
+                                <input type="text" id="descripcionproducto" name="nombres" size="40" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Descripcion</label>
+                                </div>
+                            </div>
+                            <div class=" img">
+                                <div class="content_file">
+                                    <p class="word_file">Añadir Imagen</p>
+                                    <input type="file" id="img" placeholder="Logo">
+                                </div>
+                                <div class="namefile">
+                                    <h2 id="originalfilename"></h2>
+                                </div>
+                            </div>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadoproducto design-1">
+                                <select id="estadoproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <label class="label_reservaproducto">Reserva</label>
+                            <div class="content_data reservaproducto design-1">
+                                <select id="reservaproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="content_data valorproducto">
+                                <div class="input-data">
+                                <input type="text" id="valorproducto" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Valor del Producto</label>
+                                </div>
+                            </div>
+                            <label class="label_unidaproductiva">Unidad Productiva</label>
+                            <div class="content_data unidadproductiva design-1">
+                                <select id="unidadproductiva" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Escuela de Cafe</option>
+                                    <option>Pecuaria</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" >Actualizar</button>
+                        </form>
+                    </div>
+                </div>
             </div> 
         </div>
     </div>
@@ -131,3 +204,4 @@
 </body>
 </html>
 <script src="js/pop-up-forms.js"></script>
+<script src="js/catch.producto.js"></script>

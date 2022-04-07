@@ -16,7 +16,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Punto de Venta</a>
                 </div>
-                    <h1 class="h-title">Puntos de Venta Disponibles <span id="Openform" class="icon-filter_1"></span><span>Filtro</span></h1>
+                    <h1 class="h-title">Puntos de Venta Disponibles <span class="icon-filter_alt"></span><span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -35,7 +35,7 @@
                                         <td >#</td>
                                         <td >#</td>
                                         <td>
-                                            <a class="btn-edit" href="#">Editar</a>
+                                            <a class="btn-edit" id="OpenAct" href="#">Editar</a>
                                             <a href="#" class="btn-delete">Eliminar</a>
                                         </td>
                                     </tr>
@@ -82,6 +82,45 @@
                         </form>
                     </div>
                 </div>
+                <div class="content-form-subject-actul">
+                    <div class="content-main-form-subject-actul">
+                        <h1 class="h-title">Actualizar Punto de Venta</h1><div class="popup-close-window-act">x</div>
+                        <form action="#" method="post" class="content_form_puntoventa">
+                            <div class="content_data nombrepunvnt">
+                                <div class="input-data">
+                                  <input type="text" id="nombrepunvnt" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Nombre</label>
+                                </div>
+                            </div>
+                            <div class="content_data direccionpunvnt">
+                                <div class="input-data">
+                                  <input type="text" id="direccionpunvnt" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                  <label>Direccion</label>
+                                </div>
+                            </div>
+                            <label class="label_sedepuntventa">Sede</label>
+                            <div class="content_data content_sedepuntventa design-1">
+                                <select id="sedepuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Centro">Centro</option>
+                                    <option value="Yamboro">Yamboro</option>
+                                </select>
+                            </div>
+                            <label class="label_persEncar">Persona Encargada</label>
+                            <div class="content_data personapuntventa design-1">
+                                <select id="personapuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option>Laura</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarPuntoventa();">Registrar</button>
+                        </form>
+                    </div>
+                </div>
             </div> 
         </div>
     </div>
@@ -90,3 +129,4 @@
 </body>
 </html>
 <script src="js/pop-up-forms.js"></script>
+<script src="js/catch.puntoventa.js"></script>
