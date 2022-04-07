@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <title>SENA</title>
+        <link rel="stylesheet" href="css/modulo-venta.css">
+
+</head>
+
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %>
+    </div>
+    <div class="container">
+        <div class="box">
+            <div class="head-table">
+                <h2>Ventas</h2><button class="btn btn-primary" id="btn" onclick="">Nueva Venta</button></div>
+
+
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID Compra</th>
+                            <th scope="col">Comprador</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Valor de la Compra</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                0001
+                            </td>
+
+                            <td scope="row">
+                                David Lugo
+                            </td>
+                            <td>
+                                16/02/2002
+                            </td>
+                            <td>
+                                $20.000
+                            </td>
+                            <td>
+                                <a href="#">Facturar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="box2">
+            <div>
+                <h2>Venta</h2>
+            </div>
+
+            <div>
+                <label for="idcompra">ID de Compra</label>
+                <input type="text" name="id" id="idcompra" placeholder="Id de compra">
+            </div>
+            <div class="cont-form">
+                <label for="idcompra">ID de Cliente</label>
+
+                <input type="text" name="id" id="idcliente" placeholder="ID de Cliente">
+            </div>
+        </div>
+    </div>
+    </section>
+    </div>
+    <%- include('../partials/footer') %>
+        <%- include('../partials/scripts.ejs') %>
+            <script src="js/ventas.js"></script>
+</body>
+
+</html>
