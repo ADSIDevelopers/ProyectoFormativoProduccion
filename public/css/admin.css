@@ -112,6 +112,7 @@ select.form-control{
 	width: 100%;
 	border: none;
 	font-size: 17px;
+    letter-spacing: .15rem;
 	border-bottom: 2px solid silver;
 }
 .input-data input:focus ~ label,
