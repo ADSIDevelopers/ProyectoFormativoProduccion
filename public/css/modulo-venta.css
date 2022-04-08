@@ -1,57 +1,64 @@
-    .container {
-        display: grid;
-        grid-template: "tabla control" 1fr /1fr 1fr;
-    }
-    
-    .head-table {
-        margin-left: 1em;
-        display: grid;
-        grid-template: "nombre btnadd" 60px / 1fr 1fr;
-        align-items: center;
-    }
-    
-    .table {
-        margin-left: 1em;
-        width: 98.5%;
-    }
-    
-    .table thead {
-        background: rgb(15, 188, 15);
-        color: white;
-        height: 50px;
-    }
-    
-    .table tr td {
-        height: 40px;
-        background: lightgray;
-        text-align: center;
-    }
-    
-    .btn-primary {
-        width: 300px;
-        justify-self: end;
-    }
-    
-    .box2 {
-        margin-left: 2em;
-        display: grid;
-        grid-template: "titulo titulo" 40px "input1 input2" 60px/1fr 1fr;
-    }
-    
-    .box2 div:nth-child(1) {
-        grid-area: titulo;
-    }
-    
-    .box2 div:nth-child(2) {
-        background: blue;
-        grid-area: input1;
-    }
-    
-    .box2 div:nth-child(3) {
-        background: green;
-        grid-area: input2;
-    }
-    
-    label {
-        display: block;
-    }
+.container {
+    display: grid;
+    grid-template: "tabla control" 1fr /1fr 1fr;
+}
+
+.head-table {
+    margin-left: 1em;
+    display: grid;
+    grid-template: "nombre btnadd" 60px / 1fr 1fr;
+    align-items: center;
+}
+
+.table {
+    margin-left: 1em;
+    width: 98.5%;
+}
+
+.table thead {
+    background: rgb(15, 188, 15);
+    color: white;
+    height: 50px;
+}
+
+.table tr td {
+    height: 40px;
+    background: lightgray;
+    text-align: center;
+}
+
+.btn-primary {
+    width: 200px;
+    justify-self: end;
+}
+
+.box {
+    grid-area: tabla;
+}
+
+.box2 {
+    background: gray;
+    margin-left: 2em;
+    width: 90%;
+    display: grid;
+    grid-template: "titulo titulo" 40px "control control" 60px/1fr 1fr;
+}
+
+.box2 div:nth-child(1) {
+    grid-area: titulo;
+}
+
+label {
+    display: block;
+}
+
+.cont-form {
+    grid-area: control;
+    width: 90%;
+    display: grid;
+    grid-template: "inputid inputidcliente" 20px "nombre estado" /100px 100px;
+}
+
+.input1 {
+    width: 100px;
+}
