@@ -1,28 +1,41 @@
-.container {
-    display: grid;
-    grid-template: "tabla control" 1fr /1fr 1fr;
+.main-contenedor {
+    display: flex;
+    justify-content: center;
 }
 
 .head-table {
-    margin-left: 1em;
+    margin: 1em 1.3em 1em 0;
     display: grid;
-    grid-template: "nombre btnadd" 60px / 1fr 1fr;
+    grid-template: "nombre busqueda btnadd" 60px /1fr 1fr 200px;
     align-items: center;
 }
 
 .table {
-    margin-left: 1em;
     width: 98.5%;
+    font-size: 0.9em;
 }
 
 .table thead {
     background: rgb(15, 188, 15);
     color: white;
-    height: 50px;
+    height: 40px;
+    text-align: center;
+}
+
+.input-s {
+    width: 80%;
+    height: 40px;
+    padding: 1em;
+    border: 2px lightgray solid;
+    overflow: none;
+}
+
+.input-s::placeholder {
+    color: rgb(192, 192, 192);
 }
 
 .table tr td {
-    height: 40px;
+    height: 20px;
     background: lightgray;
     text-align: center;
 }
@@ -34,11 +47,10 @@
 
 .box {
     grid-area: tabla;
+    width: 95%;
 }
 
 .box2 {
-    background: gray;
-    margin-left: 2em;
     width: 90%;
     display: grid;
     grid-template: "titulo titulo" 40px "control control" 60px/1fr 1fr;

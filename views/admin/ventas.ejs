@@ -12,10 +12,11 @@
     <div class="content-header">
         <%- include('../partials/header-admin') %>
     </div>
-    <div class="container">
+    <div class="main-contenedor">
         <div class="box">
             <div class="head-table">
-                <h2>Ventas</h2><button class="btn btn-primary" id="btn" onclick="">Nueva Venta</button></div>
+                <h2>Ventas y Reservas</h2><input type="search" name="busquedaVenta" class="input-s" placeholder="Buscar Ventas o Reservas..." id="busquedaVenta"><button class="btn btn-primary" id="btn" onclick="">Nueva Venta</button>
+            </div>
 
 
             <div>
@@ -29,7 +30,7 @@
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cuerpo-tabla">
 
                         <tr>
 
@@ -47,14 +48,56 @@
                                 $20.000
                             </td>
                             <td>
-                                <a href="#">Facturar</a>
+                                <a href="#" id="detalle-link" onclick="VerDetalle();">Detalle</a><a href="#" id="facturar-link" onclick="AbrirFrmUsuario();">Facturar</a>
                             </td>
+
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <div class="box2">
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="post" class="row g-3 needs-validation">
+                            <div class="col-md-8">
+                                <label for="exampleInputEmail1" class="form-label">Id</label>
+                                <input type="text" name="Identificacion" class="form-control" id="Id">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                                <input type="text" name="Nombre" class="form-control" id="Nombre">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="exampleInputEmail1" class="form-label">Apellidos</label>
+                                <input type="text" name="Apellidos" class="form-control" id="Apellidos">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="exampleInputEmail1" class="form-label">Direccion</label>
+                                <input type="text" name="Direccion" class="form-control" id="Direccion">
+                            </div>
+                            <div class="col-md-8">
+                                <label for="exampleInputEmail1" class="form-label">Celular</label>
+                                <input type="text" name="Celular" class="form-control" id="Celular">
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="registrarUsuario();">Registrar</button>
+                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="box2">
             <div>
                 <h2>Venta</h2>
             </div>
@@ -85,13 +128,15 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
     </div>
     </section>
     </div>
     <%- include('../partials/footer') %>
         <%- include('../partials/scripts.ejs') %>
             <script src="js/ventas.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
