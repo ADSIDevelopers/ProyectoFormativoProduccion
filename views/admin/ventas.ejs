@@ -5,6 +5,7 @@
     <%- include('../partials/head'); %>
         <title>SENA</title>
         <link rel="stylesheet" href="css/modulo-venta.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -15,7 +16,7 @@
     <div class="main-contenedor">
         <div class="box">
             <div class="head-table">
-                <h2>Ventas y Reservas</h2><input type="search" name="busquedaVenta" class="input-s" placeholder="Buscar Ventas o Reservas..." id="busquedaVenta"><button class="btn btn-primary" id="btn" onclick="">Nueva Venta</button>
+                <h2>Ventas y Reservas</h2><input type="search" name="busquedaVenta" class="input-s" placeholder="Buscar Ventas o Reservas..." id="busquedaVenta"><button class="btn btn-primary" id="btn" onclick="nuevaVenta()">Nueva Venta</button>
             </div>
 
 
@@ -33,11 +34,9 @@
                     <tbody id="cuerpo-tabla">
 
                         <tr>
-
                             <td>
                                 0001
                             </td>
-
                             <td scope="row">
                                 David Lugo
                             </td>
@@ -47,10 +46,9 @@
                             <td>
                                 $20.000
                             </td>
-                            <td>
-                                <a href="#" id="detalle-link" onclick="VerDetalle();">Detalle</a><a href="#" id="facturar-link" onclick="AbrirFrmUsuario();">Facturar</a>
+                            <td class="action-td"><button id="detalle-link" class="link-detalle" onclick="mostrarDetalle();">Detalle</button>
+                                <button id="detalle-link" class="link-facturar" onclick="compranueva();">Facturar</button>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -58,36 +56,40 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="modalFacturar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="post" class="row g-3 needs-validation">
-                            <div class="col-md-8">
-                                <label for="exampleInputEmail1" class="form-label">Id</label>
-                                <input type="text" name="Identificacion" class="form-control" id="Id">
-                            </div>
-                            <div class="col-md-8">
-                                <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                                <input type="text" name="Nombre" class="form-control" id="Nombre">
-                            </div>
-                            <div class="col-md-8">
-                                <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                                <input type="text" name="Apellidos" class="form-control" id="Apellidos">
-                            </div>
-                            <div class="col-md-8">
-                                <label for="exampleInputEmail1" class="form-label">Direccion</label>
-                                <input type="text" name="Direccion" class="form-control" id="Direccion">
-                            </div>
-                            <div class="col-md-8">
-                                <label for="exampleInputEmail1" class="form-label">Celular</label>
-                                <input type="text" name="Celular" class="form-control" id="Celular">
-                            </div>
+                        <form action="/genFactura" method="post" class="row g-3 needs-validation">
+                            <div class="col-md-12">
+                                <table id="tableFacturar" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th>ID. Prod</th>
+                                            <th>Nombre del Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Valor Unit.</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado de Entrega</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                        </tr>
 
+                                    </tbody>
+                                </table>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -97,45 +99,229 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="box2">
-            <div>
-                <h2>Venta</h2>
-            </div>
 
-            <div class="wrapper-form-data input1">
-                <div class="input-data">
-                    <input class="codigo-com" type="text" name="idcompra" disabled>
-                    <div class="underline">
-                    </div>
-                    <label>Codigo</label>
-                </div>
 
-            </div>
-            <div class="wrapper-form-data">
-                <div class="input-data">
-                    <input class="id-input" type="text" name="nombres" required="">
-                    <div class="underline">
+        <!---Modal detalle-->
+        <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content detalle-Modal">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Detalle de Esta Reserva</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <label>Identificación</label>
-                </div>
-            </div>
-            <div class="wrapper-form-data">
-                <div class="input-data">
-                    <input class="id-nombre" type="text" name="nombres" size="40" maxlength="50" disabled>
-                    <div class="underline">
-                    </div>
-                    <label>Nombres</label>
-                </div>
+                    <div class="modal-body">
+                        <form action="#" method="post" class="row g-3 needs-validation">
+                            <div class="col-md-12">
+                                <table id="tableDetalle" class="display">
+                                    <thead>
+                                        <tr>
+                                            <th>ID. Prod</th>
+                                            <th>Nombre del Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Valor Unit.</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado de Entrega</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$2000</td>
+                                            <td>$250000</td>
+                                            <td><select name="estadoProdVen" id="estadoProdVen">
+                                                <option value="Entregado">Entregado</option>
+                                                <option value="No Entregado">No Entregado</option>
+                                                <option value="Anulado">Anulado</option>
+                                            </select></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0002</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td><select name="estadoProdVen" id="estadoProdVen">
+                                                <option value="Entregado">Entregado</option>
+                                                <option value="No Entregado">No Entregado</option>
+                                                <option value="Anulado">Anulado</option>
+                                            </select></td>
 
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Hecho</button>
+                    </div>
+                </div>
             </div>
-        </div> -->
+        </div>
+        <div class="modal fade" id="modalNewVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen-xxl-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nueva Venta</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="row g-3" action="/registrarVenta">
+                        <div class="modal-body modal-cart">
+                            <div class="table-cart">
+                                <table id="tableCart" class="display dt-table-cart">
+                                    <thead>
+                                        <tr>
+                                            <th>ID. Prod</th>
+                                            <th>Nombre del Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Valor Unit.</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado de Entrega</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="cont-cart">
+                                <div class="form-buy row g-3">
+                                    <h1>Formulario de Venta</h1>
+                                    <div class="col-md-2">
+                                        <label for="inputid" class="form-label">ID</label>
+                                        <input type="number" class="form-control input-style" id="inputid" disabled>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <label for="inputPIdCliente" class="form-label">Documento del CLiente</label>
+                                        <input type="number" class="form-control input-style" id="inputPIdCliente">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Nom. Cliente</label>
+                                        <input type="text" class="form-control input-style" id="inputAddress" placeholder="1234 Main St" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
+                            <input type="submit" class="btn btn-primary btnreg" value="Registrar">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="modal fade modal-dark" id="modalAddProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agrega Productos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form class="row g-3" action="/registrarVenta">
+                        <div class="modal-body">
+                            <div class="table-prods">
+                                <table id="tableAddProd" class="display dt-table-cart">
+                                    <thead>
+                                        <tr>
+                                            <th>ID. Prod</th>
+                                            <th>Nombre del Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Valor Unit.</th>
+                                            <th>Valor Total</th>
+                                            <th>Estado de Entrega</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>0001</td>
+                                            <td>Papa Economica</td>
+                                            <td>25</td>
+                                            <td>$5000</td>
+                                            <td>$250000</td>
+                                            <td>No entregado</td>
+                                            <td><a href="#">Eliminar</a></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
+                            <input type="submit" class="btn btn-primary btnreg" value="Registrar">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    </section>
-    </div>
+
     <%- include('../partials/footer') %>
         <%- include('../partials/scripts.ejs') %>
             <script src="js/ventas.js"></script>
             <script src="js/bootstrap.min.js"></script>
+            <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 </body>
 

@@ -16,7 +16,7 @@
 }
 
 .table thead {
-    background: rgb(15, 188, 15);
+    background: rgb(94, 179, 25);
     color: white;
     height: 40px;
     text-align: center;
@@ -73,4 +73,77 @@ label {
 
 .input1 {
     width: 100px;
+}
+
+.link-facturar {
+    margin-left: 1em;
+}
+
+.link-facturar,
+.link-detalle {
+    border: none;
+    background: rgb(94, 179, 25);
+    border-radius: 5px;
+    width: 70px;
+    color: white;
+}
+
+.link-facturar:hover,
+.link-detalle:hover {
+    background: rgb(75, 142, 20);
+}
+
+.input-style {
+    border: 1px gray solid;
+}
+
+.modal-cart {
+    display: flex;
+    flex-direction: row;
+}
+
+.table-cart {
+    width: 60%;
+}
+
+.cont-cart {
+    width: 40%;
+    display: flex;
+    justify-content: end;
+}
+
+.form-buy {
+    width: 90%;
+    font-size: 0.9em;
+    height: 200px;
+}
+
+.dt-table-cart {
+    font-size: 0.9em;
+}
+
+.dt-table-cart thead tr {
+    background: rgb(94, 179, 25);
+    color: white;
+}
+
+.modal-header {
+    color: white;
+    background: rgb(94, 179, 25);
+}
+
+.btnreg {
+    margin-left: 1em;
+}
+
+.btnadd {
+    background: green;
+}
+
+.action-td {
+    width: 200px;
+}
+
+.modal-dark {
+    background: rgba(0, 0, 0, 0.661);
 }
