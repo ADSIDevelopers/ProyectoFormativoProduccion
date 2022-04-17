@@ -1,32 +1,7 @@
-.form-control{
-    display: block;
-    width: 100%;
-    padding: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    color: grey;
-    font-size: 1rem;
-    border: 0;    
-    border: 1px solid #fff;
+table tr:nth-child(even) td {
+    background-color: rgb(233, 236, 239);
 }
-.form-control:hover{
-    box-shadow: 0;
-}
-.table-info{
-    width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-}
-.table-info thead th{
-    background-color: rgb(87, 163, 25);
-    color: #fff;
-    padding: 10px 5px;
-    text-align: center;
-}
-.table-info tbody tr td{
-    padding: 10px 5px;
-    text-align: center;
-}
+
 .popup-close-window, .popup-close-window-act {
     position: absolute;
     top: 5px;
@@ -76,7 +51,13 @@
     position: relative;
     border-radius: 5px;
 }
-.icon-library_add, .icon-filter_alt{
-    color: rgb(69, 137, 27);
+.icon-library_add, .filter_alt{
     float: right;
+}
+.icon-library_add{
+    color: rgb(69, 137, 27);
+}
+.filter_alt{
+    font-size: .5em;
+    height: 30px;
 }

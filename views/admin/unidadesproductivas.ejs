@@ -11,13 +11,13 @@
     <div class="content-header">
         <%- include('../partials/header-admin') %> 
     </div>
-    <div class="container">
+    <div class="main-contenedor">
         <div class="body-info-section">
             <div class="full-container">
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="unidadesproductivas">Unidades Productivas</a>
                 </div>
-                    <h1 class="h-title">Lista de Unidades Productivas Disponibles <span class="icon-filter_alt"></span><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Lista de Unidades Productivas Disponibles <input  placeholder="Search..."  type="search" id="casillasubject" name="busquedaword" class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -29,19 +29,9 @@
                                 <th>Persona Encargada</th>
                                 <th>Admin</th>
                             </thead>
-                            <tbody>
-                                    <tr>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td ><img src="img/products/product.jpg" alt="" width="50px"></td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td>
-                                            <a class="btn-edit" id="OpenAct" href="#">Editar</a>
-                                            <a href="#" class="btn-delete">Eliminar</a>
-                                        </td>
-                                    </tr>
+                            
+                            <tbody id="tbody_date">
+
                             </tbody>
                         </table>
                     </div>
@@ -49,10 +39,10 @@
                 <div class="content-form-subject">
                     <div class="content-main-form-subject">
                         <h1 class="h-title">Registrar Unidad Productiva</h1><div class="popup-close-window">x</div>
-                        <form action="#" method="post" class="content_form_unidades" enctype="multipart/form-data">
+                        <form action="/RegistrarUnidadProductiva" method="post" class="content_form_unidades" enctype="multipart/form-data">
                             <div class="content_data codigounidad">
                                 <div class="input-data">
-                                  <input type="number" id="codigounidad" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="number" id="codigounidad" name="codigo" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Codigo Unidad</label>
@@ -60,24 +50,20 @@
                             </div>
                             <div class="content_data nombreunidad">
                                 <div class="input-data">
-                                  <input type="text" id="nombreunidad" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="nombreunidad" name="nombre" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Nombre Unidad</label>
                                 </div>
                             </div>
                             <div class=" img">
-                                <div class="content_file">
-                                    <p class="word_file">Añadir Imagen</p>
-                                    <input type="file" id="img" placeholder="Logo">
-                                </div>
-                                <div class="namefile">
-                                    <h2 id="originalfilename"></h2>
+                                <div class=" namefileup content_file_img">
+                                    <input class="form-control " type="file" name="img" id="formFile-up" >
                                 </div>
                             </div>
                             <div class="content_data descripcionunidad">
                                 <div class="input-data">
-                                  <input type="text" id="descripcionunidad" name="nombres" size="40" required="">
+                                  <input type="text" id="descripcionunidad" name="descripcion" size="40" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Descripcion</label>
@@ -85,7 +71,7 @@
                             </div>
                             <label class="label_sede">Sede</label>
                             <div class="content_data sedeunidad design-1">
-                                <select id="sedeunidad" class="form-control">
+                                <select id="sedeunidad" name="sede" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
                                     <option value="Yamboro">Yamboro</option>
                                     <option value="Centro">Centro</option>
@@ -93,13 +79,15 @@
                             </div>
                             <label class="label_persEncar">Persona Encargada</label>
                             <div class="content_data personaunidad design-1">
-                                <select id="personaunidad" class="form-control">
+                                <select id="personaunidad" name="encargado" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option>Laura</option>
-                                    <option>Camila</option>
+                                    <% for(var i=0; i<Personas.length;i++){%>
+                                        <option value="<%=Personas[i].identificacion%>"><%=Personas[i].Nombres%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro" onclick="RegistrarUnidad();">Registrar</button>
+                            <button type="submit" class="boton_registro">Registrar</button>
                         </form>
                     </div>
                 </div>
@@ -124,12 +112,8 @@
                                 </div>
                             </div>
                             <div class=" img">
-                                <div class="content_file">
-                                    <p class="word_file">Añadir Imagen</p>
-                                    <input type="file" id="img" placeholder="Logo">
-                                </div>
-                                <div class="namefile">
-                                    <h2 id="originalfilename"></h2>
+                                <div class=" namefileup content_file_img">
+                                    <input class="form-control " type="file" name="img" id="formFile-up" >
                                 </div>
                             </div>
                             <div class="content_data descripcionunidad">
@@ -167,5 +151,5 @@
     <%- include('../partials/scripts.ejs') %> 
 </body>
 </html>
-<script src="js/pop-up-forms.js"></script>
 <script src="js/catch.unidadesproductivas.js"></script>
+<script src="js/pop-up-forms.js"></script>

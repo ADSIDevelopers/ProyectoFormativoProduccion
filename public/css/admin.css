@@ -41,15 +41,18 @@
     background-color: rgb(87, 163, 25);
     color: #fff;
     padding: 10px 5px;
+    text-align: center;
 }
 .table-info tbody tr td{
     padding: 10px 5px;
+    text-align: center;
 }
 a.btn-edit{
     padding: 10px;
     color: white;
     background-color: rgb(64, 192, 224);
     border-radius: 5px;
+    margin-right: 10px;
 }
 a.btn-delete{
     padding: 10px;
@@ -112,6 +115,7 @@ select.form-control{
 	width: 100%;
 	border: none;
 	font-size: 17px;
+    letter-spacing: .15rem;
 	border-bottom: 2px solid silver;
 }
 .input-data input:focus ~ label,

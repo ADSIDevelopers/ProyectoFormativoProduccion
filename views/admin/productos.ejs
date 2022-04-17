@@ -11,13 +11,13 @@
     <div class="content-header">
         <%- include('../partials/header-admin') %> 
     </div>
-    <div class="container">
+    <div class="main-contenedor">
         <div class="body-info-section">
             <div class="full-container">
                 <div class="breadcrumb">
-                    <a href="#" class="go-home">Volver al inicio</a>  | <a href="productos">Productos</a>
+                    <a href="#" class="go-home">Volver al inicio </a>  | <a href="productos">Productos</a>
                 </div>
-                    <h1 class="h-title">Lista de Productos Disponibles <span class="icon-filter_alt"></span><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Lista de Productos Disponibles <input placeholder="Search..." type="text" id="casillasearch"  class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -31,21 +31,8 @@
                                 <th>Valor del Producto</th>
                                 <th>Admin</th>
                             </thead>
-                            <tbody>
-                                    <tr>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td ><img src="img/products/product.jpg" alt="" width="50px"></td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td>
-                                            <a class="btn-edit" id="OpenAct" href="#">Editar</a>
-                                            <a href="#" class="btn-delete">Desabilitar</a>
-                                        </td>
-                                    </tr>
+                            <tbody id="tbody_date">
+                                   
                             </tbody>
                         </table>
                     </div>
@@ -53,10 +40,10 @@
                 <div class="content-form-subject">
                     <div class="content-main-form-subject">
                         <h1 class="h-title">Registrar Productos</h1><div class="popup-close-window">x</div>
-                        <form action="#" method="post" class="content_form_productos" enctype="multipart/form-data">
+                        <form action="/Registrar_pdto" method="post" class="content_form_productos" enctype="multipart/form-data">
                             <div class="content_data codigoproducto">
                                 <div class="input-data">
-                                <input type="number" id="codigoproducto" name="nombres" size="40" maxlength="50" required="">
+                                <input type="number" id="codigoproducto" name="codigopdto" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Codigo Producto</label>
@@ -64,7 +51,7 @@
                             </div>
                             <div class="content_data nombreproducto">
                                 <div class="input-data">
-                                <input type="text" id="nombreproducto" name="nombres" size="40" maxlength="50" required="">
+                                <input type="text" id="nombreproducto" name="nombrepdto" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Nombre Producto</label>
@@ -72,24 +59,20 @@
                             </div>
                             <div class="content_data descripcionproducto">
                                 <div class="input-data">
-                                <input type="text" id="descripcionproducto" name="nombres" size="40" required="">
+                                <input type="text" id="descripcionproducto" name="descripcionpdto" size="40" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Descripcion</label>
                                 </div>
                             </div>
                             <div class=" img">
-                                <div class="content_file">
-                                    <p class="word_file">Añadir Imagen</p>
-                                    <input type="file" id="img" placeholder="Logo">
-                                </div>
-                                <div class="namefile">
-                                    <h2 id="originalfilename"></h2>
+                                <div class=" namefilepdto content_file_img">
+                                    <input class="form-control " type="file" name="img" id="formFile-pdto" >
                                 </div>
                             </div>
                             <label class="label_estado">Estado</label>
                             <div class="content_data estadoproducto design-1">
-                                <select id="estadoproducto" class="form-control">
+                                <select id="estadoproducto" name="estadopdto" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
                                     <option value="Activo">Activo</option>
                                     <option value="Inactivo">Inactivo</option>
@@ -97,7 +80,7 @@
                             </div>
                             <label class="label_reservaproducto">Reserva</label>
                             <div class="content_data reservaproducto design-1">
-                                <select id="reservaproducto" class="form-control">
+                                <select id="reservaproducto" name="reservapdto" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
@@ -105,7 +88,7 @@
                             </div>
                             <div class="content_data valorproducto">
                                 <div class="input-data">
-                                <input type="text" id="valorproducto" name="nombres" size="40" maxlength="50" required="">
+                                <input type="text" id="valorproducto" name="valorpdto" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Valor del Producto</label>
@@ -113,13 +96,15 @@
                             </div>
                             <label class="label_unidaproductiva">Unidad Productiva</label>
                             <div class="content_data unidadproductiva design-1">
-                                <select id="unidadproductiva" class="form-control">
+                                <select id="unidadproductiva" name="up" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option>Escuela de Cafe</option>
-                                    <option>Pecuaria</option>
+                                    <% for(var i=0; i<Unidadesproductivas.length;i++){%>
+                                        <option value="<%=Unidadesproductivas[i].codigo_up%>"><%=Unidadesproductivas[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
+                            <button type="submit" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
                         </form>
                     </div>
                 </div>
@@ -152,12 +137,8 @@
                                 </div>
                             </div>
                             <div class=" img">
-                                <div class="content_file">
-                                    <p class="word_file">Añadir Imagen</p>
-                                    <input type="file" id="img" placeholder="Logo">
-                                </div>
-                                <div class="namefile">
-                                    <h2 id="originalfilename"></h2>
+                                <div class=" namefilepdto content_file_img">
+                                    <input class="form-control " type="file" id="formFile-pdto">
                                 </div>
                             </div>
                             <label class="label_estado">Estado</label>

@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req, img, cb) {
-        cb(null, "public/img");
+        cb(null, "public/img/products");
     },
     filename: function(req, img, cb) {
         cb(null, img.originalname);
@@ -19,13 +19,23 @@ controlador.Vista = (req, res) => {
     res.render('productos.ejs')
 };
 
-controlador.AbrirformularioProductos = (req, res) => {
-    let sql = "select * from productos;";
-    conexion.query(sql, (err, rows) => {
-        if (!err) {
-            res.render("admin/form_productos.ejs", { Datos: rows });
-        } else {
-            console.log('eror al abrir el formulario de productos ' + err)
+controlador.RegistrarProductos = (req, res) => {
+    let codigo = req.body.codigopdto;
+    let nombre = req.body.nombrepdto;
+    let Descripcion = req.body.descripcionpdto;
+    let Imagen = req.file.originalname;
+    let Estado = req.body.estadopdto;
+    let Reserva = req.body.reservapdto;
+    let Valor = req.body.valorpdto;
+    let Codigoup = req.body.up;
+        let sql = `insert into productos(Codigo_pdto,Nombre,Descripcion,imagen,Estado,Reserva,Valor_pdto,fk_codigo_up) 
+                   values('${codigo}','${nombre}','${Descripcion}','${Imagen}','${Estado}','${Reserva}','${Valor}','${Codigoup}')`;
+    conexion.query(sql,(err, rows)=>{
+        if(!err){
+            res.send("Se registro con exito");
+        }
+        else{
+            res.send("No se logro registrar" + error);
         }
     });
 };
@@ -34,7 +44,7 @@ controlador.ListaProductos = (req, res) => {
     var sql = "select * from productos;";
     conexion.query(sql, (err, rows) => {
         if (!err) {
-            res.render('admin/lista_productos.ejs', { date: rows });
+            res.json(rows);
         } else {
             console.log('eror al listar la tabla de productos' + err);
         }
