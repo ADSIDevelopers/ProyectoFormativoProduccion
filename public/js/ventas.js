@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#tableDetalle', '#tableFacturar', '#tableCart').DataTable({
+    $('#tableDetalle').DataTable({
         language: {
             "decimal": ",",
             "thousands": ".",
