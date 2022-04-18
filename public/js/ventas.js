@@ -85,12 +85,7 @@ function compranueva() {
     facturar;
     facturar.toggle();
 }
-var detalle = new bootstrap.Modal(document.getElementById('modalDetalle'), { keyboard: false });
 
-function mostrarDetalle() {
-    detalle;
-    detalle.toggle();
-}
 var newVenta = new bootstrap.Modal(document.getElementById('modalNewVenta'), { keyboard: false });
 
 function nuevaVenta() {
@@ -110,8 +105,6 @@ function addProdVen() {
 
 
 function listarUser() {
-
-
     fetch('/listarVentas', {
         method: 'get',
 
@@ -124,10 +117,43 @@ function listarUser() {
             html += '<td scope="row">' + data[i].Nombres + '</td>';
             html += '<td>' + data[i].Fecha + '</td>';
             html += '<td>' + data[i].valor + '</td>';
+            html += '<td>' + data[i].tipo + '</td>';
+            html += '<td>' + data[i].Estado + '</td>';
             html += '<td class="action-td"><a href=javascript:mostrarDetalle(' + data[i].Id_compra + ')>Detalle</a></td>';
             html += '<td><a href=javascript:compranueva(' + data[i].Id_compra + ')>Facturar</a></td>';
             html += '</tr>';
         }
         document.getElementById('cuerpo-tabla').innerHTML = html;
     });
+}
+listarUser();
+
+var detalle = new bootstrap.Modal(document.getElementById('modalDetalle'), { keyboard: false });
+
+function mostrarDetalle() {
+    fetch('/listarVentas', {
+        method: 'get',
+
+    }).then(res => res.json()).then(data => {
+
+        let html = " ";
+        for (let i = 0; i < data.length; i++) {
+
+            html += '<tr><td>' + data[i].Id_compra + '</td>';
+            html += '<td scope="row">' + data[i].Nombres + '</td>';
+            html += '<td>' + data[i].Fecha + '</td>';
+            html += '<td>' + data[i].valor + '</td>';
+            html += '<td>' + data[i].tipo + '</td>';
+            html += '<td>' + data[i].Estado + '</td>';
+            html += '<td class="action-td"><a href=javascript:mostrarDetalle(' + data[i].Id_compra + ')>Detalle</a></td>';
+            html += '<td><a href=javascript:compranueva(' + data[i].Id_compra + ')>Facturar</a></td>';
+            html += '</tr>';
+        }
+        document.getElementById('cuerpo-tabla').innerHTML = html;
+    });
+
+
+
+    detalle;
+    detalle.toggle();
 }
