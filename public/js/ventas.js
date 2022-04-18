@@ -59,7 +59,6 @@ $(document).ready(function() {
         }
     });
     $('#tableAddProd').DataTable({
-        bFilter: false,
         language: {
             "decimal": ",",
             "thousands": ".",
@@ -103,4 +102,32 @@ var addProd = new bootstrap.Modal(document.getElementById('modalAddProd'), { key
 function addProdVen() {
     addProd;
     addProd.toggle();
+}
+
+
+
+
+
+
+function listarUser() {
+
+
+    fetch('/listarVentas', {
+        method: 'get',
+
+    }).then(res => res.json()).then(data => {
+
+        let html = " ";
+        for (let i = 0; i < data.length; i++) {
+
+            html += '<tr><td>' + data[i].Id_compra + '</td>';
+            html += '<td scope="row">' + data[i].Nombres + '</td>';
+            html += '<td>' + data[i].Fecha + '</td>';
+            html += '<td>' + data[i].valor + '</td>';
+            html += '<td class="action-td"><a href=javascript:mostrarDetalle(' + data[i].Id_compra + ')>Detalle</a></td>';
+            html += '<td><a href=javascript:compranueva(' + data[i].Id_compra + ')>Facturar</a></td>';
+            html += '</tr>';
+        }
+        document.getElementById('cuerpo-tabla').innerHTML = html;
+    });
 }

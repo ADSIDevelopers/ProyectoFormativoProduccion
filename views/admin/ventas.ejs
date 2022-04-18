@@ -28,24 +28,20 @@
                             <th scope="col">Comprador</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Valor de la Compra</th>
+                            <th scope="col">Tipo de Compra</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo-tabla">
 
                         <tr>
-                            <td>
-                                0001
-                            </td>
-                            <td scope="row">
-                                David Lugo
-                            </td>
-                            <td>
-                                16/02/2002
-                            </td>
-                            <td>
-                                $20.000
-                            </td>
+                            <td>0001</td>
+                            <td scope="row">David Lugo</td>
+                            <td>16/02/2002</td>
+                            <td>$20.000</td>
+                            <td>Individual</td>
+                            <td>Reservado</td>
                             <td class="action-td"><button id="detalle-link" class="link-detalle" onclick="mostrarDetalle();">Detalle</button>
                                 <button id="detalle-link" class="link-facturar" onclick="compranueva();">Facturar</button>
                             </td>
@@ -192,25 +188,7 @@
                                         <tr>
                                             <td>0001</td>
                                             <td>Papa Economica</td>
-                                            <td>25</td>
-                                            <td>$5000</td>
-                                            <td>$250000</td>
-                                            <td>No entregado</td>
-                                            <td><a href="#">Eliminar</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>0001</td>
-                                            <td>Papa Economica</td>
-                                            <td>25</td>
-                                            <td>$5000</td>
-                                            <td>$250000</td>
-                                            <td>No entregado</td>
-                                            <td><a href="#">Eliminar</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>0001</td>
-                                            <td>Papa Economica</td>
-                                            <td>25</td>
+                                            <td><input type="number" placeholder="25"></td>
                                             <td>$5000</td>
                                             <td>$250000</td>
                                             <td>No entregado</td>
@@ -283,7 +261,7 @@
                                             <td>$5000</td>
                                             <td>$250000</td>
                                             <td>No entregado</td>
-                                            <td><a href="#">Eliminar</a></td>
+                                            <td><a href="#">Agregar</a></td>
                                         </tr>
                                         <tr>
                                             <td>0001</td>
@@ -292,7 +270,7 @@
                                             <td>$5000</td>
                                             <td>$250000</td>
                                             <td>No entregado</td>
-                                            <td><a href="#">Eliminar</a></td>
+                                            <td><a href="#">Agregar</a></td>
                                         </tr>
                                         <tr>
                                             <td>0001</td>
@@ -301,7 +279,7 @@
                                             <td>$5000</td>
                                             <td>$250000</td>
                                             <td>No entregado</td>
-                                            <td><a href="#">Eliminar</a></td>
+                                            <td><a href="#">Agregar</a></td>
                                         </tr>
 
                                     </tbody>
@@ -310,8 +288,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
-                            <input type="submit" class="btn btn-primary btnreg" value="Registrar">
+                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Hecho">
                         </div>
 
                     </form>
