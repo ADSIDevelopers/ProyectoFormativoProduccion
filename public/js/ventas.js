@@ -144,9 +144,9 @@ function mostrarDetalle() {
             html += '<td>' + data[i].Fecha + '</td>';
             html += '<td>' + data[i].valor + '</td>';
             html += '<td>' + data[i].tipo + '</td>';
-            html += '<td>' + data[i].Estado + '</td>';
-            html += '<td class="action-td"><a href=javascript:mostrarDetalle(' + data[i].Id_compra + ')>Detalle</a></td>';
-            html += '<td><a href=javascript:compranueva(' + data[i].Id_compra + ')>Facturar</a></td>';
+            html += '<td>' + data[i].detalle.Estado + '</td>';
+            html += '<td>' + data[i].compra.Estado + '</td>';
+            html += '<td class="action-td"><a href=javascript:mostrarDetalle(' + data[i].Id_compra + ')>Detalle</a><a href=javascript:compranueva(' + data[i].Id_compra + ')>Facturar</a></td>';
             html += '</tr>';
         }
         document.getElementById('cuerpo-tabla').innerHTML = html;

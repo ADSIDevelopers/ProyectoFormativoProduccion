@@ -8,7 +8,7 @@ controladorVenta.renderVenta = (req, resp) => {
 
 controladorVenta.listarVentas = (req, resp) => {
 
-    let sql = 'select Id_compra, Nombres, Fecha, Estado, tipo valor from compra join personas on fk_persona=identificacion join detalle on fk_Id_compra=Id_compra';
+    let sql = 'select Id_compra, Nombres, Fecha, detalle.Estado, compra.Estado, tipo, valor from compra join personas on fk_persona=identificacion join detalle on fk_Id_compra=Id_compra';
     conexion.query(sql, (err, rows) => {
         if (!err) {
             resp.json(rows);
