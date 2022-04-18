@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+    <link rel="stylesheet" href="css/pop-up.css">
+    <link rel="stylesheet" href="css/produccionUp.css">
+    <title>PRODUCCIÓN</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('./partials/header-main'); %>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <div class="main">
+                <div class="content-main">
+                    <div class="encabezado"><h1>Registro de producción</h1></div>
+                    <div class="box1">ID 123</div>
+                    <div class="box2">Estado del producto <br>
+                        <label>
+                            <input type="radio" name="estado" value="Disponible"> Disponible <br>
+                        </label>
+                        <label>
+                            <input type="radio" name="estado" value="No disponible"> No disponible 
+                        </label>
+                        <!-- <label>
+                            <input type="radio" name="color" value="amarillo"> Amarillo
+                        </label> -->
+                       <!-- <input type="radio" name="Disponible" id=""> Disponible <br>
+                       <input type="radio" name="" id=""> No Disponible -->
+                    </div>
+                    <div class="box3"><input class="infoCantidad" type="number" placeholder="Nueva cantidad"></div>
+                    <div class="date"><label id="date"></label></div>
+                    <div class="describe">
+                        <textarea class="textDescribe" name="" id="" cols="30" rows="10">Nuevas Observaciones</textarea>
+                    </div>
+                    <!-- <div class="infopdto">Codigo Producto</div> -->
+                    <div class="btn"><input class="boton" type="button" value="Registar" onclick="mostrarInfo();"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <%- include('./partials/footer'); %>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="../js/sweetalert2@11.js"></script>
+
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/pop-up.js"></script>
+<script>
+    let btnSession = document.getElementById("btnSession");
+    btnSession.addEventListener("click", ()=> {
+        let user = document.getElementById("user").value;
+        let password = document.getElementById("password").value;
+        let data =  { user, password }
+        if(!validateFields(data)) return;
+        let url = 'http://localhost:3000/auth/login';
+        let config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        }
+        fetch(url, config)
+        .then(data => {return data.json()})
+        .then(res => {
+            if(res.status == 'error') return createErrorMessage();
+            if(res.user.role == 'Aprendiz') window.location.href = "aprendiz";
+            if(res.user.role == 'Instructor') window.location.href = "instructor";
+            if(res.user.role == 'Visitante') window.location.href = "visitante";
+            if(res.user.role == 'Administrativo') window.location.href = "admin";
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    
+    function validateFields(data){
+        if(!data.user) {
+            return user.focus();
+        }
+        if(!data.password) {
+            return password.focus();
+        }
+        return true;
+    }
+    function createErrorMessage(){
+        let errorDiv = document.getElementById('error-message');
+        let paddingDiv = document.createElement('div');
+        let dangerSpan = document.createElement('span');
+        let errorMSG = document.createTextNode('Usuario o contraseña incorrecta')
+        
+        dangerSpan.setAttribute('class', 'danger-span')
+        dangerSpan.appendChild(errorMSG);
+
+        paddingDiv.appendChild(dangerSpan);
+        paddingDiv.setAttribute('class', 'padding-wrapper')
+        paddingDiv.setAttribute('id', 'wrong-data');
+        
+        errorDiv.innerHTML = '';
+        errorDiv.appendChild(paddingDiv);
+    }
+</script>
+
+<script>
+    window.onload = function(){
+        var fecha = new Date();
+        var mes = fecha.getMonth()+1; 
+        var dia = fecha.getDate();
+        var anio = fecha.getFullYear();
+        if(dia<10)
+            dia='0'+dia;
+        if(mes<10)
+            mes='0'+mes
+            document.getElementById("date").innerHTML = dia + "/" + mes + "/" + anio;
+    }
+
+    function mostrarInfo(){
+        alert("Funciona?")
+    }
+</script>
