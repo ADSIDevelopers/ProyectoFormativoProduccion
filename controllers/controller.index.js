@@ -1,13 +1,14 @@
+const conexion = require('../database/conexion');
 let controllerIndex = {};
 
-controllerIndex.autenticar = (req, res) => {
-    res.send('autenticar');
-}
 controllerIndex.renderIndex = (req, resp) => {
     resp.render('index');
 }
 controllerIndex.adminIndex = (req, resp) => {
-    resp.render('admin/index');
+    resp.render('admin/index', /* {profile: req.session} */ );
+}
+controllerIndex.perfil = (req, resp) => {
+    resp.render('admin/perfil');
 }
 controllerIndex.usuarios = (req, resp) => {
     resp.render('admin/usuarios')
@@ -27,4 +28,6 @@ controllerIndex.uds = (req, res) => {
 controllerIndex.ud = (req, res) => {
     res.render('ud');
 }
+
+
 module.exports = controllerIndex;

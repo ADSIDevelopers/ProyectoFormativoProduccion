@@ -1,165 +1,113 @@
-<%- include('../partials/head-admin'); %>
-<%- include('../partials/admin-header'); %>
-<section class="body-info-section">
-	<div class="content-secton-info" style="min-height: 50vh;">
-		<div class="full-container">
-			<h1 class="h-title">Panel de Administración - Reportes</h1>
-			<hr class="separador-text">
-            <div class="table-admin mt-1">
-                <table class="table-info">
-                    <thead>
-                        <tr>
-                            <th colspan="3">
-                                <center>REPORTE TITULADOS</center> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>FICHA</th>
-                            <th>Participantes</th>
-                            <th style="width: 150px;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>2252407</td>
-                            <td>25</td>
-                            <td>
-                                <a href="#" class="btn-edit">VISUALIZAR</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2283210</td>
-                            <td>8</td>
-                            <td>
-                                <a href="#" class="btn-edit">VISUALIZAR</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table-info" style="margin-top: 50px">
-                    <thead>
-                        <tr>
-                            <th colspan="7">
-                                <center>REPORTE PERSONAS</center> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombres</th>
-                            <th>Correo</th>
-                            <th>Reservas</th>
-                            <th>Compras</th>
-                            <th>Encargado</th>
-                            <th style="width: 180px;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Alfonso</td>
-                            <td>pedro@gmail.com</td>
-                            <td>5</td>
-                            <td>3</td>
-                            <td>Administrador</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td>Carolina</td>
-                            <td>carolina43@gmail.com</td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>Administrador</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <table class="table-info" style="margin-top: 50px">
-                    <thead>
-                        <tr>
-                            <th colspan="5">
-                                <center>REPORTES VENTAS</center> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Unidad Productiva</th>
-                            <th>Fecha</th>
-                            <th>Encargado</th>
-                            <th>Tipo</th>
-                            <th style="width: 180px;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Gastronomía</td>
-                            <td>27 / 03 / 2022</td>
-                            <td>Pedro</td>
-                            <td>Individual</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Agropecuario</td>
-                            <td>31 / 03 / 2022</td>
-                            <td>Luis</td>
-                            <td>Individual</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table-info" style="margin-top: 50px">
-                    <thead>
-                        <tr>
-                            <th colspan="5">
-                                <center>REPORTE RESERVAS</center> 
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>Unidad Productiva</th>
-                            <th>Fecha</th>
-                            <th>Encargado</th>
-                            <th>Tipo</th>
-                            <th style="width: 180px;">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Gastronomía</td>
-                            <td>01 / 04 / 2022</td>
-                            <td>Pedro</td>
-                            <td>Grupal</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Agropecuario</td>
-                            <td>10 / 04 / 2022</td>
-                            <td>Manuel</td>
-                            <td>Individual</td>
-                            <td>
-                                <a href="#" class="btn-edit">Editar</a>
-                                <a href="#" class="btn-delete">Eliminar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-		</div>
-	</div>
-</section>
-<%- include('../partials/footer-admin'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/tabla.listas.css">
+    <link rel="stylesheet" href="css/style.input.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="main-contenedor">
+        <div class="body-info-section">
+            <div class="full-container">
+                <div class="breadcrumb">
+                    <a href="#" class="#">Reportes </a>  | <a href="/reporteUnidadesProductivas">Reporte Unidades Productivas</a> / <a href="/reportepuntoventa">Reporte Punto de Venta</a>
+                </div>
+                <!-- <div class="table-admin mt-1"> -->
+                    <h1 class="h-title">Administrador</h1>
+                    <hr class="separador-text"></hr>
+                    <h3 class="h-title">Lista Unidades Productivas<span id="Openform" ></span></h3>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Nombre</th>
+                                <th>Cantidad de Ventas</th>
+                                <th>Valor vendidos (Fecha)</th>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < up.length; i++ ) { %>
+                                    <tr>
+                                        <td ><%=up[i].Nombre  %> </td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                      </table>                    
+                    </div><br>
+                    <h3 class="h-title">Lista Productos<span id="Openform" ></span></h3>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Cantidad de Ventas</th>
+                                <th>Total de Ventas</th>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < prod.length; i++ ) { %>
+                                    <tr>
+                                        <td ><%=prod[i].Codigo_pdto %></td>
+                                        <td ><%=prod[i].Nombre %></td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                      </table>                    
+                    </div><br>
+                    <h3 class="h-title">Venta mensual de Puntos de Venta<span id="Openform" ></span></h3>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Punto de Venta </th>
+                                <th>Mes</th>
+                                <th>Año</th>
+                                <th>Valor Vendido</th>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < pv.length; i++ ) { %>
+                                    <tr>
+                                        <td ><%=pv[i].Nombre %></td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                        <td >#</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                      </table>                    
+                    </div><br>
+                    <h3 class="h-title">Lista Punto de Venta <span id="Openform" ></span></h3>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Nombre</th>
+                                <th>Nombre del producto</th>
+                                <th>cantidad Vendida</th>
+                                <th>Valor vendidos</th>
+                                <th>Mes</th>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < rep_venta_punto.length; i++ ) { %>
+                                    <tr>
+                                        <td ><%=rep_venta_punto[i].pnto_nombre  %> </td>
+                                        <td ><%=rep_venta_punto[i].pdto_nombre  %></td>
+                                        <td ><%=rep_venta_punto[i].cantidad  %></td>
+                                        <td ><%=rep_venta_punto[i].valor  %></td>
+                                        <td ><%=rep_venta_punto[i].Fecha  %></td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                      </table>                    
+                    </div><br>
+                <!-- </div> -->
+            </div> 
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>

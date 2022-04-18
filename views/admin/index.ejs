@@ -1,68 +1,21 @@
-<%- include('../partials/head'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>SENA</title>
+</head>
 <body>
-    <div class="container">
-        <div class="content-header">
-            <div class="limiter-width-page">
-                <div class="header-page">
-                    <div class="header-logo"></div>
-                    <div class="empresa-nombre"></div>
-                    <div class="right-logo"></div>
-                </div>
-            </div>
-            <header>
-                <nav id="menu">
-                    <ul>
-                        <li>
-                            <a href="#" class="bt-close"><span class="icon-cross"></span></a>
-                        </li>
-                        <li>
-                            <a href="/admin">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="#">Usuarios</a>
-                        </li>
-                        <li>
-                            <a href="#">Productos</a>
-                        </li>
-                        <li>
-                            <a href="#">Punto de Venta</a>
-                        </li>
-                        <li>
-                            <a href="#">Reportes</a>
-                        </li>
-                        <li>
-                            <a href="#">Estadisticas</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#" id="logout">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="menu-visible">
-                    <div class="menu_bar open-close">
-                        <a href="#e" class="bt-menu" id="btn-menu">
-                            <div class="icon-align"><span class="icon-menu"></span></div>
-                        </a>
-                    </div>
-                    <nav>
-                        <ul>
-                            <li>
-                                <a href="admin" id="profile">Profile</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-        </div>
-        <div class="separator"></div>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="main-contenedor">
         <section class="body-info-section">
-            <div class="content-secton-info" style="min-height: 50vh;">
+            <div class="contnet-section-info" style="min-height: 50vh;">
                 <div class="full-container">
                     <h1 class="h-title">Panel de Administración</h1>
                     <hr class="separador-text">
                     <div class="table-admin">
-                        <a href="admin/usuarios">
+                        <a href="usuarios">
                             <div class="option">
                                 <div class="option-logo"></div>
                                 <div class="titulo">Asignar</div>
@@ -80,64 +33,14 @@
                                 <div class="titulo">Consultas</div>
                             </div>
                         </a>
-                        <a href="/reportes">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Reportes</div>
-                            </div>
-                        </a>
-                        <a href="/Estadisticas">
-                            <div class="option">
-                                <div class="option-logo"></div>
-                                <div class="titulo">Estadisticas</div>
-                            </div>
-                        </a>
                     </div>
                 </div>
             </div>
         </section>
-<%- include('../partials/footer'); %>
-<script>
-    let logoutBtn = document.getElementById('logout');
-    logoutBtn.addEventListener('click', ()=> logOut());
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>
+ 
 
-    function getSessionData(){
-        let url = 'http://localhost:3000/auth/profile';
-        let token = sessionStorage.getItem('token');
-        let data = {token}
-        let config = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data)
-        }
-        fetch(url, config)
-        .then(res => res.json())
-        .then(data => {
-            if(data.status == 'error') return window.location.href = '/'
-            document.getElementById('profile').innerHTML = data.user.Nombres
-        })
-        .catch(err => console.log(err))
-    }
-    function logOut(){
-        sessionStorage.removeItem('token');
-        let url = 'http://localhost:3000/auth/logout';
-        let config = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: ''
-        }
-        fetch(url, config)
-        .then(res => res.json())
-        .then(data => {
-            if(data.status == 'error') return window.location.href = '/'
-            document.getElementById('profile').innerHTML = data.user.Nombres
-        })
-        .catch(err => console.log(err))
-        window.location.href = '/';
-    }
-    getSessionData();
-</script>
