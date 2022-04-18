@@ -47,7 +47,32 @@ controllerIndex.puntoventa = (req, resp) =>{
     });
 }
 controllerIndex.inventario = (req, resp) =>{
-    resp.render('admin/inventario')
+    var Pvent;
+    var pdto;
+    var sql = "select * from productos";
+    conexion.query(sql,(err,rows)=>{
+        if (!err) {
+            pdto=rows;
+        } else {
+            console.log('error de ejución de la consulta sql '+ err)
+        }
+    });
+    var sql1 = "select * from punto_venta";
+    conexion.query(sql1,(err,rows)=>{
+        if (!err) {
+            Pvent=rows;
+        } else {
+            console.log('error de ejución de la consulta sql '+ err)
+        }
+    });
+    var sql2 = "select * from inventario"
+    conexion.query(sql2,(err,rows)=>{
+        if (!err) {
+            resp.render('admin/inventario',{Datos:rows, Productos:pdto, PVenta:Pvent})
+        } else {
+            console.log('error al redirigir a la vista de puntos de venta ' + err)
+        }
+    });
 }
 controllerIndex.store = (req, res) => {
     res.render('store');

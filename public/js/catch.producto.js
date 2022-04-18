@@ -9,6 +9,19 @@ var datosjson = "";
     let uppdto = document.getElementById('unidadproductiva');
     let valpdto = document.getElementById('valorproducto');
 } */
+
+function RegistrarProducto(){
+    testSSO();
+}
+function testSSO(){
+    var image=document.getElementById("formFile-pdto").value;
+    if(image == null || image ==''){
+        alert("inside if"+image);
+        document.getElementById('formFile-pdto').setAttribute("src","/img/products/product.jpg");
+    }
+}
+
+
 window.onload = ListaProductos();
 function ListaProductos(){
     let tabla = document.getElementById('tbody_date');

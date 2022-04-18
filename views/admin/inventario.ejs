@@ -26,17 +26,8 @@
                                 <th>Punto de Venta</th>
                                 <th>Admin</th>
                             </thead>
-                            <tbody>
-                                    <tr>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td >#</td>
-                                        <td>
-                                            <a class="btn-edit" id="OpenAct" href="#">Editar</a>
-                                            <a href="#" class="btn-delete">Eliminar</a>
-                                        </td>
-                                    </tr>
+                            <tbody id="tbody_date">
+                                   
                             </tbody>
                         </table>
                     </div>
@@ -57,19 +48,23 @@
                             <div class="content_data content_producto design-1">
                                 <select id="fkproducto" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option>Yogurth</option>
-                                    <option>Avena</option>
+                                    <% for(var i=0; i<Productos.length;i++){%>
+                                        <option value="<%=Productos[i].Codigo_pdto%>"><%=Productos[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
                             <label class="label_puntventa">Punto de Venta</label>
                             <div class="content_data content_puntventa design-1">
                                 <select id="fkpuntventa" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option>Yogurts del Norte</option>
-                                    <option>Pescados del Sena</option>
+                                    <% for(var i=0; i<PVenta.length;i++){%>
+                                        <option value="<%=PVenta[i].Id_punto_vent%>"><%=PVenta[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro" onclick="RegistrarUnidad();">Registrar</button>
+                            <button type="button" class="boton_registro" onclick="RegistrarInventario();">Registrar</button>
                         </form>
                     </div>
                 </div>
