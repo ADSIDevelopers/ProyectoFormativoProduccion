@@ -16,7 +16,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Punto de Venta</a>
                 </div>
-                    <h1 class="h-title">Puntos de Venta Disponibles <input placeholder="Search..." type="text" id="casillasearch"  class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Puntos de Venta Disponibles<span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -24,6 +24,7 @@
                                 <th>Nombre</th>
                                 <th>Direccion</th>
                                 <th>Sede</th>
+                                <th>Estado</th>
                                 <th>Encargado(a)</th>
                                 <th>Admin</th>
                             </thead>
@@ -33,82 +34,102 @@
                         </table>
                     </div>
                 </div>
-                <div class="content-form-subject" id="myModal">
+                <div  class="content-form-subject">
                     <div class="content-main-form-subject">
                         <h1 class="h-title">Registrar Punto de Venta</h1><div class="popup-close-window">x</div>
-                        <form action="#" method="post" class="content_form_puntoventa">
-                            <div class="content_data nombrepunvnt">
+                        <form id="formregistro" class="content_form_unidades" enctype="multipart/form-data">
+                            <div class="content_data codigounidad">
                                 <div class="input-data">
-                                  <input type="text" id="nombrepunvnt" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="nombrepunvnt" name="codigo" size="40" maxlength="50" required>
                                     <div class="underline">
                                     </div>
                                   <label>Nombre</label>
                                 </div>
                             </div>
-                            <div class="content_data direccionpunvnt">
+                            <div class="content_data nombreunidad">
                                 <div class="input-data">
-                                  <input type="text" id="direccionpunvnt" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="direccionpunvnt" name="nombre" size="40" maxlength="50" required>
                                     <div class="underline">
                                     </div>
                                   <label>Direccion</label>
                                 </div>
                             </div>
-                            <label class="label_sedepuntventa">Sede</label>
-                            <div class="content_data content_sedepuntventa design-1">
-                                <select id="sedepuntventa" class="form-control">
+                            <label class="label_sede">Sede</label>
+                            <div class="content_data sedeunidad design-1">
+                                <select id="sedepuntventa" name="sede" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option value="centro">Centro</option>
                                     <option value="Yamboro">Yamboro</option>
+                                    <option value="Centro">Centro</option>
                                 </select>
                             </div>
                             <label class="label_persEncar">Persona Encargada</label>
-                            <div class="content_data personapuntventa design-1">
-                                <select id="personapuntventa" class="form-control">
+                            <div class="content_data personaunidad design-1">
+                                <select id="personapuntventa" name="encargado" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
                                     <% for(var i=0; i<Personas.length;i++){%>
                                         <option value="<%=Personas[i].identificacion%>"><%=Personas[i].Nombres%> </option>
                                         <%  }
                                         %>
+                                </select>
+                            </div>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadoPunt design-1">
+                                <select id="estadopuntventa" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
                                 </select>
                             </div>
                             <button type="button" class="boton_registro" onclick="RegistrarPuntoventa();">Registrar</button>
                         </form>
                     </div>
                 </div>
-                <div class="content-form-subject-actul">
+                <!-- ====================== -->
+                <div  class="content-form-subject-actul">
                     <div class="content-main-form-subject-actul">
-                        <h1 class="h-title">Actualizar Punto de Venta</h1><div class="popup-close-window-act">x</div>
-                        <form action="#" method="post" class="content_form_puntoventa">
-                            <div class="content_data nombrepunvnt">
+                        <h1 class="h-title">Actualizar Punto Venta  <input type="text"  id="id_vent" name="codigo" size="5"  disabled></h1>  <div class="popup-close-window-act">x</div>
+                        <form  class="content_form_unidades" enctype="multipart/form-data">
+                           
+                            <div class="content_data codigounidad">
                                 <div class="input-data">
-                                  <input type="text" id="nombrepunvntactul" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="nombrepunvntactul" name="codigo" size="40" maxlength="50" required>
                                     <div class="underline">
                                     </div>
                                   <label>Nombre</label>
                                 </div>
                             </div>
-                            <div class="content_data direccionpunvnt">
+                            <div class="content_data nombreunidad">
                                 <div class="input-data">
-                                  <input type="text" id="direccionpunvntactul" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="direccionpunvntactul" name="nombre" size="40" maxlength="50" required>
                                     <div class="underline">
                                     </div>
                                   <label>Direccion</label>
                                 </div>
                             </div>
-                            <label class="label_sedepuntventa">Sede</label>
-                            <div class="content_data content_sedepuntventa design-1">
-                                <select id="sedepuntventaactul" class="form-control">
-                                    <option value="centro">Centro</option>
+                            <label class="label_sede">Sede</label>
+                            <div class="content_data sedeunidad design-1">
+                                <select id="sedepuntventaactul" name="sede" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
                                     <option value="Yamboro">Yamboro</option>
+                                    <option value="Centro">Centro</option>
                                 </select>
                             </div>
                             <label class="label_persEncar">Persona Encargada</label>
-                            <div class="content_data personapuntventa design-1">
-                                <select id="personapuntventaactul" class="form-control">
+                            <div class="content_data personaunidad design-1">
+                                <select id="personapuntventaactul" name="encargado" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
                                     <% for(var i=0; i<Personas.length;i++){%>
                                         <option value="<%=Personas[i].identificacion%>"><%=Personas[i].Nombres%> </option>
                                         <%  }
                                         %>
+                                </select>
+                            </div>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadoPunt design-1">
+                                <select id="estadopuntventaActul" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="0">Activo</option>
+                                    <option value="1">Inactivo</option>
                                 </select>
                             </div>
                             <button type="button" class="boton_registro" onclick="Actualizar();">Actualizar</button>

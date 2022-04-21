@@ -206,6 +206,7 @@ CREATE TABLE `unidades_productivas` (
   `Logo` varchar(80) DEFAULT NULL,
   `Descripcion` varchar(100) DEFAULT NULL,
   `sede` enum('Yamboro','Centro') DEFAULT NULL,
+  `estado` enum('Activo','Inactivo') DEFAULT NULL,
   `entrega_producto` tinyint(1) NOT NULL,
   `fk_persona` bigint(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -332,6 +333,15 @@ ALTER TABLE `produccion`
 --
 ALTER TABLE `punto_venta`
   MODIFY `Id_punto_vent` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+MODIFY `Codigo_pdto` int(11) NOT NULL AUTO_INCREMENT;
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `unidades_productivas`
+MODIFY `codigo_up` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

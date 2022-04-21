@@ -54,6 +54,13 @@ a.btn-edit{
     border-radius: 5px;
     margin-right: 10px;
 }
+a.btn-sale{
+    padding: 10px;
+    color: white;
+    background-color: rgb(105, 195, 31);
+    border-radius: 5px;
+    margin-right: 10px;
+}
 a.btn-delete{
     padding: 10px;
     color: white;

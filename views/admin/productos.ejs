@@ -17,7 +17,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio </a>  | <a href="productos">Productos</a>
                 </div>
-                    <h1 class="h-title">Lista de Productos Disponibles <input placeholder="Search..." type="text" id="casillasearch"  class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Lista de Productos Disponibles <span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -28,7 +28,7 @@
                                 <th>Estado</th>
                                 <th>Reserva</th>
                                 <th>Unidad Productiva</th>
-                                <th>Valor del Producto</th>
+                                <th>Maximo Reserva</th>
                                 <th>Admin</th>
                             </thead>
                             <tbody id="tbody_date">
@@ -40,18 +40,10 @@
                 <div class="content-form-subject">
                     <div class="content-main-form-subject">
                         <h1 class="h-title">Registrar Productos</h1><div class="popup-close-window">x</div>
-                        <form action="/Registrar_pdto" method="post" class="content_form_productos" enctype="multipart/form-data">
-                            <div class="content_data codigoproducto">
-                                <div class="input-data">
-                                <input type="number" id="codigoproducto" name="codigopdto" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                <label>Codigo Producto</label>
-                                </div>
-                            </div>
+                        <form  class="content_form_productos" id="form_registro_productos" enctype="multipart/form-data">
                             <div class="content_data nombreproducto">
                                 <div class="input-data">
-                                <input type="text" id="nombreproducto" name="nombrepdto" size="40" maxlength="50" required="">
+                                <input type="text" id="nombreproducto" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Nombre Producto</label>
@@ -59,7 +51,7 @@
                             </div>
                             <div class="content_data descripcionproducto">
                                 <div class="input-data">
-                                <input type="text" id="descripcionproducto" name="descripcionpdto" size="40" required="">
+                                <input type="text" id="descripcionproducto" size="40" required="">
                                     <div class="underline">
                                     </div>
                                 <label>Descripcion</label>
@@ -67,78 +59,7 @@
                             </div>
                             <div class=" img">
                                 <div class=" namefilepdto content_file_img">
-                                    <input class="form-control " type="file" name="img" id="formFile-pdto" >
-                                </div>
-                            </div>
-                            <label class="label_estado">Estado</label>
-                            <div class="content_data estadoproducto design-1">
-                                <select id="estadoproducto" name="estadopdto" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <option value="Activo">Activo</option>
-                                    <option value="Inactivo">Inactivo</option>
-                                </select>
-                            </div>
-                            <label class="label_reservaproducto">Reserva</label>
-                            <div class="content_data reservaproducto design-1">
-                                <select id="reservaproducto" name="reservapdto" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <option value="Si">Si</option>
-                                    <option value="No">No</option>
-                                </select>
-                            </div>
-                            <div class="content_data valorproducto">
-                                <div class="input-data">
-                                <input type="text" id="valorproducto" name="valorpdto" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                <label>Valor del Producto</label>
-                                </div>
-                            </div>
-                            <label class="label_unidaproductiva">Unidad Productiva</label>
-                            <div class="content_data unidadproductiva design-1">
-                                <select id="unidadproductiva" name="up" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <% for(var i=0; i<Unidadesproductivas.length;i++){%>
-                                        <option value="<%=Unidadesproductivas[i].codigo_up%>"><%=Unidadesproductivas[i].Nombre%> </option>
-                                        <%  }
-                                        %>
-                                </select>
-                            </div>
-                            <button type="submit" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="content-form-subject-actul">
-                    <div class="content-main-form-subject-actul">
-                        <h1 class="h-title">Actualizar Producto</h1><div class="popup-close-window-act">x</div>
-                        <form action="#" method="post" class="content_form_productos" enctype="multipart/form-data">
-                            <div class="content_data codigoproducto">
-                                <div class="input-data">
-                                <input type="number" id="codigoproducto" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                <label>Codigo Producto</label>
-                                </div>
-                            </div>
-                            <div class="content_data nombreproducto">
-                                <div class="input-data">
-                                <input type="text" id="nombreproducto" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                <label>Nombre Producto</label>
-                                </div>
-                            </div>
-                            <div class="content_data descripcionproducto">
-                                <div class="input-data">
-                                <input type="text" id="descripcionproducto" name="nombres" size="40" required="">
-                                    <div class="underline">
-                                    </div>
-                                <label>Descripcion</label>
-                                </div>
-                            </div>
-                            <div class=" img">
-                                <div class=" namefilepdto content_file_img">
-                                    <input class="form-control " type="file" id="formFile-pdto">
+                                    <input class="form-control " type="file" name="fileNpdto" id="fileNpdto">
                                 </div>
                             </div>
                             <label class="label_estado">Estado</label>
@@ -159,21 +80,86 @@
                             </div>
                             <div class="content_data valorproducto">
                                 <div class="input-data">
-                                <input type="text" id="valorproducto" name="nombres" size="40" maxlength="50" required="">
+                                <input type="text" id="reservamaxima" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
-                                <label>Valor del Producto</label>
+                                <label>Reserva Maxima</label>
                                 </div>
                             </div>
                             <label class="label_unidaproductiva">Unidad Productiva</label>
                             <div class="content_data unidadproductiva design-1">
                                 <select id="unidadproductiva" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option>Escuela de Cafe</option>
-                                    <option>Pecuaria</option>
+                                    <% for(var i=0; i<Unidadesproductivas.length;i++){%>
+                                        <option value="<%=Unidadesproductivas[i].codigo_up%>"><%=Unidadesproductivas[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro" >Actualizar</button>
+                            <button type="button" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- ============================================== -->
+                <div class="content-form-subject-actul">
+                    <div class="content-main-form-subject-actul">
+                        <h1 class="h-title">Actualizar Producto <input type="text"  id="id_pdto" size="5"  disabled></h1><div class="popup-close-window-act">x</div>
+                        <form class="content_form_productos" enctype="multipart/form-data">
+                            <div class="content_data nombreproducto">
+                                <div class="input-data">
+                                <input type="text" id="nombrepdtoact" name="nombres" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Nombre Producto</label>
+                                </div>
+                            </div>
+                            <div class="content_data descripcionproducto">
+                                <div class="input-data">
+                                <input type="text" id="descrippdtoact" name="nombres" size="40" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Descripcion</label>
+                                </div>
+                            </div>
+                            <div class=" img">
+                                <div class=" namefilepdto content_file_img">
+                                    <input class="form-control " type="file" name="img" id="fileNact">
+                                </div>
+                            </div>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadoproducto design-1">
+                                <select id="estadopdtoact" class="form-control">
+                                   
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <label class="label_reservaproducto">Reserva</label>
+                            <div class="content_data reservaproducto design-1">
+                                <select id="reservapdtoact" class="form-control">
+                                   
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="content_data valorproducto">
+                                <div class="input-data">
+                                <input type="text" id="maxreserpdtoact" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Maxima Reserva</label>
+                                </div>
+                            </div>
+                            <label class="label_unidaproductiva">Unidad Productiva</label>
+                            <div class="content_data unidadproductiva design-1">
+                                <select id="uppdtoact" class="form-control">
+                                    <% for(var i=0; i<Unidadesproductivas.length;i++){%>
+                                        <option value="<%=Unidadesproductivas[i].codigo_up%>"><%=Unidadesproductivas[i].Nombre%> </option>
+                                        <%  }
+                                        %>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="Actaulizarpdto();">Actualizar</button>
                         </form>
                     </div>
                 </div>

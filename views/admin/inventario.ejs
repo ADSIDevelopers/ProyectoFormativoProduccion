@@ -16,7 +16,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Inventario</a>
                 </div>
-                    <h1 class="h-title">inventarios Disponibles  <input placeholder="Search..." type="text" id="casillasearch"  class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">inventarios Disponibles  <span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -70,11 +70,11 @@
                 </div>
                 <div class="content-form-subject-actul">
                     <div class="content-main-form-subject-actul">
-                        <h1 class="h-title">Actualizar Inventario</h1><div class="popup-close-window-act">x</div>
+                        <h1 class="h-title">Actualizar Inventario <input type="text"  id="id_vent" name="codigo" size="5"  disabled></h1><div class="popup-close-window-act">x</div>
                         <form action="#" method="post" class="content_form_inventario">
                             <div class="content_data inventStock">
                                 <div class="input-data">
-                                  <input type="number" id="inventStock" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="number" id="inventStockAct" name="nombres" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Stock</label>
@@ -82,21 +82,23 @@
                             </div>
                             <label class="label_producto">Producto</label>
                             <div class="content_data content_producto design-1">
-                                <select id="fkproducto" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <option>Yogurth</option>
-                                    <option>Avena</option>
+                                <select id="fkproductoAct" class="form-control">
+                                    <% for(var i=0; i<Productos.length;i++){%>
+                                        <option value="<%=Productos[i].Codigo_pdto%>"><%=Productos[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
                             <label class="label_puntventa">Punto de Venta</label>
                             <div class="content_data content_puntventa design-1">
-                                <select id="fkpuntventa" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <option>Yogurts del Norte</option>
-                                    <option>Pescados del Sena</option>
+                                <select id="fkpuntventaAct" class="form-control">
+                                    <% for(var i=0; i<PVenta.length;i++){%>
+                                        <option value="<%=PVenta[i].Id_punto_vent%>"><%=PVenta[i].Nombre%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro" onclick="RegistrarUnidad();">Registrar</button>
+                            <button type="button" class="boton_registro" onclick="ActualizarInv();">Actualizar</button>
                         </form>
                     </div>
                 </div>

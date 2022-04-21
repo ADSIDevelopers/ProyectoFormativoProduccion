@@ -2,11 +2,16 @@
     display: grid;
     gap: 15px;
     padding: 12px;
-    grid-template: "codigo  unidadname " auto
-                   "imagen descripcion " auto
+    grid-template: "unidadname   descripcion" auto
+                   "imagen  imagen" auto
                    "tittlesede tittlepersencar " 20px
                    "sede personaunidad " auto
+                   "tittleestado tittleentrega " 20px
+                   "estado entrega " auto
                    "boton boton" 50px/ 1fr 1fr;
+}
+#id_up{
+    display: none;
 }
 .word_file{
     text-align: center;
@@ -24,7 +29,6 @@ h2{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: lighter;
 }
-
 .codigounidad{
     grid-area: codigo;
 }
@@ -37,16 +41,28 @@ h2{
 .descripcionunidad{
     grid: descripcion;
 }
+.entregaunidad{
+    grid-area: entrega
+}
 .label_sede{
     grid-area: tittlesede;
 }
 .sedeunidad{
     grid-area: sede;
 }
+.estadounidad{
+    grid-area: estado;
+}
 .label_persEncar{
     grid-area: tittlepersencar;
 }
-.label_sede, .label_persEncar, .content_file, .boton_registro{
+.label_estado{
+    grid-area: tittleestado;
+}
+.label_entrega{
+    grid-area: tittleentrega;
+}
+.label_sede, .label_persEncar, .content_file, .boton_registro, .label_estado, .label_entrega{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
     font-size: 1.1em;

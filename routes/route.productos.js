@@ -6,5 +6,7 @@ const controlador_productos = require("../controllers/controller.productos");
 ruta_productos.get("/Productos",controlador_productos.Vista);
 ruta_productos.post("/Registrar_pdto",controlador_productos.CargarImagen,controlador_productos.RegistrarProductos);
 ruta_productos.get("/Lista_pdto",controlador_productos.ListaProductos);
+ruta_productos.post("/Buscar_pdto",controlador_productos.buscarpdto);
+ruta_productos.post("/Actual_pdto",controlador_productos.CargarImagen,controlador_productos.Actualizarproductos);
 
 module.exports = ruta_productos;

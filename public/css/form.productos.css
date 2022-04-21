@@ -2,16 +2,16 @@
     display: grid;
     gap: 15px;
     padding: 12px;
-    grid-template: "codigoproducto  nameproducto " auto
-                   "imagen descripcionproducto " auto
+    grid-template: "nameproducto descripcionproducto" auto
+                   "imagen imagen " auto
                    "tittleestado tittlereserva " 20px
                    "contentestado contentreserva " auto
                    "tittleunidad empty1 " auto
                    "contentunidad valorproducto " auto
                    "boton boton" 50px/ 1fr 1fr;
 }
-.codigoproducto{
-    grid-area: codigoproducto;
+#id_pdto{
+   /*  display: none; */
 }
 .nombreproducto{
     grid-area: nameproducto;

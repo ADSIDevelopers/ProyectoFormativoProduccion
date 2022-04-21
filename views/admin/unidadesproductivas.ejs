@@ -17,7 +17,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="unidadesproductivas">Unidades Productivas</a>
                 </div>
-                    <h1 class="h-title">Lista de Unidades Productivas Disponibles <input  placeholder="Search..."  type="search" id="casillasubject" name="busquedaword" class="filter_alt"><span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Lista de Unidades Productivas <span id="Openform" class="icon-library_add"></span></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -26,6 +26,8 @@
                                 <th>Logo</th>
                                 <th>Descripcion</th>
                                 <th>Sede</th>
+                                <th>Estado</th>
+                                <th>Entrega</th>
                                 <th>Persona Encargada</th>
                                 <th>Admin</th>
                             </thead>
@@ -39,15 +41,7 @@
                 <div class="content-form-subject">
                     <div class="content-main-form-subject">
                         <h1 class="h-title">Registrar Unidad Productiva</h1><div class="popup-close-window">x</div>
-                        <form action="/RegistrarUnidadProductiva" method="post" class="content_form_unidades" enctype="multipart/form-data">
-                            <div class="content_data codigounidad">
-                                <div class="input-data">
-                                  <input type="number" id="codigounidad" name="codigo" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                  <label>Codigo Unidad</label>
-                                </div>
-                            </div>
+                        <form  class="content_form_unidades" id="form_registro_unidadesproductivas" enctype="multipart/form-data">
                             <div class="content_data nombreunidad">
                                 <div class="input-data">
                                   <input type="text" id="nombreunidad" name="nombre" size="40" maxlength="50" required="">
@@ -56,10 +50,18 @@
                                   <label>Nombre Unidad</label>
                                 </div>
                             </div>
-                            <div class=" img">
+                            <div class="img">
                                 <div class=" namefileup content_file_img">
-                                    <input class="form-control " type="file" name="img" id="formFile-up" >
+                                    <input class="form-control " type="file" name="fileN" id="fileN" >
                                 </div>
+                            </div>
+                            <label class="label_entrega">Entrega</label>
+                            <div class="content_data entregaunidad design-1">
+                                <select id="entregaunidad" name="entrega" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="1">Si </option>
+                                    <option value="0">No </option>
+                                </select>
                             </div>
                             <div class="content_data descripcionunidad">
                                 <div class="input-data">
@@ -87,38 +89,47 @@
                                         %>
                                 </select>
                             </div>
-                            <button type="submit" class="boton_registro">Registrar</button>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadounidad design-1">
+                                <select id="estadounidad" name="estado" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="RegistrarUnidad()">Registrar</button>
+
                         </form>
                     </div>
                 </div>
+                <!-- ====================================================================================================================================== -->
                 <div class="content-form-subject-actul">
                     <div class="content-main-form-subject-actul">
-                        <h1 class="h-title">Actualizar Unidad</h1><div class="popup-close-window-act">x</div>
-                        <form action="#" method="post" class="content_form_unidades" enctype="multipart/form-data">
-                            <div class="content_data codigounidad">
-                                <div class="input-data">
-                                  <input type="number" id="codigounidad" name="nombres" size="40" maxlength="50" required="">
-                                    <div class="underline">
-                                    </div>
-                                  <label>Codigo Unidad</label>
-                                </div>
-                            </div>
+                        <h1 class="h-title">Actualizar Unidad <input type="text"  id="id_up" size="5"  disabled></h1><div class="popup-close-window-act">x</div>
+                        <form  class="content_form_unidades" enctype="multipart/form-data">
                             <div class="content_data nombreunidad">
                                 <div class="input-data">
-                                  <input type="text" id="nombreunidad" name="nombres" size="40" maxlength="50" required="">
+                                  <input type="text" id="nombreunidadactual" name="nombre" size="40" maxlength="50" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Nombre Unidad</label>
                                 </div>
                             </div>
-                            <div class=" img">
-                                <div class=" namefileup content_file_img">
-                                    <input class="form-control " type="file" name="img" id="formFile-up" >
+                            <div class="img">
+                                <div class="namefileup content_file_img">
+                                    <input class="form-control " type="file" name="fileN" id="fileNact" >
                                 </div>
+                            </div>
+                            <label class="label_entrega">Entrega</label>
+                            <div class="content_data entregaunidad design-1">
+                                <select id="entregaunidadactual" name="entrega" class="form-control">
+                                    <option value="1">Si </option>
+                                    <option value="0">No </option>
+                                </select>
                             </div>
                             <div class="content_data descripcionunidad">
                                 <div class="input-data">
-                                  <input type="text" id="descripcionunidad" name="nombres" size="40" required="">
+                                  <input type="text" id="descripcionunidadactual" name="descripcion" size="40" required="">
                                     <div class="underline">
                                     </div>
                                   <label>Descripcion</label>
@@ -126,21 +137,28 @@
                             </div>
                             <label class="label_sede">Sede</label>
                             <div class="content_data sedeunidad design-1">
-                                <select id="sedeunidad" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
+                                <select id="sedeunidadactual" name="sede" class="form-control">
                                     <option value="Yamboro">Yamboro</option>
                                     <option value="Centro">Centro</option>
                                 </select>
                             </div>
                             <label class="label_persEncar">Persona Encargada</label>
                             <div class="content_data personaunidad design-1">
-                                <select id="personaunidad" class="form-control">
-                                    <option selected disabled >Seleccionar...</option>
-                                    <option>Laura</option>
-                                    <option>Camila</option>
+                                <select id="personaunidaencargadadactual" name="encargado" class="form-control">
+                                    <% for(var i=0; i<Personas.length;i++){%>
+                                        <option value="<%=Personas[i].identificacion%>"><%=Personas[i].Nombres%> </option>
+                                        <%  }
+                                        %>
                                 </select>
                             </div>
-                            <button type="button" class="boton_registro">Actualizar</button>
+                            <label class="label_estado">Estado</label>
+                            <div class="content_data estadounidad design-1">
+                                <select id="estadounidadactual" name="estado" class="form-control">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                            <button type="button" class="boton_registro" onclick="ActualizarUP();">Actualizar</button>
                         </form>
                     </div>
                 </div>
