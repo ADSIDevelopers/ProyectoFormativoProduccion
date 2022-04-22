@@ -71,7 +71,7 @@ function ListaProductos(){
                 botoneditar.appendChild(document.createTextNode('Editar'));
                 /* botonhabidesabilitar.appendChild(document.createTextNode('Inactivo')); */
                 /* Atributos*/
-                let imageproducto ='img/products/Captura de pantalla (1).png';
+                var imageproducto ='/img/products/'+pdto.Imgpdto;
                 botoneditar.setAttribute("class","btn-edit");
                 botoneditar.setAttribute("onclick","Buscarproductos("+pdto.Codigo_pdto+");")
                 /* botonhabidesabilitar.setAttribute("class","btn-delete"); */
@@ -87,9 +87,8 @@ function ListaProductos(){
                 fila.appendChild(Maxreserva)
                 fila.appendChild(contenbotones)
                 /* Adopcion de todos los tr > td al tbody */
-                tabla.appendChild(fila) 
-                console.log(imageproducto)
-             });
+                tabla.appendChild(fila)
+            });
         })
 }
 function Buscarproductos(ident){

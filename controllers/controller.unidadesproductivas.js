@@ -9,7 +9,9 @@ const storage = multer.diskStorage({
         
     },
     filename: function(req, img, cb) {
-        cb(null,img.originalname);
+        const datoahora = Date.now();
+        req.fileNewName = datoahora + img.originalname;
+        cb(null,req.fileNewName );
     }
 });
 
@@ -17,21 +19,26 @@ const upload = multer({ storage: storage });
 controlador.CargarImagen = upload.single('img');
 
 controlador.Vista = (req, res) => {
-    let sql = "select * from personas;";
-    conexion.query(sql, (err, rows) => {
-        if (!err) {
-            res.render('admin/unidadesproductivas',{Personas:rows})
-        } else {
-            console.log('eror al redirigir a la vista de unidades productivas ' + err)
-        }
-    });
+    try{
+        let sql = "select * from personas;";
+        conexion.query(sql, (err, rows) => {
+            if (!err) {
+                res.render('admin/unidadesproductivas',{Personas:rows})
+            } else {
+                console.log('eror al redirigir a la vista de unidades productivas ' + err)
+            }
+        });
+    }
+    catch(e){
+        console.log(e);
+    }
 };
 
 
 controlador.RegistrarUnidadProductiva = (req, res) => {
     try{
         let nombre = req.body.Nombre;
-        let logo = req.file.originalname;
+        let logo = req.fileNewName;
         let Descripcion = req.body.Descripcion;
         let Sede = req.body.Sede;
         let Estado = req.body.Estado;
@@ -79,22 +86,27 @@ controlador.Buscarunidadproductiva=(req, res)=>{
 };
 
 controlador.ListaUnidadesProductivas = (req, res) => {
-    var sql = "select * from unidades_productivas join personas on identificacion=fk_persona;";
-    conexion.query(sql, (err, rows) => {
-        if(!err){
-            res.json(rows);
-        }
-        else{
-            console.log("No see Pudo listar"+err);
-        }
-    });
+    try{
+        var sql = "select * from unidades_productivas join personas on identificacion=fk_persona;";
+        conexion.query(sql, (err, rows) => {
+            if(!err){
+                res.json(rows);
+            }
+            else{
+                console.log("No see Pudo listar"+err);
+            }
+        });
+    }
+    catch(e){
+        console.log(e);
+    }
 };
 
 controlador.ActualizarUnidadProductiva = (req, res) =>{
     try{
         let id = req.body.Identificacion;
         let nombre = req.body.Nombre;
-        let logo = req.file.originalname;
+        let logo = req.fileNewName;
         let Descripcion = req.body.Descripcion;
         let Sede = req.body.Sede;
         let Estado = req.body.Estado;

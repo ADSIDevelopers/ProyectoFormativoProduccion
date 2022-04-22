@@ -8,7 +8,9 @@ const storage = multer.diskStorage({
         cb(null, "public/img/products");
     },
     filename: function(req, img, cb) {
-        cb(null, img.originalname);
+        const datoahora = Date.now();
+        req.fileNewName = datoahora + img.originalname;
+        cb(null, req.fileNewName);
     }
 });
 
@@ -36,7 +38,7 @@ controlador.RegistrarProductos = (req, res) => {
     try{
     let nombre = req.body.Nombrepdto;
     let Descripcion = req.body.Descripcionpdto;
-    let imagen = req.file.originalname;
+    let imagen = req.fileNewName;
     let estado = req.body.Estadopdto;
     let Reserva = req.body.Reservapdto;
     let Maximo = req.body.Maximopdto;
@@ -66,7 +68,7 @@ controlador.RegistrarProductos = (req, res) => {
 
 controlador.ListaProductos = (req, res) => {
     try{
-        var sql = "select unidades_productivas.Nombre as Nombre_up, productos.Nombre as Nombre_pdto, productos.Codigo_pdto as Codigo_pdto, productos.MaxReserva as MaxReserva, productos.Reserva as Reserva, productos.Estado as Estado, productos.Descripcion as Descripcion from unidades_productivas join productos on codigo_up=fk_codigo_up;";
+        var sql = "select unidades_productivas.Nombre as Nombre_up, productos.Nombre as Nombre_pdto, productos.imagen as Imgpdto, productos.Codigo_pdto as Codigo_pdto, productos.MaxReserva as MaxReserva, productos.Reserva as Reserva, productos.Estado as Estado, productos.Descripcion as Descripcion from unidades_productivas join productos on codigo_up=fk_codigo_up;";
         conexion.query(sql, (err, rows) => {
             if (!err) {
                 res.json(rows);
@@ -104,7 +106,7 @@ controlador.Actualizarproductos = (req, res) =>{
     let id = req.body.Identificacionact;
     let nombre = req.body.Nombrepdtoact;
     let Descripcion = req.body.Descripcionpdtoact;
-    let img = req.file.originalname;
+    let img = req.fileNewName;
     let estado = req.body.Estadopdtoact;
     let Reserva = req.body.Reservapdtoact;
     let Maximo = req.body.Maximopdtoact;

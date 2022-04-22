@@ -11,7 +11,7 @@
                    "boton boton" 50px/ 1fr 1fr;
 }
 #id_pdto{
-   /*  display: none; */
+    display: none;
 }
 .nombreproducto{
     grid-area: nameproducto;
