@@ -147,3 +147,15 @@ label {
 .modal-dark {
     background: rgba(0, 0, 0, 0.661);
 }
+
+.col-id {
+    width: 20px;
+}
+
+#add-btn {
+    cursor: pointer;
+}
+
+#table-cart {
+    text-align: center;
+}

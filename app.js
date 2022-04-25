@@ -14,7 +14,7 @@ servidor.set('views', __dirname + '/views');
 
 servidor.use(require('./routes/route.index'));
 servidor.use('/auth', require('./routes/route.auth'));
-servidor.use(require('./routes/route.ventas'));
+servidor.use(require('./routes/route.movimientos'));
 servidor.use(require('./routes/routeJhonMario'));
 
 servidor.listen(3000, () => {

@@ -1,6 +1,6 @@
 var controllerJhonMario = {};
 
-controllerJhonMario.renderRegistroCliente  = (req, res) =>{
+controllerJhonMario.renderRegistroCliente = (req, res) => {
     res.render('admin/RegistroCliente')
 }
 
