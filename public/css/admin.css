@@ -213,14 +213,15 @@ input:checked + .slider:before {
 .profile-box {
     display: none;
     color: #1c1c1c;
-    top: 46px;
-    right: -5px;
+    top: 135px;
+    right: 15px;
     width: 90%;
     position: absolute;
     max-width: 250px;
     background-color: #fff;
     box-shadow: 0 0 5px var(--dark-gray-color);
     border-radius: 10px ;
+    z-index: 105;
 }
 .profile-box a {
     text-decoration: none;
