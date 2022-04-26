@@ -6,20 +6,22 @@ let controllerAuth = {}
 
 controllerAuth.logIn = (req, res) => {
     var sql =`select identificacion, Rol from personas WHERE Login = '${req.body.user}' and password = '${req.body.password}'`;
-    conexion.query(sql,(err,rows)=>{
-        if(err) return res.json({status: 'error', message: 'Error with sql query'})
-        if(rows.length <= 0) return res.json({status: 'error', message: 'User not found'})
-        let json = {
-            id: rows[0].identificacion,
-            role: rows[0].Rol,
-        }
-        let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
-        var decoded = jwt.verify(token, authConfig.secret);
-        storage.setItem('token', token)
-        return res.json({user:decoded.user, token})
-    });
-    
-    
+    try{
+        conexion.query(sql,(err,rows)=>{
+            if(err) return res.json({status: 'error', message: 'Error with sql query'})
+            if(rows.length <= 0) return res.json({status: 'error', message: 'User not found'})
+            let json = {
+                id: rows[0].identificacion,
+                role: rows[0].Rol,
+            }
+            let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
+            var decoded = jwt.verify(token, authConfig.secret);
+            storage.setItem('token', token)
+            return res.json({user:decoded.user, token})
+        });
+    } catch (e) {
+        return res.json({status: 'error', message: 'Error with sql query'})
+    } 
 }
 controllerAuth.logOut = (req, res) => {
     return storage.removeItem('token');

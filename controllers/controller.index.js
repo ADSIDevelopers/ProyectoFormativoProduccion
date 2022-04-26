@@ -7,24 +7,8 @@ controllerIndex.adminIndex = (req, resp) => {
     resp.render('admin/index', /* {profile: req.session} */);
 }
 controllerIndex.perfil = (req, resp) => {
+    console.log(req.session)
     resp.render('admin/perfil', {profile: req.session});
 }
-controllerIndex.usuarios = (req, resp) => {
-    resp.render('admin/usuarios')
-}
-controllerIndex.adminProduccion = (req, resp) => {
-    resp.render('admin/produccion')
-}
-controllerIndex.store = (req, res) => {
-    res.render('store');
-}
-controllerIndex.buy = (req, res) => {
-    res.render('buy');
-}
-controllerIndex.uds = (req, res) => {
-    res.render('uds');
-}
-controllerIndex.ud = (req, res) => {
-    res.render('ud');
-}
+
 module.exports = controllerIndex;
