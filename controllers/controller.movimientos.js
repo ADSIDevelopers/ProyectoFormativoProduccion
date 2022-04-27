@@ -50,4 +50,8 @@ controladorMovimiento.listarProductos = (req, resp) => {
     }
 }
 
+controladorMovimiento.acumProd = (req, resp) => {
+
+}
+
 module.exports = controladorMovimiento;

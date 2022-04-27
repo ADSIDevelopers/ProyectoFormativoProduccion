@@ -181,10 +181,6 @@
         </div>
 
 
-
-
-
-
         <div class="modal fade modal-dark" id="modalAddProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog modal-xl">
                 <div class="modal-content">
@@ -192,34 +188,55 @@
                         <h5 class="modal-title" id="exampleModalLabel">Agrega Productos</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form class="row g-3" action="/registrarVenta">
-                        <div class="modal-body">
-                            <div class="table-prods">
-                                <table id="tableAddProd" class="display dt-table-cart">
-                                    <thead>
-                                        <tr>
-                                            <th>ID. Prod</th>
-                                            <th>Nombre del Producto</th>
-                                            <th>Unidad Productiva</th>
-                                            <th>Valor Unit.</th>
-                                            <th>Valor Total</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="add-prod">
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Hecho">
+                    <div class="modal-body">
+                        <div class="table-prods">
+                            <table id="tableAddProd" class="display dt-table-cart">
+                                <thead>
+                                    <tr>
+                                        <th>ID. Prod</th>
+                                        <th>Nombre del Producto</th>
+                                        <th>Valor Unit.</th>
+                                        <th>Unidad Productiva</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="add-prod">
+                                </tbody>
+                            </table>
                         </div>
 
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Hecho">
+                    </div>
+
                 </div>
             </div>
         </div>
+
+
+
+        <div class="modal fade modal-dark" id="modalProductoAgregado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agrega Productos</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Hecho">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
     <%- include('../partials/footer') %>

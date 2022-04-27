@@ -22,7 +22,7 @@
     text-align: center;
 }
 
-.input-s {
+input[type=search] {
     width: 80%;
     height: 40px;
     padding: 1em;
@@ -148,14 +148,33 @@ label {
     background: rgba(0, 0, 0, 0.661);
 }
 
-.col-id {
-    width: 20px;
+.col-id,
+.row1 {
+    width: 10px;
 }
 
-#add-btn {
-    cursor: pointer;
-}
-
-#table-cart {
+#table-cart,
+#tableAddProd {
     text-align: center;
+}
+
+.input-Cant {
+    width: 50px;
+}
+
+#dt-table-cart {
+    text-align: center;
+}
+
+.add-lk {
+    color: white;
+    padding: 0.5em;
+    text-decoration: none;
+    background: rgb(209, 102, 8);
+    border-radius: 5px;
+}
+
+.add-lk:hover {
+    color: white;
+    background: rgb(151, 73, 5);
 }
