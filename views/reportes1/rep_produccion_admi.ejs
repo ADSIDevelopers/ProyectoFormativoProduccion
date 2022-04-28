@@ -14,29 +14,31 @@
         <div class="body-info-section">
             <div class="full-container">
                 <div class="breadcrumb">
-                    <a href="/reportes" >Reportes </a>  | <a href="/reporteUnidadesProductivas">Reporte Unidades Productivas</a> 
+                    <a href="#" class="#">Reportes </a>  | <a href="/reporteUnidadesProductivas">Reporte Unidades Productivas</a>  | <a href="/reportepuntoventa">Reporte Punto de Venta</a>
                 </div>
-                <h1 class="h-title">Unidades Productivas</h1>
+                <!-- <div class="table-admin mt-1"> -->
+                    <h1 class="h-title">Administrador</h1>
                     <hr class="separador-text"></hr>
-                    <h3 class="h-title">Cantidad Unidades Productivas<span id="Openform" ></span></h3>
+                    <h3 class="h-title">Disponibles Producción <span id="Openform" ></span></h3>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
-                                <th>Nombre Producto</th>
-                                <th>Cantidad Produccion(valor)</th>
-                                <th>Año</th>
+                                <th>Nombre Up</th>
+                                <th>Nombre del producto</th>
+                                <th>Stock producción disponible</th>                         
                             </thead>
                             <tbody>
-                                <% for( let i = 0; i < Unidadesproductivas.length; i++ ) { %>
+                                <% for( let i = 0; i < rep_venta_punto.length; i++ ) { %>
                                     <tr>
-                                        <td ><%=Unidadesproductivas[i].Nombre%></td>
-                                        <td >#</td>
-                                        <td >#</td>
+                                        <td ><%=rep_venta_punto[i].Nombre  %> </td>
+                                        <td ><%=rep_venta_punto[i].pdto_nombre  %></td>
+                                        <td ><%=rep_venta_punto[i].stockcant  %></td>                              
                                     </tr>
-                                    <% } %>
+                                <% } %>
                             </tbody>
                       </table>                    
                     </div><br>
+                <!-- </div> -->
             </div> 
         </div>
     </div>
@@ -44,4 +46,7 @@
     <%- include('../partials/scripts.ejs') %> 
 </body>
 </html>
+<script>
+
+
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/tabla.listas.css">
+    <link rel="stylesheet" href="css/style.input.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin') %> 
+    </div>
+    <div class="main-contenedor">
+        <div class="body-info-section">
+            <div class="full-container">
+                <div class="breadcrumb">
+                    <a href="/reportes" >Reportes </a>  | <a href="/reportepuntoventa">Reporte Punto de Venta</a>
+                </div>
+                <div class="table-admin mt-1">
+                    <h1 class="h-title">Punto de Venta</h1>
+                    <h3 class="h-title">Valor vendido de Venta <span id="Openform" ></span></h3>
+                    <div class="table-admin mt-1">
+                        <table class="table-info">
+                            <thead>
+                                <th>Nombre del producto</th>
+                                <th>cantidad Vendida</th>
+                                <th>Valor vendidos</th>
+                                <th>Dia</th>
+                                <th>Mes</th>
+                                <th>Año</th>
+                            </thead>
+                            <tbody>
+                                <% for( let i = 0; i < rep_venta_punto.length; i++ ) { %>
+                                    <tr>                       
+                                        <td ><%=rep_venta_punto[i].pdto_nombre  %></td>
+                                        <td ><%=rep_venta_punto[i].cantidad  %></td>
+                                        <td ><%=rep_venta_punto[i].valor  %></td>
+                                        <td ><script>
+                                            date = new Date().getDate() ;
+                                            document.write(date);
+                                            </script></td> 
+                                             <td class="fecha" id="date"><script>
+                                                date = new Date().getMonth() +1;
+                                                document.write(date);
+                                                </script></td>
+                                              <td class="fecha" id="date"><script>
+                                        date = new Date().getFullYear();
+                                        document.write(date);
+                                        </script></td>                                   
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                      </table>                    
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+    <%- include('../partials/footer') %>
+    <%- include('../partials/scripts.ejs') %> 
+</body>
+</html>

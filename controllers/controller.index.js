@@ -5,7 +5,7 @@ controllerIndex.renderIndex = (req, resp) => {
     resp.render('index');
 }
 controllerIndex.adminIndex = (req, resp) => {
-    resp.render('admin/index', /* {profile: req.session} */ );
+    resp.render('admin/index', /* {profile: req.session} */);
 }
 controllerIndex.perfil = (req, resp) => {
     resp.render('admin/perfil');
