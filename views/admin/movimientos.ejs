@@ -16,7 +16,7 @@
     <div class="main-contenedor">
         <div class="box">
             <div class="head-table">
-                <h2>Ventas y Reservas</h2><input type="search" name="busquedaVenta" class="input-s" placeholder="Buscar Ventas o Reservas..." id="busquedaVenta"><button class="btn btn-primary" id="btn" onclick="nuevaVenta()">Nueva Venta</button>
+                <h2>Ventas y Reservas</h2><button class="btn btn-primary" id="btn" onclick="nuevaVenta()">Nueva Venta</button>
             </div>
 
 
@@ -100,7 +100,6 @@
 
                                     <thead>
                                         <tr>
-                                            <input type="text" name="idMov" id="idMov">
                                             <th>ID. Prod</th>
                                             <th>Nombre del Producto</th>
                                             <th>Cantidad</th>
@@ -109,7 +108,7 @@
                                             <th>Estado de Entrega</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="cuerpo-tabla">
+                                    <tbody id="cuerpo-detalle">
 
                                     </tbody>
                                 </table>
@@ -130,52 +129,58 @@
             <div class="modal-dialog modal-fullscreen-xxl-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nueva Venta</h5>
+                        <h5 class="modal-title" id="numVenta">Nueva Venta</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form class="row g-3" action="/registrarVenta">
-                        <div class="modal-body modal-cart">
-                            <div class="table-cart">
-                                <table id="tableCart" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>ID. Prod</th>
-                                            <th>Nombre del Producto</th>
-                                            <th>Cantidad</th>
-                                            <th>Valor Unit.</th>
-                                            <th>Valor Total</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="cart-prod">
 
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="cont-cart">
-                                <div class="form-buy row g-3">
-                                    <h1>Formulario de Venta</h1>
-                                    <div class="col-md-2">
-                                        <label for="inputid" class="form-label">ID</label>
-                                        <input type="number" class="form-control input-style" id="inputid" disabled>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <label for="inputPIdCliente" class="form-label">Documento del CLiente</label>
-                                        <input type="number" class="form-control input-style" id="inputPIdCliente">
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="inputAddress" class="form-label">Nom. Cliente</label>
-                                        <input type="text" class="form-control input-style" id="inputAddress" placeholder="1234 Main St" disabled>
-                                    </div>
+                    <div class="modal-body modal-cart">
+
+                        <div class="table-cart">
+                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
+
+                            <table id="tableCart" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID. Prod</th>
+                                        <th>Nombre del Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Valor Unit.</th>
+                                        <th>Valor Total</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart-prod">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="cont-cart">
+                            <div class="form-buy row g-3">
+                                <h1>Formulario de Venta</h1>
+                                <div class="col-md-2">
+                                    <label for="inputid" class="form-label">ID</label>
+                                    <input type="number" class="form-control input-style" id="inputid" disabled>
+                                </div>
+                                <div class="col-md-10">
+                                    <label for="inputPIdCliente" class="form-label">Documento del CLiente</label>
+                                    <input type="number" class="form-control input-style" id="inputPIdCliente">
+                                </div>
+                                <!-- filtro cliente -->
+                                <div class="col-12">
+
+                                    <label for="inputAddress" class="form-label">Nom. Cliente</label>
+                                    <input class="form-control input-style" type="text" id="nombre" disabled>
+
+
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
-                            <input type="submit" class="btn btn-primary btnreg" value="Registrar">
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary btnreg" value="Registrar">
+                    </div>
 
-                    </form>
+
                 </div>
             </div>
         </div>
@@ -207,7 +212,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Hecho">
+                        <input type="button" class="btn btn-primary btndone" onclick="" value="Hecho">
                     </div>
 
                 </div>
@@ -217,18 +222,18 @@
 
 
         <div class="modal fade modal-dark" id="modalProductoAgregado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-xl">
+            <div class="modal-dialog modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agrega Productos</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Cantidad</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="precio_prod">
 
 
                     </div>
                     <div class="modal-footer">
-                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Hecho">
+                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Confirmar">
                     </div>
 
                 </div>

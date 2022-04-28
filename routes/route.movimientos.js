@@ -7,4 +7,7 @@ routeMovimientos.get('/movimientos', contMovimientos.renderMovimientos);
 routeMovimientos.get('/listarMovimientos', contMovimientos.listarMovimientos);
 routeMovimientos.post('/listarDetalle', contMovimientos.mostrarDetalle);
 routeMovimientos.get('/addProd', contMovimientos.listarProductos);
+routeMovimientos.post('/consAddProd', contMovimientos.consAggProd);
+routeMovimientos.post('/filtro', contMovimientos.filtro);
+
 module.exports = routeMovimientos;

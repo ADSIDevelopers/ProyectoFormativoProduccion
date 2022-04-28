@@ -6,8 +6,8 @@
 .head-table {
     margin: 1em 1.3em 1em 0;
     display: grid;
-    grid-template: "nombre busqueda btnadd" 60px /1fr 1fr 200px;
-    align-items: center;
+    grid-template: "nombre btnadd" 60px /1fr 100px;
+    align-items: flex-end;
 }
 
 .table {
@@ -20,14 +20,6 @@
     color: white;
     height: 40px;
     text-align: center;
-}
-
-input[type=search] {
-    width: 80%;
-    height: 40px;
-    padding: 1em;
-    border: 2px lightgray solid;
-    overflow: none;
 }
 
 .input-s::placeholder {
@@ -71,6 +63,10 @@ label {
     grid-template: "inputid inputidcliente" 20px "nombre estado" /100px 100px;
 }
 
+#tablemovimientos {
+    margin-top: 1em;
+}
+
 .input1 {
     width: 100px;
 }
@@ -100,6 +96,7 @@ label {
 .modal-cart {
     display: flex;
     flex-direction: row;
+    height: 450px;
 }
 
 .table-cart {
@@ -137,7 +134,11 @@ label {
 }
 
 .btnadd {
-    background: green;
+    background: rgb(255, 132, 0);
+}
+
+.btnadd:hover {
+    background: rgb(215, 111, 0);
 }
 
 .action-td {
@@ -168,7 +169,7 @@ label {
 
 .add-lk {
     color: white;
-    padding: 0.5em;
+    padding: 0.2em 0.5em 0.2em 0.5em;
     text-decoration: none;
     background: rgb(209, 102, 8);
     border-radius: 5px;
@@ -177,4 +178,74 @@ label {
 .add-lk:hover {
     color: white;
     background: rgb(151, 73, 5);
+}
+
+#precio_prod {
+    width: 100%;
+    height: 300px;
+    display: grid;
+    grid-template: 'contizq contder' 100px 'img total' 160px / 1fr 500px;
+}
+
+.divsub1 {
+    grid-area: contizq;
+}
+
+.divsub2 {
+    grid-area: contder;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divsub2 label {
+    font-size: 2em;
+}
+
+.divsub3 {
+    grid-area: img;
+}
+
+.divsub4 {
+    grid-area: total;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.inputCant {
+    width: 99%;
+    height: 80px;
+    border: 2px lightgray solid;
+    overflow: none;
+    font-size: 1.9em;
+    padding: 0 1em 0 1em;
+}
+
+.factBtn {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em;
+    background: rgb(255, 123, 0);
+    border-radius: 5px;
+}
+
+.factBtn:hover {
+    color: white;
+    background: rgb(208, 101, 0);
+}
+
+.lbNombre {
+    font-size: 1.5em;
+}
+
+.lbPrecio {
+    font-size: 1em;
+}
+
+@media (min-width: 576px) {
+    .modal-fullscreen-xxl-down {
+        max-width: 100%;
+        margin: 1.75rem auto;
+    }
 }

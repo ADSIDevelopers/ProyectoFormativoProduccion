@@ -10,7 +10,6 @@ controladorMovimiento.listarMovimientos = (req, resp) => {
     try {
         let sql = 'select Id_movimiento,date_format(Fecha, "%d-%m-%Y") as Fecha ,Estado,(select Nombres from personas where movimientos.fk_persona=personas.identificacion)as personas,(select sum(valor * cantidad) from detalle where fk_Id_movimiento=movimientos.Id_movimiento) as total from movimientos;';
         conexion.query(sql, (err, rows) => {
-            console.log(rows);
             resp.json(rows);
         });
 
@@ -38,20 +37,44 @@ controladorMovimiento.mostrarDetalle = (req, resp) => {
 
 
 controladorMovimiento.listarProductos = (req, resp) => {
+        try {
+            let sql = `select Codigo_pdto, productos.Nombre as NombreProd,Precio , unidades_productivas.Nombre as UProd from productos join unidades_productivas on codigo_up=fk_codigo_up join precios on Codigo_pdto=fk_producto;`;
+            conexion.query(sql, (err, rows) => {
+                console.log(rows);
+                resp.json(rows);
+            });
+        } catch (error) {
+            console.log('Error al Listar los Productos: ' + error);
+
+        }
+    }
+    /* =================controlador agregar================ */
+controladorMovimiento.consAggProd = (req, resp) => {
+    var id = req.body.codigop;
     try {
-        let sql = `select Codigo_pdto, productos.Nombre as NombreProd,Precio , unidades_productivas.Nombre as UProd from productos join unidades_productivas on codigo_up=fk_codigo_up join precios on Codigo_pdto=fk_producto;`;
+        let sql = `select Nombre, precio from productos join precios on Codigo_pdto=fk_producto and fk_producto=` + id;
         conexion.query(sql, (err, rows) => {
-            console.log(rows);
             resp.json(rows);
         });
     } catch (error) {
         console.log('Error al Listar los Productos: ' + error);
-
     }
 }
 
-controladorMovimiento.acumProd = (req, resp) => {
+module.exports = controladorMovimiento;
 
+
+/* ==================filtro busqueda clientes=============== */
+controladorMovimiento.filtro = (req, resp) => {
+    var iden = req.body.iden;
+    try {
+        let sql = "SELECT identificacion, Nombres FROM `personas` WHERE identificacion=" + iden;
+        conexion.query(sql, (err, rows) => {
+            resp.json(rows);
+            console.log(rows)
+        });
+    } catch (error) {
+        console.log('Error al Listar los Productos: ' + error);
+    }
 }
-
 module.exports = controladorMovimiento;
