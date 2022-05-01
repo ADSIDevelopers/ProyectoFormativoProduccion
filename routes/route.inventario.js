@@ -7,5 +7,7 @@ ruta_inventario.post("/Registrar_inventario",controlador_inventario.registrarInv
 ruta_inventario.get("/Lista_Inventario",controlador_inventario.ListaInventario);
 ruta_inventario.post("/Buscar_Invent",controlador_inventario.BuscarInvent);
 ruta_inventario.post("/Actualizar_Invent",controlador_inventario.ActualformInvent);
+ruta_inventario.post("/Lista_BodegaProduccion",controlador_inventario.ListaBodegaProduccion);
+ruta_inventario.post("/idpdto_inventario",controlador_inventario.pdtoinventario)
 
 module.exports = ruta_inventario;

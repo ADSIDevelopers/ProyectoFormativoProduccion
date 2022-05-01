@@ -41,17 +41,18 @@ try{
     let persona = req.body.Persona;
     var sql = `insert into punto_venta(Sede,Direccion,Nombre,Estado, fk_persona)values('${sede}','${dir}','${nombre}','${estado}','${persona}')`;
     conexion.query(sql,(err,rows)=>{
-        if (err) return res.json({ 
-            titulo : "error",
-            icono: "error",
-            mensaje : "el punto de venta no se registro "+ err
-        }); 
-        return res.json({  
-            titulo : "Registro Exitoso",
-            icono: "success",
-            mensaje : "El punto ha sido regsitrado con éxito"
-        });
-        
+            if (err) return res.json({ 
+                titulo : "error",
+                icono: "error",
+                mensaje : "el punto de venta no se registro "+ err,
+                timer : 2000
+            }); 
+            return res.json({  
+                titulo : "Registro Exitoso",
+                icono: "success",
+                mensaje : "El punto ha sido regsitrado con éxito",
+                timer : 2000
+            });
         });
     }
     catch(e){
@@ -63,7 +64,6 @@ controlador.Buscarpuntv=(req, res)=>{
     try{
         var identificador = req.body.Identificacion;
         let sql = 'select * from punto_venta where Id_punto_vent='+identificador;
-     
              conexion.query(sql,(err, rows)=>{
                 if(!err){
                     res.json(rows);
@@ -95,12 +95,14 @@ controlador.Actualformpuntv=(req, res)=>{
         if (err) return res.json({ 
             titulo : "error",
             icono: "error",
-            mensaje : "el punto de venta no se Actualizo "+ err
+            mensaje : "el punto de venta no se Actualizo "+ err,
+            timer : 2000
         }); 
         return res.json({  
-            titulo : "Registro Exitoso",
+            titulo : "Actualizado con Exito",
             icono: "success",
-            mensaje : "El punto ha sido Actualizado con éxito"
+            mensaje : "El punto ha sido Actualizado con éxito",
+            timer : 2000
         });
         });
     }catch(e){

@@ -52,13 +52,13 @@ controlador.RegistrarUnidadProductiva = (req, res) => {
                     titulo : "error",
                     icono: "error",
                     mensaje : "La Unidad Productiva no se Logro Registrar "+ err,
-                    timer : 1500
+                    timer : 2000
                 }); 
                 return res.json({  
                     titulo : "Registro Exitoso",
                     icono: "success",
-                    mensaje : "La Unidad Productiva Registrado con éxito",
-                    timer : 5000
+                    mensaje : "La Unidad Productiva ha sido Registrada con éxito",
+                    timer : 2000
                 });
         })
     }
@@ -87,7 +87,7 @@ controlador.Buscarunidadproductiva=(req, res)=>{
 
 controlador.ListaUnidadesProductivas = (req, res) => {
     try{
-        var sql = "select * from unidades_productivas join personas on identificacion=fk_persona;";
+        var sql = "select * from unidades_productivas join personas on identificacion=fk_persona order by codigo_up Asc;";
         conexion.query(sql, (err, rows) => {
             if(!err){
                 res.json(rows);
@@ -120,11 +120,13 @@ controlador.ActualizarUnidadProductiva = (req, res) =>{
                     titulo : "error",
                     icono: "error",
                     mensaje : "La Unidad Productiva no se Logro Actualizada "+ err,
+                    timer : 2000
                 });            
                 return res.json({  
-                    titulo : "Registro Exitoso",
+                    titulo : "Actualizado con Éxito",
                     icono: "success",
-                    mensaje : "La Unidad Productiva ha sido Actualizada con éxito",
+                    mensaje : "La Unidad Productiva ha sido Actualizada con Éxito",
+                    timer : 2000
                 });
         })
     }

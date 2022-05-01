@@ -17,7 +17,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio </a>  | <a href="productos">Productos</a>
                 </div>
-                    <h1 class="h-title">Lista de Productos Disponibles <span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Administrar Productos de Unidades Productivas <a id="Openform" class="btn-new icon-library_add"> Nuevo Producto</a></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -29,6 +29,7 @@
                                 <th>Reserva</th>
                                 <th>Unidad Productiva</th>
                                 <th>Maximo Reserva</th>
+                                <th>Tipo</th>
                                 <th>Admin</th>
                             </thead>
                             <tbody id="tbody_date">
@@ -96,6 +97,14 @@
                                         %>
                                 </select>
                             </div>
+                            <label class="label_tipoproducto">Tipo</label>
+                            <div class="content_data tipoproducto design-1">
+                                <select id="tipoproducto" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="Venta">Venta</option>
+                                    <option value="Servicio">Servicio</option>
+                                </select>
+                            </div>
                             <button type="button" class="boton_registro" onclick="RegistrarProducto();">Registrar</button>
                         </form>
                     </div>
@@ -129,7 +138,6 @@
                             <label class="label_estado">Estado</label>
                             <div class="content_data estadoproducto design-1">
                                 <select id="estadopdtoact" class="form-control">
-                                   
                                     <option value="Activo">Activo</option>
                                     <option value="Inactivo">Inactivo</option>
                                 </select>
@@ -159,8 +167,56 @@
                                         %>
                                 </select>
                             </div>
+                            <label class="label_tipoproducto">Tipo</label>
+                            <div class="content_data tipoproducto design-1">
+                                <select id="tipoproductoact" class="form-control">
+                                    <option value="Venta">Venta</option>
+                                    <option value="Servicio">Servicio</option>
+                                </select>
+                            </div>
                             <button type="button" class="boton_registro" onclick="Actaulizarpdto();">Actualizar</button>
                         </form>
+                    </div>
+                </div>
+                <div class="content-form-sale">
+                    <div class="content-form-main-sale">
+                        <h1 class="h-title">Registrar Precios <input type="text"  size="5" id="id_pdto_sale" disabled><input type="text"  size="5" id="id_sale" disabled></h1><div class="popup-close-window-sale">x</div>
+                        <form id="form_sale" class="form-sale">
+                            <div class="content_data precioproducto">
+                                <div class="input-data">
+                                <input type="number" id="precioproducto" size="40" maxlength="50" required="">
+                                    <div class="underline">
+                                    </div>
+                                <label>Precio</label>
+                                </div>
+                            </div>
+                            <label class="label_cargo">Cargo</label>
+                            <div class="content_data cargoprecio design-1">
+                                <select id="cargo" class="form-control">
+                                    <option selected disabled >Seleccionar...</option>
+                                    <option value="1">Aprendiz</option>
+                                    <option value="2">Instructor</option>
+                                    <option value="3">Administrativo</option>
+                                    <option value="4">Externo</option>
+                                    <option value="5">Auxiliares</option>
+                                </select>
+                            </div>
+                            <button type="button" id="regisprecio" class="boton_registrosale" onclick="RegistrarPrecio();">Agregar</button>
+                            <button type="button" id="actuprecio" class="boton_saleact" onclick="ActualizarPrecio();" disabled>Actualizar</button>
+                        </form>
+                        <div class="table-admin mt-1">
+                            <table class="table-info">
+                                <thead>
+                                    <th>Cargo</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Admin</th>
+                                </thead>
+                                <tbody id="tbody_sale">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div> 

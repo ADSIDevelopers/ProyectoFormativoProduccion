@@ -16,7 +16,7 @@
                 <div class="breadcrumb">
                     <a href="#" class="go-home">Volver al inicio</a>  | <a href="puntoventa">Punto de Venta</a>
                 </div>
-                    <h1 class="h-title">Puntos de Venta Disponibles<span id="Openform" class="icon-library_add"></span></h1>
+                    <h1 class="h-title">Puntos de Venta Disponibles<a id="Openform" class="btn-new icon-library_add"> Nuevo P.Venta</a></h1>
                     <div class="table-admin mt-1">
                         <table class="table-info">
                             <thead>
@@ -76,8 +76,8 @@
                             <div class="content_data estadoPunt design-1">
                                 <select id="estadopuntventa" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option value="1">Activo</option>
-                                    <option value="0">Inactivo</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
                                 </select>
                             </div>
                             <button type="button" class="boton_registro" onclick="RegistrarPuntoventa();">Registrar</button>
@@ -128,8 +128,8 @@
                             <div class="content_data estadoPunt design-1">
                                 <select id="estadopuntventaActul" class="form-control">
                                     <option selected disabled >Seleccionar...</option>
-                                    <option value="0">Activo</option>
-                                    <option value="1">Inactivo</option>
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
                                 </select>
                             </div>
                             <button type="button" class="boton_registro" onclick="Actualizar();">Actualizar</button>

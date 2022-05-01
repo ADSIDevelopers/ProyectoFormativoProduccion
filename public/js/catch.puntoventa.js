@@ -23,9 +23,8 @@ function RegistrarPuntoventa() {
             title: data.titulo,
             icon: data.icono,
             text: data.mensaje,
-            timer: 1500
+            timer : data.timer
             })
-            
             formulario.reset();
             ListaPuntoVenta();
             
@@ -69,7 +68,6 @@ function ListaPuntoVenta(){
                 botoneditar.setAttribute("onclick","Mostrarventana("+Pventa.Id_punto_vent+");");
                 // botonhabidesabilitar.setAttribute("class","btn-delete");
                 // botonhabidesabilitar.setAttribute("id","btn-estado");
-              
                 fila.appendChild(IdPventa);
                 fila.appendChild(nombrePventa);
                 fila.appendChild(direccionPventa);
@@ -128,8 +126,7 @@ function Actualizar(){
             title: data.titulo,
             icon: data.icono,
             text: data.mensaje,
-  timer: 1500
-
+            timer : data.timer
         });
             ListaPuntoVenta();
     });

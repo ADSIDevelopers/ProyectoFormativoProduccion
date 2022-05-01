@@ -36,7 +36,7 @@ controlador.Vista = (req, res) => {
 };
 controlador.ListaInventario = (req, res) => {
     try{
-        var sql = "select id_inventario,stock,fk_codigo_pdto,fk_id_punto_vent, punto_venta.Nombre as nombrePunto, productos.Nombre as nombrePdto from productos INNER JOIN inventario on fk_codigo_pdto=Codigo_pdto INNER JOIN punto_venta ON Id_punto_vent=fk_id_punto_vent";
+        var sql = "select id_inventario,stock,fk_codigo_pdto,fk_id_punto_vent, punto_venta.Nombre as nombrePunto, productos.Nombre as nombrePdto, productos.Codigo_pdto as Codigo_pdto from productos INNER JOIN inventario on fk_codigo_pdto=Codigo_pdto INNER JOIN punto_venta ON Id_punto_vent=fk_id_punto_vent";
         conexion.query(sql, (err, rows) => {
             console.log(rows);
             if (!err) {
@@ -114,4 +114,43 @@ controlador.ActualformInvent=(req, res)=>{
         console.log(e);
     }
 };
+
+controlador.pdtoinventario =(req, res)=>{
+    try{
+        let dtoinventario = req.body.idptoinve;
+        let sql =`select * from productos  where codigo_pdto=`+dtoinventario;
+        console.log(sql)
+            conexion.query(sql,(err, rows)=>{
+                if(!err){   
+                    res.json(rows); 
+                }
+                else{
+                    console.log("No se logro encontrar el producto"+err);
+                }
+            }); 
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
+controlador.ListaBodegaProduccion=(req, res)=>{
+    try{
+        let idprdto = req.body.idptoibv;
+        let sql =`select produccion.Id_produccion as Id_produccion, productos.Nombre as Nombre_pdto, produccion.Cantidad as Cantidadprodu, bodega.id_bodega as id_bodega, bodega.cantidad as catidadbode, inventario.id_inventario as id_inventario, bodega.fecha as fechabodega from productos join produccion on codigo_pdto=fk_codigo_pdto join bodega on Id_produccion=fk_produccion join inventario on id_inventario=fk_inventario where codigo_pdto='${idprdto}'`;
+        console.log(sql)
+        conexion.query(sql,(err, rows)=>{
+            if(!err){   
+                res.json(rows); 
+            }
+            else{
+                console.log("No se logro encontrar el producto"+err);
+            }
+        }); 
+    }
+    catch(e){
+        console.log(e);
+    }
+}
+
 module.exports = controlador;

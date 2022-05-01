@@ -65,7 +65,6 @@ function ListaUnidadesProductivas(){
                 estado.appendChild(document.createTextNode(up.estado));
                 entrega.appendChild(document.createTextNode(up.entrega_producto));
                 personaencargup.appendChild(document.createTextNode(up.Nombres));
-                
                 contenbotones.appendChild(botoneditar);
                 /* contenbotones.appendChild(botonhabidesabilitar); */
                 botoneditar.appendChild(document.createTextNode('Editar'));
@@ -116,32 +115,32 @@ function Mostrarventanaup(ident){
 function ActualizarUP(){
     let FileN = document.getElementById('fileNact');
     let identidicacion = document.getElementById('id_up').value;
-        let datofecha = Date.now();
-        let nameup = document.getElementById('nombreunidadactual').value;
-        let descup = document.getElementById('descripcionunidadactual').value;
-        let personaencarcup = document.getElementById('personaunidaencargadadactual').value;
-        let sedeup = document.getElementById('sedeunidadactual').value;
-        let estado = document.getElementById('estadounidadactual').value;
-        let entrega = document.getElementById('entregaunidadactual').value;
-        var DatosFormData = new FormData();
-        DatosFormData.append('Identificacion',identidicacion);
-        DatosFormData.append('Nombre',nameup);
-        DatosFormData.append('img',FileN.files[0]);
-        DatosFormData.append('Descripcion',descup);
-        DatosFormData.append('Estado',estado);
-        DatosFormData.append('Entrega',entrega);
-        DatosFormData.append('PersonaEncargada',personaencarcup);
-        DatosFormData.append('Sede',sedeup);
-        fetch('/Actualizar_up',
-            {method:'post',
-            body : DatosFormData}
-            ).then(res=>res.json())
-            .then(data=>{
-                Swal.fire({
-                    title: data.titulo,
-                    icon: data.icono,
-                    text: data.mensaje
-                });
-                ListaUnidadesProductivas();
+    let nameup = document.getElementById('nombreunidadactual').value;
+    let descup = document.getElementById('descripcionunidadactual').value;
+    let personaencarcup = document.getElementById('personaunidaencargadadactual').value;
+    let sedeup = document.getElementById('sedeunidadactual').value;
+    let estado = document.getElementById('estadounidadactual').value;
+    let entrega = document.getElementById('entregaunidadactual').value;
+    var DatosFormData = new FormData();
+    DatosFormData.append('Identificacion',identidicacion);
+    DatosFormData.append('Nombre',nameup);
+    DatosFormData.append('img',FileN.files[0]);
+    DatosFormData.append('Descripcion',descup);
+    DatosFormData.append('Estado',estado);
+    DatosFormData.append('Entrega',entrega);
+    DatosFormData.append('PersonaEncargada',personaencarcup);
+    DatosFormData.append('Sede',sedeup);
+    fetch('/Actualizar_up',
+        {method:'post',
+        body : DatosFormData}
+        ).then(res=>res.json())
+        .then(data=>{
+            Swal.fire({
+                title: data.titulo,
+                icon: data.icono,
+                text: data.mensaje,
+                timer : data.timer
             });
+            ListaUnidadesProductivas();
+        });
 };

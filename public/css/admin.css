@@ -53,13 +53,27 @@ a.btn-edit{
     background-color: rgb(64, 192, 224);
     border-radius: 5px;
     margin-right: 10px;
+    cursor: pointer;
+}
+#Openform{
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 0.7em;
+}
+a.btn-new{
+    padding: 10px;
+    color: white;
+    background-color: rgb(105, 195, 31);
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
 }
 a.btn-sale{
     padding: 10px;
     color: white;
     background-color: rgb(105, 195, 31);
     border-radius: 5px;
-    margin-right: 10px;
+    cursor: pointer;
 }
 a.btn-delete{
     padding: 10px;

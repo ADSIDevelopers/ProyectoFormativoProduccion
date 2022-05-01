@@ -35,10 +35,3 @@ poupact.addEventListener('click', e => {
         poupact.style.display = 'none';
     }
 });
-
-
-/* let archive = document.querySelector('#img');
-    archive.addEventListener('change',()=>{
-        document.querySelector('#originalfilename').innerText = archive.files[0].name;
-    }); */
-    /* Tener en cuenta que generara un error de no reconocer la funcion addEventListener de la imagen porque no la estamos llamando en el ejs*/

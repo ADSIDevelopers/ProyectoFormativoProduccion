@@ -1,3 +1,7 @@
+var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false
+    });
+
 function RegistrarInventario() {
     let stock = document.getElementById('inventStock').value;
     let productos = document.getElementById('fkproducto').value;
@@ -54,11 +58,11 @@ function ListarInventario(){
                 // botonhabidesabilitar.appendChild(document.createTextNode('Inactivo'));
                 /* Atributos*/
                 botoneditar.setAttribute("class","btn-edit");
-                botoneditar.setAttribute("onclick","Mostrarventana("+Inv.id_inventario+");");
+                botoneditar.setAttribute("onclick","Mostrarventana("+Inv.Codigo_pdto+");");
                 fila.appendChild(IdInv)
-                fila.appendChild(StockInv)
-                fila.appendChild(Producto)
                 fila.appendChild(Pventa);
+                fila.appendChild(Producto)
+                fila.appendChild(StockInv)
                 fila.appendChild(contenbotones)
                 /* Adopcion de todos los tr > td al tbody */
                 tabla.appendChild(fila) 
@@ -66,24 +70,51 @@ function ListarInventario(){
         })
 }
 /* ========================================================================== */
-function Mostrarventana(ident){
-    poupact.style.display = 'block';
+function Mostrarventana(idpdtoinv){
+    myModal.show();
+    Listarinventarioproduccio(idpdtoinv)
     var datos = new URLSearchParams();
-    datos.append('Identificacion',ident);
-    fetch('/Buscar_Invent',
-    {method:'post',
-    body : datos
-    }
-    ).then(res=>res.json())
+    datos.append('idptoinve',idpdtoinv);
+    fetch('/idpdto_inventario',
+    {
+        method:'post',
+        body:datos
+    }).then(res=>res.json())
     .then(data=>{
-        data.forEach(Inv => {
-        document.getElementById('id_vent').value=Inv.id_inventario;
-        document.getElementById('inventStockAct').value=Inv.stock;
-        document.getElementById('fkproductoAct').value=Inv.fk_codigo_pdto;
-        document.getElementById('fkpuntventaAct').value=Inv.fk_id_punto_vent;
-        });
+        data.forEach(invent => {
+            document.getElementById('id_pdto_inventario').value=invent.Codigo_pdto;
+            });
     });
 };
+
+function Listarinventarioproduccio(idproduccion){
+    let datosinvproduccion = new URLSearchParams;
+    datosinvproduccion.append("idptoibv",idproduccion);
+    fetch('/Lista_BodegaProduccion',
+    {
+        method:'post',
+        body:datosinvproduccion
+    }).then(res=>res.json())
+    .then(datos=>{
+        $('#tablainventario').DataTable({
+            "paging":true,
+            "processing":true,
+            "responsive":true,
+            "destroy":true,
+            "data":datos,
+            dom: 'Bfrtip',
+            columns:[
+                {"data":"Id_produccion"},
+                {"data":"Nombre_pdto"},
+                {"data":"Cantidadprodu"},
+                {"data":"id_bodega"},
+                {"data":"catidadbode"},
+                {"data":"id_inventario"},
+                {"data":"fechabodega"}
+            ]
+        })
+    });
+}
 
 /* ========================================================================== */
 function ActualizarInv(){
@@ -111,3 +142,5 @@ function ActualizarInv(){
         ListarInventario();
     });
 } 
+
+/* =================================================== */
