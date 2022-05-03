@@ -2,6 +2,9 @@ $(document).ready(function() {
 
 
     $('#tableFacturar').DataTable({
+        "destroy": true,
+        "processing": true,
+        "responsive": true,
 
         bFilter: false,
         language: {
@@ -21,10 +24,24 @@ $(document).ready(function() {
             },
             "sProcessing": "Cargando..."
         }
+
     });
 
 
+    $("#modalDetalle").on('hidden.bs.modal', function() {
+        document.getElementById('contDet').innerHTML = "";
+        alert("Modal Cerrado");
+    });
 
+    $("#modalNewVenta").on('hidden.bs.modal', function() {
+        document.getElementById('inputPIdCliente').value = "";
+        document.getElementById('nombre').value = "";
+        document.getElementById('tusuario').value = "";
+        document.getElementById('add-prod').innerHTML = "";
+
+
+
+    });
 });
 
 var facturar = new bootstrap.Modal(document.getElementById('modalFacturar'), { keyboard: false });
@@ -65,7 +82,7 @@ function listarUser() {
                 let totalRow = document.createTextNode(data[i].total);
                 let estadoRow = document.createTextNode(data[i].Estado);
                 /* ==========================detalle venta===================================== */
-                deleteProd.innerHTML = "<a href= 'javascript:mostrarDetalle(" + data[i].Id_movimiento + ");'><i class='fas fa-user-edit'></i>Detalle</a>"
+                deleteProd.innerHTML = "<a class='factBtn' href= 'javascript:mostrarDetalle(" + data[i].Id_movimiento + ");'><i class='fas fa-user-edit'></i>Facturar</a>"
                 console.log(deleteProd);
                 //Atributos de los td
                 row2.setAttribute('scope', 'row');
@@ -100,18 +117,21 @@ var detalle = new bootstrap.Modal(document.getElementById('modalDetalle'), { key
 
 function mostrarDetalle(Id_movimiento) {
     detalle.toggle();
-    console.log(Id_movimiento)
+    console.log(Id_movimiento);
     var datos = new URLSearchParams();
     datos.append('idcodigo', Id_movimiento);
     try {
         let tabla = document.getElementById('cuerpo-detalle');
-        tabla.innerHTML = ''
+        let mainTabla = document.getElementById('contDet');
+
+        tabla.innerHTML = '';
         fetch('/listarDetalle', {
             method: 'post',
             body: datos
         }).then(res => res.json()).then(data => {
             for (let i = 0; i < data.length; i++) {
                 /* =============================cuerpo de la tabla detalles del producto============================ */
+
 
                 let fila = document.createElement('tr');
                 let idProducto = document.createElement('td');
@@ -120,13 +140,19 @@ function mostrarDetalle(Id_movimiento) {
                 let valorUnitario = document.createElement('td');
                 let valorTotal = document.createElement('td');
                 let estadoEntrega = document.createElement('td');
-                //==============Datos de la   tabla
+                let contDatosClient = document.createElement('td');
+                let nombreCliente = document.createElement('label');
+
+                contDatosClient.setAttribute('id', 'divDatosClente');
+                req.body
+                    //==============Datos de la   tabla
                 let idPro = document.createTextNode(data[i].Codigo_pdto);
                 let NombreP = document.createTextNode(data[i].Nombre);
                 let cantidadp = document.createTextNode(data[i].Cantidad);
                 let Valoru = document.createTextNode(data[i].VlrUnit);
                 let ValorT = document.createTextNode(data[i].VlrTotal);
                 let EstadoE = document.createTextNode(data[i].EstadoVenta);
+                // let cliente = document.createTextNode("Nombre del Cliente: " + data[i].NombrePer);
                 /* hijos de latabla */
                 tabla.appendChild(fila);
                 fila.appendChild(idProducto);
@@ -142,6 +168,9 @@ function mostrarDetalle(Id_movimiento) {
                 valorUnitario.appendChild(Valoru);
                 valorTotal.appendChild(ValorT);
                 estadoEntrega.appendChild(EstadoE);
+                mainTabla.appendChild(contDatosClient);
+                contDatosClient.appendChild(nombreCliente);
+                // nombreCliente.appendChild(cliente);
 
 
             }
@@ -160,13 +189,39 @@ function mostrarDetalle(Id_movimiento) {
 var addProdList = new bootstrap.Modal(document.getElementById('modalAddProd'), { keyboard: false });
 
 function addProdVen() { //Tabla del modal donde agregaremos los productos a la venta
+    let datos = new URLSearchParams();
+    datos.append('idcodigo', tusuario);
+
     try {
         fetch('/addProd', {
             method: 'get'
         }).then(res => res.json()).then(data => {
-
             for (let i = 0; i < data.length; i++) {
+                let TipoUsuario = parseInt(document.getElementById('tusuario').value);
                 let tableAddprod = document.getElementById('add-prod');
+                let tusuarioDOM;
+
+                switch (TipoUsuario) {
+                    case 1:
+                        tusuarioDOM = data[i].aprendiz;
+                        break;
+                    case 2:
+                        tusuarioDOM = data[i].instructor;
+                        break;
+                    case 3:
+                        tusuarioDOM = data[i].administrativo;
+                        break;
+                    case 4:
+                        tusuarioDOM = data[i].externo;
+                        break;
+                    case 5:
+                        tusuarioDOM = data[i].auxiliar;
+                        break;
+                    default:
+                        break;
+                }
+
+                console.log("QWERTYUIOP " + tusuarioDOM);
 
                 let col1 = document.createElement('tr');
                 let row1 = document.createElement('td');
@@ -178,11 +233,14 @@ function addProdVen() { //Tabla del modal donde agregaremos los productos a la v
 
 
                 //Textos de los datos de la tabla
-                let codigoPdto = document.createTextNode(data[i].Codigo_pdto);
-                let nombreProd = document.createTextNode(data[i].NombreProd);
-                let precioProd = document.createTextNode(data[i].Precio);
-                let upProd = document.createTextNode(data[i].UProd);
-                row5.innerHTML = "<a href='javascript:agregar(" + data[i].Codigo_pdto + ");'>Agregar</a>"
+                let codigoPdto = document.createTextNode(data[i].cod_producto);
+                let nombreProd = document.createTextNode(data[i].Producto);
+                let precioProd = document.createTextNode('$ ' + tusuarioDOM);
+                let upProd = document.createTextNode(data[i].stock);
+                row5.innerHTML = "<a href='javascript:agregar(" + data[i].cod_producto + ");'>Agregar</a>"
+
+
+
 
 
                 //Atributos de los td
@@ -207,13 +265,15 @@ function addProdVen() { //Tabla del modal donde agregaremos los productos a la v
                 row2.appendChild(nombreProd);
                 row3.appendChild(precioProd);
                 row4.appendChild(upProd)
-
-
-
             }
+
+
 
             setTimeout(() => {
                 $('#tableAddProd').DataTable({
+                    "destroy": true,
+                    "processing": true,
+                    "responsive": true,
                     language: {
                         "decimal": ",",
                         "thousands": ".",
@@ -246,19 +306,46 @@ function addProdVen() { //Tabla del modal donde agregaremos los productos a la v
 /* =============================Agregar producto========================================================= */
 var productoAgregado = new bootstrap.Modal(document.getElementById('modalProductoAgregado'), { keyboard: false });
 
-function agregar(Codigo_pdto) {
+function agregar(cod_producto) {
     var datos = new URLSearchParams();
-    datos.append('codigop', Codigo_pdto);
+    datos.append('codigop', cod_producto);
 
     try {
+
         let tabla = document.getElementById('precio_prod');
         tabla.innerHTML = ''
         fetch('/consAddProd', {
             method: 'post',
             body: datos
         }).then(res => res.json()).then(data => {
+            let datos = new URLSearchParams;
 
             for (let i = 0; i < data.length; i++) {
+
+                let TipoUsuario = parseInt(document.getElementById('tusuario').value);
+                let tusuarioDOM;
+
+                switch (TipoUsuario) {
+                    case 1:
+                        tusuarioDOM = data[i].aprendiz;
+                        break;
+                    case 2:
+                        tusuarioDOM = data[i].instructor;
+                        break;
+                    case 3:
+                        tusuarioDOM = data[i].administrativo;
+                        break;
+                    case 4:
+                        tusuarioDOM = data[i].externo;
+                        break;
+                    case 5:
+                        tusuarioDOM = data[i].auxiliar;
+                        break;
+                    default:
+                        break;
+                }
+
+                console.log("QWERTYUIOP " + tusuarioDOM);
 
                 /*======Elementos del modulo==== */
                 let labelNombre = document.createElement('label');
@@ -284,17 +371,14 @@ function agregar(Codigo_pdto) {
                 labelNombre.setAttribute('class', 'lbNombre');
                 labelNombre.setAttribute('for', 'inputCant');
                 labelprecio.setAttribute('class', 'lbPrecio');
-
-                let cantInp = document.getElementById('inputCant');
-                let punit = data[i].precio;
-                let multiplicacion = punit * cantInp;
-                console.log(punit + " " + cantInp + " " + multiplicacion);
+                lbTotal.setAttribute('id', 'lb-total');
 
 
-                /* ====texto nodos======== */
-                let texto = document.createTextNode(data[i].Nombre);
-                let texto2 = document.createTextNode('Unidad: $' + data[i].precio);
-                let totaltxt = document.createTextNode('multiplicacion');
+
+                /* =====texto nodos======== */
+                let texto = document.createTextNode(data[i].Producto);
+                let texto2 = document.createTextNode('Unidad: $' + tusuarioDOM);
+                let totaltxt = document.createTextNode('');
 
 
                 /*=====Hijos de los nodos=====*/
@@ -309,7 +393,28 @@ function agregar(Codigo_pdto) {
                 lbTotal.appendChild(totaltxt);
                 labelNombre.appendChild(texto);
                 labelprecio.appendChild(texto2);
+
+
+                /*Auto multiplicacion de la cantidad de producto*/
+                inputCant.addEventListener('change', sumar);
+                inputCant.addEventListener('keyup', sumar);
+
+                function sumar() {
+                    let cantVlr = tusuarioDOM;
+                    let cantProd = document.getElementById('inputCant').value;
+                    let total = (parseInt(cantVlr) * parseInt(cantProd));
+                    if (Number.isNaN(cantProd.valueAsNumber)) {
+                        cantProd.value = 0;
+
+                    }
+                    document.getElementById('lb-total').innerHTML = "$ " + total;
+
+
+
+                }
             }
+
+
         });
     } catch (error) {
         console.log('Error al listar los datos:' + error);
@@ -331,23 +436,54 @@ document.getElementById('inputPIdCliente').addEventListener('keyup', e => {
             body: datos
         }).then(res => res.json()).then(data => {
             for (let i = 0; i < data.length; i++) {
+                let numCargo = data[i].Cargo;
                 var identificacion = data[i].identificacion;
                 console.log(data)
                 if (identificacion) {
                     var input = data[i].Nombres;
                     document.getElementById('nombre').value = input;
-                    console.log(input)
+                    let userT = document.getElementById('tusuario').value = data[i].Cargo;
+
+
                 } else {
                     let inp = document.getElementById('nombre');
                     inp.setAttribute('value', 'No registrado');
                     console.log(input)
                 }
-
-
             }
         });
-
     } catch (error) {
         console.log('Error al listar los Usuario:' + error);
     }
-})
+});
+
+
+function facturarNuevaVenta(Id_movimiento) {
+    var datos = new URLSearchParams();
+    datos.append('idmov', Id_movimiento);
+    try {
+
+        fetch('/facturarmov', {
+            method: 'post',
+            body: datos
+        }).then(res => res.json()).then(data => {
+
+
+
+
+
+
+        });
+
+
+
+
+
+        document.getElementById('')
+    } catch (error) {
+
+    }
+
+
+
+}

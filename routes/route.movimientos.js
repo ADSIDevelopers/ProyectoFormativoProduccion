@@ -9,5 +9,6 @@ routeMovimientos.post('/listarDetalle', contMovimientos.mostrarDetalle);
 routeMovimientos.get('/addProd', contMovimientos.listarProductos);
 routeMovimientos.post('/consAddProd', contMovimientos.consAggProd);
 routeMovimientos.post('/filtro', contMovimientos.filtro);
+routeMovimientos.post('/facturarmov', contMovimientos.facturarNuevaVenta);
 
 module.exports = routeMovimientos;

@@ -95,7 +95,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post" class="row g-3 needs-validation">
-                            <div class="col-md-12">
+                            <div class="col-md-12" id="contDet">
                                 <table id="cuerpo-tabla-detalle" class="table table-striped">
 
                                     <thead>
@@ -117,7 +117,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Hecho</button>
+                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Facturar</button>
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
             <div class="modal-dialog modal-fullscreen-xxl-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="numVenta">Nueva Venta</h5>
+                        <h5 class="modal-title" id="numVenta">Venta Numero: </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -158,11 +158,12 @@
                             <div class="form-buy row g-3">
                                 <h1>Formulario de Venta</h1>
                                 <div class="col-md-2">
+                                    <input type="hidden" name="tusuario" id="tusuario">
                                     <label for="inputid" class="form-label">ID</label>
                                     <input type="number" class="form-control input-style" id="inputid" disabled>
                                 </div>
                                 <div class="col-md-10">
-                                    <label for="inputPIdCliente" class="form-label">Documento del CLiente</label>
+                                    <label for="inputPIdCliente" class="form-label">Documento del Cliente</label>
                                     <input type="number" class="form-control input-style" id="inputPIdCliente">
                                 </div>
                                 <!-- filtro cliente -->
@@ -201,7 +202,7 @@
                                         <th>ID. Prod</th>
                                         <th>Nombre del Producto</th>
                                         <th>Valor Unit.</th>
-                                        <th>Unidad Productiva</th>
+                                        <th>Stock</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -249,6 +250,9 @@
             <script src="js/movimientos.js"></script>
             <script src="js/bootstrap.min.js"></script>
             <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script srce="https://code.jquery.com/jquery-3.5.1.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
 
