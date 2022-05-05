@@ -27,19 +27,21 @@
                             <div class="main">
                                
                                 <div class="content-main"> <div class="date"><label id="date"></label></div><br>
-                                    <select id="pdto" class="form-select">
-                                        <option selected disabled >Seleccionar...</option>
-                                        <% for(var i=0; i<pdto.length;i++){%>
-                                            <option class="visible" value="<%=pdto[i].Codigo_pdto%>"><%=pdto[i].Productos%> </option>
-                                            <%  }
-                                            %>
-                                    </select>
-                                    <div id="namePdto"></div><br>
-                                    <div class="box3"><input class="infoCantidad" type="number" id="cantidad" placeholder="Nueva cantidad" min="1" max="50"></div>
-                                    <div class="describe">
-                                        Nuevas Observaciones<textarea class="textDescribe" name="" id="observacion" cols="30" rows="10"></textarea>
-                                    </div>
-                                    <div class="btn"><input class="boton" type="button" value="Registar" onclick="RegistrarProduccion();"></div>
+                                    <form id="form-produccion">
+                                        <select id="pdto" class="form-select">
+                                            <option selected disabled >Seleccionar...</option>
+                                            <% for(var i=0; i<pdto.length;i++){%>
+                                                <option class="visible" value="<%=pdto[i].Codigo_pdto%>"><%=pdto[i].Productos%> </option>
+                                                <%  }
+                                                %>
+                                        </select>
+                                        <div id="namePdto"></div><br>
+                                        <div class="box3"><input class="infoCantidad" type="number" id="cantidad" placeholder="Nueva cantidad" min="1" max="50"></div>
+                                        <div class="describe">
+                                            Nuevas Observaciones<textarea class="textDescribe" name="" id="observacion" cols="30" rows="10"></textarea>
+                                        </div>
+                                        <div class="btn"><input class="boton" type="button" value="Registar" onclick="RegistrarProduccion();"></div>
+                                    </form>
                                 </div>
                             </div>
                     </div>
@@ -50,7 +52,7 @@
             </div>
         </div>
             <div class="contenedor-general">
-                <h1 class="h-title">Lista de Producción <a id="Openform" class="btn-edit2 icon-library_add" data-bs-toggle="modal" 
+                <h1 class="h-title">Administrar Producción de la UP <a id="Openform" class="btn-edit2 icon-library_add" data-bs-toggle="modal" 
                     data-bs-target="#myModal"onclick="BuscaProducto();"> Nueva Producción</a></h1>
                 <div class="col-md-12">   
                     <div class="ListaProdu">                    

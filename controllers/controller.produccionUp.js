@@ -5,8 +5,11 @@ const conexion = require("../database/conexion");
 //Controlador para listar produccion
 controlador.Listar_Produccion=(req,res)=>{
     try{
-        var sql = "select Id_produccion,Cantidad,DATE_FORMAT(produccion.fecha,'%d-%m-%Y') as fecha,Observacion, productos.Nombre from produccion join productos on Codigo_pdto = fk_codigo_pdto";
+        let sesionUP = 2;
+        var sql = `select Id_produccion,Cantidad,DATE_FORMAT(produccion.fecha,'%d-%m-%Y') as fecha,Observacion, productos.Nombre from produccion join productos on Codigo_pdto = fk_codigo_pdto where fk_codigo_up='${sesionUP}' order by Id_produccion desc`;
+        console.log(sql)
         conexion.query(sql, (err, rows) => {
+            console.log(rows)
             if (!err) {
                 res.json(rows);
             } else {
@@ -19,9 +22,9 @@ controlador.Listar_Produccion=(req,res)=>{
     }
 };
 controlador.Produccion=(req,res)=>{
-    var produccion = "";
-    let sql =("select * from produccion");
-    let sql1 = 'select Codigo_pdto,unidades_productivas.Nombre as up, productos.Nombre as Productos from productos join unidades_productivas on fk_codigo_up=codigo_up where codigo_up=1';
+    var sesionUP = 2; //OJO VARIABLE DE SESION DE LA UNIDAD PRODUCTIVA
+    let sql =("select * from produccion  join productos on codigo_pdto=fk_codigo_pdto where fk_codigo_up="+ sesionUP );
+    let produccion = "";
     conexion.query(sql,(err,rows)=>{
         if(!err){
            produccion =rows;
@@ -30,6 +33,7 @@ controlador.Produccion=(req,res)=>{
             console.log('error' + err);
         }
     });
+    let sql1 = 'select Codigo_pdto,unidades_productivas.Nombre as up, productos.Nombre as Productos from productos join unidades_productivas on fk_codigo_up=codigo_up where codigo_up='+sesionUP;
     conexion.query(sql1,(err,rows)=>{
         if(!err){
            
@@ -63,25 +67,7 @@ controlador.RegistrarProduccion=(req,res)=>{
         mensaje: "La producción fue registrada con éxito"})
     });
 }
-// =====================Listar productos por unidad productiva================
-controlador.listarPdto = (req, res) =>{
-    try{
-        let sql = 'select Codigo_pdto,unidades_productivas.Nombre as up, productos.Nombre as Productos from productos join unidades_productivas on fk_codigo_up=codigo_up where codigo_up=1;';
-        console.log(sql)
-            conexion.query(sql,(err, rows)=>{
-                if(!err){
-                    res.json(rows);
-                    console.log(rows)
-                }
-                else{
-                    console.log( +err);
-                }
-            });  
-    }
-    catch(e){
-        console.log(e);
-    };  
-};
+
 
 
 

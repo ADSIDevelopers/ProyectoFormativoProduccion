@@ -121,7 +121,7 @@ controlador.Registrar_Detalle = (req, res) => {
             var precioProducto = rows[0].precio;
             /* =================================== */
             let sqlDetalle = `INSERT INTO detalle (cantidad, valor, Estado, Persona, fk_Id_movimiento, fk_id_inventario) 
-                        VALUES (${cantidad}, ${precioProducto}, 'No entregado', ${persona}, ${movimiento}, ${inventario})`
+                        VALUES (${cantidad}, ${precioProducto}, 'Reservado', ${persona}, ${movimiento}, ${inventario})`
 
             conexion.query(sqlDetalle, (err, rows) => {
                 return res.json({  
@@ -132,23 +132,6 @@ controlador.Registrar_Detalle = (req, res) => {
             });
             
         });
-
-
-
-
-        /*
-        conexion.query(sqlValidacion, (err, rows) => {
-            if(err) return console.log("error" + err);
-            if(rows.length >= 1) {
-                return res.json({
-                    titulo: 'error', 
-                    icon: 'error',
-                    text: 'Tiene una reserva pendiente'})
-            }
-            
-            */
-          
-       // });
     } catch (err) {
         console.log(err)
     }
@@ -171,9 +154,6 @@ controlador.Eliminar_Detalle = (req, res) => {
     }
     
 }
-
-//====Fecha====
-
 
 
 

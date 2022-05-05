@@ -1,3 +1,14 @@
+window.onload = function(){
+    var fecha = new Date();
+    var mes = fecha.getMonth()+1; 
+    var dia = fecha.getDate();
+    var anio = fecha.getFullYear();
+    if(dia<10)
+        dia='0'+dia;
+    if(mes<10)
+        mes='0'+mes
+        document.getElementById("date").innerHTML = dia + "/" + mes + "/" + anio;
+}
 /* ========LISTA LOS DETALLES */
 function eliminarDetalle(id){
     var datos = new URLSearchParams();
@@ -156,6 +167,7 @@ function RegistrarDetalle(){
         })
         Listar_Reservas_Pendientes();
     })
+    let cantistock = document.getElementById('cantidad').innerHTML = 1;
     myModal.hide();
     Listar_Reservas_Pendientes();
 

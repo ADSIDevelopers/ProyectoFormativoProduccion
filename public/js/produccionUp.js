@@ -64,19 +64,19 @@ function RegistrarProduccion() {
         dia='0'+dia;
     if(mes<10)
         mes='0'+mes
-        /* document.getElementById("date").innerHTML = dia + "/" + mes + "/" + anio; */
 
-
-    //var ident=document.getElementById('id').value;
+    let form = document.getElementById('form-produccion');
     var cant=document.getElementById('cantidad').value;
     var obser=document.getElementById('observacion').value;
     var fkpdto = document.getElementById('pdto').value;
     var fechas = fecha + anio;
-    
+    if(cant == 0){
+        alert('Por favor ingrese una cantidad')
+    }
+    else{
 
     var datos= new URLSearchParams();
     
-    //datos.append('Id',ident);
     datos.append('Cantidad',cant);
     datos.append('Observacion',obser);
     datos.append('fkp',fkpdto)
@@ -99,5 +99,7 @@ function RegistrarProduccion() {
         })
         
     });
+    form.reset();
     Listar_Produccion();
+}
 }
