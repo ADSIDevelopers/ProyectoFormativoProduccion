@@ -197,6 +197,7 @@ function addProdVen() { //Tabla del modal donde agregaremos los productos a la v
             method: 'get'
         }).then(res => res.json()).then(data => {
             for (let i = 0; i < data.length; i++) {
+
                 let TipoUsuario = parseInt(document.getElementById('tusuario').value);
                 let tableAddprod = document.getElementById('add-prod');
                 let tusuarioDOM;
@@ -425,8 +426,17 @@ function agregar(cod_producto) {
 
 
 /* ===================buscar clientes================== */
-document.getElementById('inputPIdCliente').addEventListener('keyup', e => {
+document.getElementById('inputPIdCliente').addEventListener("keydown", function(e) {
+    if (e.key === 'Enter') {
+        buscarUser();
+    }
+
+});
+
+function buscarUser() {
     var iden = document.getElementById('inputPIdCliente').value;
+
+    console.log(iden);
     var datos = new URLSearchParams();
     datos.append('iden', iden);
 
@@ -435,49 +445,43 @@ document.getElementById('inputPIdCliente').addEventListener('keyup', e => {
             method: 'post',
             body: datos
         }).then(res => res.json()).then(data => {
+            var identificacion;
+            var nombre;
             for (let i = 0; i < data.length; i++) {
                 let numCargo = data[i].Cargo;
-                var identificacion = data[i].identificacion;
-                console.log(data)
-                if (identificacion) {
-                    var input = data[i].Nombres;
-                    document.getElementById('nombre').value = input;
-                    let userT = document.getElementById('tusuario').value = data[i].Cargo;
+                identificacion = data[i].identificacion;
+                nombre = data[i].Nombres;
+                console.log(identificacion);
 
-
-                } else {
-                    let inp = document.getElementById('nombre');
-                    inp.setAttribute('value', 'No registrado');
-                    console.log(input)
-                }
             }
+            if (identificacion != iden) {
+                document.getElementById('nombre').value = "Usuario no registrado.";
+                document.getElementById('genVenDiv').innerHTML = '<input type="button" class="btn btn-primary btndone" onclick="" value="Registrar Usuario?">';
+
+            } else if (identificacion == iden) {
+                document.getElementById('nombre').value = nombre;
+                document.getElementById('genVenDiv').innerHTML = '<input type="button" class="btn btn-primary btndone" onclick="genVenta();" value="Generar Venta">';
+
+            }
+
+
         });
     } catch (error) {
         console.log('Error al listar los Usuario:' + error);
     }
-});
+}
 
 
-function facturarNuevaVenta(Id_movimiento) {
+function genVenta() {
     var datos = new URLSearchParams();
-    datos.append('idmov', Id_movimiento);
     try {
 
-        fetch('/facturarmov', {
+        fetch('/genventa', {
             method: 'post',
             body: datos
         }).then(res => res.json()).then(data => {
 
-
-
-
-
-
         });
-
-
-
-
 
         document.getElementById('')
     } catch (error) {

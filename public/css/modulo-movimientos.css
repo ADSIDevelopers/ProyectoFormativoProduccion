@@ -262,3 +262,9 @@ label {
         margin: 1.75rem auto;
     }
 }
+
+#sbutton {
+    margin-top: 2em;
+    height: 36px;
+    width: 100%;
+}

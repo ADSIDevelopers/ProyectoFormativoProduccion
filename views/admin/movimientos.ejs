@@ -157,22 +157,24 @@
                         <div class="cont-cart">
                             <div class="form-buy row g-3">
                                 <h1>Formulario de Venta</h1>
-                                <div class="col-md-2">
-                                    <input type="hidden" name="tusuario" id="tusuario">
-                                    <label for="inputid" class="form-label">ID</label>
-                                    <input type="number" class="form-control input-style" id="inputid" disabled>
-                                </div>
+
                                 <div class="col-md-10">
                                     <label for="inputPIdCliente" class="form-label">Documento del Cliente</label>
                                     <input type="number" class="form-control input-style" id="inputPIdCliente">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="button" onclick="buscarUser();" id="sbutton" value="Buscar">
                                 </div>
                                 <!-- filtro cliente -->
                                 <div class="col-12">
 
                                     <label for="inputAddress" class="form-label">Nom. Cliente</label>
                                     <input class="form-control input-style" type="text" id="nombre" disabled>
+                                </div>
+                                <div class="col-6" id="genVenDiv">
 
-
+                                </div>
+                                <div class="col-6" id="regUserDiv">
                                 </div>
                             </div>
                         </div>

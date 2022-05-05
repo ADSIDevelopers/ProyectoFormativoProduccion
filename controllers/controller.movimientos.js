@@ -72,9 +72,10 @@ controladorMovimiento.filtro = (req, resp) => {
     let cargoSesion = "Instructor";
     try {
         let sql = "SELECT identificacion, Cargo,Nombres FROM `personas` WHERE identificacion=" + iden;
-        conexion.query(sql, (err, rows) => {
+        conexion.query(sql, (err, rows, fields) => {
             resp.json(rows);
             console.log(rows)
+
         });
     } catch (error) {
         console.log('Error al Listar los Productos: ' + error);
@@ -82,15 +83,13 @@ controladorMovimiento.filtro = (req, resp) => {
 }
 
 
-controladorMovimiento.facturarNuevaVenta = (req, resp) => {
+controladorMovimiento.genVenta = async(req, resp) => {
+    let pPersona = req.body.iden;
     let op1 = 'NuevaVenta';
-    let Idmovimiento = req.body.idmov;
-    let pEstado = req.body.estado;
-    let pPersona = req.body.idcodigo;
+    let pEstado = 'Reservado';
     let pTipo = 'Individual';
-    let pEntregado = 'Facturado';
     try {
-        let sql = `CALL Administrar_Ventas(${op1}, P_estado=${pEstado},P_persona=${pPersona},P_tipo=${pTipo}, P_entregado=${pEntregado}`;
+        let sql = `CALL Administrar_Ventas('${op1}','${pEstado}',${pPersona},'${pTipo}')`;
         console.log(sql);
         conexion.query(sql, (err, rows) => {
             resp.json({
@@ -98,7 +97,6 @@ controladorMovimiento.facturarNuevaVenta = (req, resp) => {
                 icon: "success",
                 message: "Se registro con exito!"
             });
-
         });
     } catch (error) {}
 }
