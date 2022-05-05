@@ -60,6 +60,31 @@ a.btn-edit{
     text-decoration: none;
     font-size: 0.7em;
 }
+.btnact{
+    background-color:  rgb(105, 195, 31);
+    color: whitesmoke;
+    font-weight: bold;
+}
+a.btn-distribucion{
+    padding: 10px;
+    color: white;
+    background-color: #f28500;
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 800;
+}
+a.btn-use{
+    padding: 10px;
+    color: white;
+    background-color: rgb(0, 128, 128);
+    border-radius: 5px;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 800;
+}
 a.btn-new{
     padding: 10px;
     color: white;

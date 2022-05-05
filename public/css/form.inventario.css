@@ -7,7 +7,36 @@
                    "contentproducto contentventa " auto
                    "boton boton" 50px/ 1fr 1fr;
 }
-#id_vent{
+input[type="text"]:disabled, input[type="number"]:disabled, .cantidad-invent{
+    color: black;
+}
+.line-head, .line-bodega, .line-produccion{
+    color: white;
+}
+.line-head{
+    background-color: rgb(83, 159, 20);
+    text-align: center;
+}
+.line-produccion{
+    background-color:darkorange;
+}
+.line-bodega{
+    background-color: rgb(0, 128, 128);
+}
+thead > tr{
+    text-align: center;
+}
+table.dataTable td{
+    padding: 0.8em;
+}
+tbody > tr{
+    text-align: center;
+}
+.word-modal{
+    font-size: 1em;
+    font-weight: bolder;
+}
+#id_vent, #id_pdto_inventario, #id_invetario{
     display: none;
 }
 .inventStock{
@@ -30,6 +59,7 @@
     font-weight: bolder;
     font-size: 1.1em;
 }
+
 .boton_registro{
     background-color: rgb(83, 159, 20);
     border-radius: 5px;

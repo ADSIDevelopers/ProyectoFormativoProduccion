@@ -7,7 +7,11 @@ ruta_inventario.post("/Registrar_inventario",controlador_inventario.registrarInv
 ruta_inventario.get("/Lista_Inventario",controlador_inventario.ListaInventario);
 ruta_inventario.post("/Buscar_Invent",controlador_inventario.BuscarInvent);
 ruta_inventario.post("/Actualizar_Invent",controlador_inventario.ActualformInvent);
-ruta_inventario.post("/Lista_BodegaProduccion",controlador_inventario.ListaBodegaProduccion);
-ruta_inventario.post("/idpdto_inventario",controlador_inventario.pdtoinventario)
+ruta_inventario.post("/Lista_produccion",controlador_inventario.ListaProduccion);
+ruta_inventario.post("/idpdto_inventario",controlador_inventario.pdtoinventario);
+ruta_inventario.post("/Lista_Bodega",controlador_inventario.ListarBodega);
+ruta_inventario.post("/idpuntovent",controlador_inventario.Nombrepunt);
+ruta_inventario.post("/llamarproduccion",controlador_inventario.valoresproduccion);
+ruta_inventario.post("/Actualizarinvent",controlador_inventario.Actualizarinventario);
 
 module.exports = ruta_inventario;

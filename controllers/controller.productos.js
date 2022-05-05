@@ -84,7 +84,8 @@ controlador.ListaProductos = (req, res) => {
 controlador.buscarpdto = (req, res) =>{
     try{
         var identificador = req.body.Identificacion;
-        let sql = 'select * from productos  where Codigo_pdto='+identificador;
+        let sql = 'select productos.Codigo_pdto as Codigo_pdto, productos.Nombre as Nombre, productos.Descripcion as Descripcion, productos.Estado as Estado, productos.Reserva as Reserva, productos.MaxReserva as MaxReserva, productos.fk_codigo_up as fk_codigo_up, productos.tipo as tipo from productos  where Codigo_pdto='+identificador;
+        console.log(sql)
             conexion.query(sql,(err, rows)=>{
                 if(!err){
                     res.json(rows);
@@ -125,7 +126,7 @@ controlador.Actualizarproductos = (req, res) =>{
             timer : 2000
         });            
         return res.json({  
-            titulo : "Actualizacion con Exito",
+            titulo : "Actualizado con Exito",
             icono: "success",
             mensaje : "El Producto ha sido Actualizado con éxito",
             timer : 2000
