@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+        <link rel="stylesheet" href="css/pop-up.css">
+        <link rel="stylesheet" href="css/reservass.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
+        <title>SENA</title>
+</head>
+
+<body>
+    <div class="content-header">
+        <%- include('./partials/header-admin'); %>
+    </div>
+    <div class="main-contenedor">
+        <div class="date"><label id="date"></label><span class="icon-calendar"></span></div>
+
+        <div class="body-info-section">
+            <div class="contnet-section-info">
+                <div class="row">
+                    <h1 class="InicioReserva">Productos disponibles para reserva</h1>
+                    <div class="col-md-8">
+                        <div class="grid-row">
+                            <% for(var i=0;i<Productos.length;i++){%>
+                                <div class="card text-black bg-white mb-3 m-2">
+                                    <div class="card-header">
+                                        <%=Productos[i].producto %>
+                                    </div>
+                                    <div class="card-body">
+                                        <img src="img/products/<%=Productos[i].imagen %> " class="card-img-top"
+                                            width="80px" height="150px">
+                                        <h5 class="card-title">
+                                            <%=Productos[i].descripcion %>
+                                        </h5>
+                                        <div>
+                                            <p class="card-text" id="precio">Stock : <%=Productos[i].stock %>
+                                            </p>
+                                            <p class="card-text">Precio:<%=Productos[i].precio %>
+                                            </p>
+                                            <p class="card-text">Up:<%=Productos[i].up %>
+                                            </p>
+                                            <p class="card-text">Tienda:<%=Productos[i].pv %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <%if(Productos[i].reserva=="Si"){%>
+                                        <div class="card-footer">
+
+                                            <a class="btn btn-primary"
+                                                href="javascript:Abrir_Frm_Reserva('<%=Productos[i].producto%>','<%=Productos[i].id_inventario%>', '<%=Productos[i].precio %>');">Reservar</a>
+                                        </div>
+                                        <%}%>
+                                </div>
+                                <% }%>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 class="TituloTabla">Información de la reserva</h2>
+                        <div class="infoReserva" hidden>
+                            <label class="textIdMovimiento">Código de Reserva:
+                                <input disabled class="id_movimiento" type="number" id='id_movimiento'>
+                            </label>
+                            <label> tiporeserva
+                                <input class="id_movimiento" type="text" id="tipo_res">
+                            </label>
+                            <label for=""> Ficha
+                                <input class="id_movimiento type=" number" id="ficha">
+                            </label>
+                            <label for=""> Identificacion
+                                <input class="id_movimiento type=" number" id="ident">
+                            </label>
+                        </div>
+                        <table class="table table-striped" id="tablaReserva">
+                            <thead>
+                                <th>Aprendiz</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Valor</th>
+                                <th></th>
+                            </thead>
+                            <tbody id="tabla-detalles">
+
+                            </tbody>
+                        </table>
+                        <div>
+                            <label class="totalText">Valor Total:</label>
+                            <label class="totalReserva" id='tot'></label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-s">
+                <div class="modal-content col-4">
+                    <div class="modal-header">
+                        <div class="reserva">
+                            <h1 class="tituloRese">Reserva Productos</h1>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box1">
+
+
+                            <select id="persona-reserva" class="form-select">
+                                <option value="" selected="selected" disabled>Selecciona aprendiz</option>
+
+                            </select>
+                            <div class="form-Reservas">
+                                <div class="borderRese">
+                                    <div class="row-box">
+                                        <h4 id="name"><label class="fecha" id="date"></label></h4>
+                                    </div>
+                                    <input type="hidden" id='cod_prod'>
+                                    <div class="btn-cantidad">
+                                        <label class="cant">Cantidad</label>
+                                        <input type="button" value="+" class="btn1" onclick="Aumentar();">
+                                        <button class="btn2">
+                                            <span id="cantidad">1</span>
+                                        </button>
+                                        <input type="button" value="-" class="btn3" onclick="Disminuir();">
+                                        <input type="hidden" id="precio_pdto">
+                                        <label class="precio" id="total"><span class="valorTotal">0</span></label>
+                                        <label class="persona" id="fk_persona"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="RegistrarDetalle();">Registrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('./partials/footer'); %>
+    <%- include('./partials/scripts'); %>
+    <script src="js/reserva.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+
+</body>
+
+</html>
+<script>
+    window.onload = function(){
+        var fecha = new Date();
+        var mes = fecha.getMonth()+1; 
+        var dia = fecha.getDate();
+        var anio = fecha.getFullYear();
+        if(dia<10)
+            dia='0'+dia;
+        if(mes<10)
+            mes='0'+mes
+            document.getElementById("date").innerHTML = dia + "/" + mes + "/" + anio;
+    }
+</script>

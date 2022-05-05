@@ -1,67 +1,74 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <%- include('./partials/head'); %>
     <link rel="stylesheet" href="css/pop-up.css">
-    <link rel="stylesheet" href="css/reservas.css">
-    <title>SE reservas</title>
+    <title>SENA</title>
 </head>
 <body>
-
     <div class="content-header">
         <%- include('./partials/header-main'); %>
     </div>
-    <div class="container">
-        <div class="infoPdto">
-            <div class="SubContent">
-                <img  class="img-pdto" src="https://picsum.photos/150/150?random" width="300px" height="300px" alt="image">
-                <label class="NamePdto"> Nombre pdto</label>
-            </div>
-            <div class="descPdto">
-                <div class="descripcion">
-                    <label class="Valor-Pdto">$42.000</label>
-                    <label class="describir">Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit </label>
-                    <label class="stock">Stock:</label>
-                    <label class="numero">500</label>
-                    <label class="Cantidad">Cantidad: </label>
-                    <label class="Cantidad-Pdto">1</label>
+    <div class="main-contenedor">
+        <div class="contenedorReservar">
+            <link rel="stylesheet" href="css/reservas.css">
+            <div class="info_pdto">
+                <div class="contPdt">
+                    <img  class="imagen-pdto" src="https://picsum.photos/150/150?random" width="300px" height="300px" alt="image">
+                    <label class="NombrePdt"> Nombre pdto</label>
                 </div>
-            </div>
-        </div>
-      <form class="form-Reservas">
-            <div class="full-container">
-                <div class="reserva">
-                    <h1 class="h-title">Reserva</h1>
-                </div>
-                <hr class="separador-text">
-                <div class="border-box">
-                    <div class="ro-box">
-                        <div class="name-pdto" id="name">Nombre del producto</div>
-                        <label class="fecha" id="date"></label>
+                <div class="descPdto">
+                    <div class="describirPdt">
+                        <label class="Valor-Pdto">$42.000</label>
+                        <label class="describir">Lorem ipsum dolor sit amet consectetur,Lorem ipsum dolor sit </label>
+                        <label class="stock">Stock:</label>
+                        <label class="numero">500</label>
+                        <label class="Cantidad">Cantidad: </label>
+                        <label class="Cantidad-Pdto">1</label>
                     </div>
-                <div class="btn-cantidad">
-                    <label class="cant">Cantidad</label>
-                    <input type="button" value="+" class="btn1" onclick="Aumentar();">
-                    <button class="btn2">
-                        <span id="Valor">0</span>
-                    </button>
-                    <input type="button" value="-" class="btn3" onclick="Disminuir();">                   
-                    <label class="precio" id="total"><span class="valorTotal">0</span></label>
-                    <label class="estado">Estado: </label>
-                    <label class="reserva">Reserva</label>
                 </div>
-                  <button class="btn btn-primary ">Registrar</button>
-              </div>
             </div>
-        </form>
-      </div>
+            <form class="formReservas" action="/RegistrarCompra">
+                <div class="form-Reservas">
+                    <div class="reserva">
+                        <h1 class="tituloRese">Reserva</h1>
+                    </div>
+                    <div class="borderRese">
+                        <div class="ro-box">
+                            <div class="nombrePdtRese" id="name" name="Nombre">Nombre del producto</div>
+                            <label class="fecha" id="date"></label>
+                        </div>
+                    <div class="btn-cantidad">
+                        <label class="cant">Cantidad</label>
+                        <input type="button" value="+" class="btn1" onclick="Aumentar();">
+                        <button class="btn2">
+                            <span id="Valor">0</span>
+                        </button>
+                        <input type="button" value="-" class="btn3" onclick="Disminuir();">                   
+                        <label class="precio" id="total"><span class="valorTotal">0</span></label>
+                        <label class="estado">Estado: </label>
+                        <label class="reserva">Reserva</label>
+                        <label class="persona" name="fk_persona"></label>
+
+                    </div>
+                      <button class="btn btn-primary" onclick="RegistrarInfo();">Registrar</button>
+                  </div>
+                </div>
+            </form>
+          </div>
+        </div>
     </div>
     <%- include('./partials/footer'); %>
 </body>
 </html>
+
 <script src="js/jquery-3.2.1.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/pop-up.js"></script>
+<!-- <script>
+    function RegistrarInfo(){
+        
+</script> -->
 <script>
     let btnSession = document.getElementById("btnSession");
     btnSession.addEventListener("click", ()=> {
@@ -78,19 +85,16 @@
             body: JSON.stringify(data)
         }
         fetch(url, config)
-        .then(data => {return data.json()})
+        .then(data => {return data.text()})
         .then(res => {
             if(res.status == 'error') return createErrorMessage();
-            if(res.user.role == 'Aprendiz') window.location.href = "aprendiz";
-            if(res.user.role == 'Instructor') window.location.href = "instructor";
-            if(res.user.role == 'Visitante') window.location.href = "visitante";
-            if(res.user.role == 'Administrativo') window.location.href = "admin";
+            window.location.href = "admin";
         })
         .catch(err => {
             console.log(err);
         })
     })
-
+    
     function validateFields(data){
         if(!data.user) {
             return user.focus();
@@ -105,35 +109,18 @@
         let paddingDiv = document.createElement('div');
         let dangerSpan = document.createElement('span');
         let errorMSG = document.createTextNode('Usuario o contraseña incorrecta')
-
+        
         dangerSpan.setAttribute('class', 'danger-span')
         dangerSpan.appendChild(errorMSG);
 
         paddingDiv.appendChild(dangerSpan);
         paddingDiv.setAttribute('class', 'padding-wrapper')
         paddingDiv.setAttribute('id', 'wrong-data');
-
+        
         errorDiv.innerHTML = '';
         errorDiv.appendChild(paddingDiv);
     }
-</script>
-<script>
-   
-   window.onload = function(){
 
-        fetch ('/Mostrar_pdto',
-        {method:'get'
-        }
-        ).then(res=>res.text())
-        .then(data=>{
-            for(var i=0; i<data.length;i++){
-                var texto =+ '<label>' + data[i].Nombre +'</label>';
-            }
-            document.getElementById('name').innerHTML=texto;
-            console.log(data);
-        });
-   }
-   
     
 </script>
-<script src="js/reserva.js"></script>
+<script src="js/reserva.js"></script> -->

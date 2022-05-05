@@ -7,12 +7,12 @@ module.exports = {
         let token = storage.getItem('token');
         if(!token) return res.redirect('/');
         jwt.verify(token, authConfig.secret, (err, decoded) => {
-            if(err) return res.redirect('/')
-            var sql =`select identificacion, Nombres, Correo, Cargo from personas WHERE identificacion = '${decoded.user.id}'`;
+            if(err) return res.redirect('/');
+            var sql =`select identificacion, Nombres, Correo, Rol, cargo.nombre_cargo as Cargo from personas join cargo on Cargo = idcargo WHERE identificacion = '${decoded.user.id}'`;
             try{
                 conexion.query(sql,(conError,rows)=>{
-                    if(conError) return res.redirect('/')
-                    if(rows.length <= 0) return res.redirect('/')
+                    if(conError) return res.redirect('/');
+                    if(rows.length <= 0) return res.redirect('/');
                     req.session = rows[0];
                     next();
                 });

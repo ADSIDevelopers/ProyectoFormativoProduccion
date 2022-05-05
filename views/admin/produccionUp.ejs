@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <link rel="stylesheet" href="css/pop-up.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+    
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('../partials/header-admin'); %>
+    </div>
+    <div class="main-contenedor">
+        <link rel="stylesheet" href="css/produccionUp.css">
+         <!-- Modal -->
+         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-s">
+                <div class="modal-content col-4">
+                    <div class="modal-header">
+                        <div class="reserva">
+                            <label class="encabezado">Registro de producción</label>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="main">
+                               
+                                <div class="content-main"> <div class="date"><label id="date"></label></div><br>
+                                    <select id="pdto" class="form-select">
+                                        <option selected disabled >Seleccionar...</option>
+                                        <% for(var i=0; i<pdto.length;i++){%>
+                                            <option class="visible" value="<%=pdto[i].Codigo_pdto%>"><%=pdto[i].Productos%> </option>
+                                            <%  }
+                                            %>
+                                    </select>
+                                    <div id="namePdto"></div><br>
+                                    <div class="box3"><input class="infoCantidad" type="number" id="cantidad" placeholder="Nueva cantidad" min="1" max="50"></div>
+                                    <div class="describe">
+                                        Nuevas Observaciones<textarea class="textDescribe" name="" id="observacion" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="btn"><input class="boton" type="button" value="Registar" onclick="RegistrarProduccion();"></div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="contenedor-general">
+                <h1 class="h-title">Lista de Producción <a id="Openform" class="btn-edit2 icon-library_add" data-bs-toggle="modal" 
+                    data-bs-target="#myModal"onclick="BuscaProducto();"> Nueva Producción</a></h1>
+                <div class="col-md-12">   
+                    <div class="ListaProdu">                    
+                     <table class="table table-striped" id="tablaProducccion">
+                         <thead>
+                            <th>Id</th>
+                                <th>Cantidad</th>
+                                <th>Fecha</th>
+                                <th>Observación</th>
+                                <th>Producto</th>
+                         </thead>
+                         <tbody id="tabla">            
+                         </tbody>
+                     </table>
+                    </div>     
+                </div>
+            </div>
+    </div>
+    <%- include('../partials/footer'); %>
+    <%- include('../partials/scripts'); %>
+</body>
+</html>
+<script src="js/jquery-3.2.1.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/pop-up.js"></script>
+<script src="js/produccionUp.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+
+<script>
+    window.onload = function(){
+        var fecha = new Date();
+        var mes = fecha.getMonth()+1; 
+        var dia = fecha.getDate();
+        var anio = fecha.getFullYear();
+        if(dia<10)
+            dia='0'+dia;
+        if(mes<10)
+            mes='0'+mes
+            document.getElementById("date").innerHTML = dia + "/" + mes + "/" + anio;
+    }
+</script>

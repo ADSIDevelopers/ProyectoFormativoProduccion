@@ -1,5 +1,16 @@
-<%- include('./partials/head'); %>
-<%- include('./partials/header'); %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head'); %>
+    <link rel="stylesheet" href="css/pop-up.css">
+    <title>SENA</title>
+</head>
+<body>
+    <div class="content-header">
+        <%- include('./partials/header-main'); %>
+    </div>
+    <div class="main-contenedor">
+		<link rel="stylesheet" href="css/reservass.css">
 <section class="body-info-section">
 	<div class="contnet-section-info">
 		<div class="full-container">
@@ -24,13 +35,55 @@
                                 Cantidad: <span>1 Unidad</span> 
                             </div>
                         </div>
-                        <div class="buttons">
-                            <button class="btn btn-block btn-primary">Comprar Ahora</button>
-                            <button class="btn btn-block btn-secondary">Agregar al Carrito</button>
-                        </div>
+						<div class="buttons">
+							<button class="btn btn-block btn-primary">Comprar Ahora</button>
+							<button type="button" class="btn btn-primary" onclick="Abrir_Frm_Reserva();">Reservar</button>
+						</div>
                     </div>
                 </div>
             </div>
+			<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content col-4">
+        <div class="modal-header">
+			<div class="reserva">
+				<h1 class="tituloRese">Reserva</h1>
+			</div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                <div class="box1">
+                    <div class="form-Reservas">
+						
+						<div class="borderRese">
+							<div class="ro-box">
+								<div class="nombrePdtRese" id="name" name="Nombre">Nombre del producto</div>
+								<label class="fecha" id="date"></label>
+							</div>
+							<div class="btn-cantidad">
+								<label class="cant">Cantidad</label>
+								<input type="button" value="+" class="btn1" onclick="Aumentar();">
+								<button class="btn2">
+									<span id="Valor">0</span>
+								</button>
+								<input type="button" value="-" class="btn3" onclick="Disminuir();">                   
+								<label class="precio" id="total"><span class="valorTotal">0</span></label>
+								<label class="estado">Estado: </label>
+								<label class="reserva">Reserva</label>
+								<label class="persona" name="fk_persona"></label>
+							</div>
+					  	</div>
+                    </div>
+                </div>
+            </div>
+			<div class="modal-footer">
+				 <button class="btn btn-primary" onclick="RegistrarInfo();">Registrar</button>
+			</div>
+        </div>
+      </div>
+	</div>
+    </div>
 			<h1 class="h-title mt-3">Productos Similares</h1>
 			<hr class="separador-text">
 			<div class="products-container">
@@ -80,7 +133,25 @@
 					</div>
 				</a>
 			</div>
-		</div>
 	</div>
 </section>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
 <%- include('./partials/footer'); %>
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {
+    keyboard: false});
+
+    function Actualizar_Producto(){
+        myModal.show();
+}
+function Frm_reserva(){
+    fetch('/FrmReserva',
+    {method:'get',
+    });
+}
+</script>
+<script src="js/reserva.js"></script>

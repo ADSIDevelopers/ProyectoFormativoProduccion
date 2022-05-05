@@ -2,24 +2,61 @@
     margin: 0;
     padding: 0;
 }
-.container{
-    margin-top: 180px;
+
+.table>thead{
+    background-color: rgb(87, 163, 25);
+    color: #ffff;
+    border: inherit;
+}
+.contenedor-general{
+    padding: 20px;
+}
+a.btn-edit2 {
+    padding: 10px;
+    font-family: Helvetica;
+    color: white;
+    background-color: rgb(64, 192, 224);
+    border-radius: 5px;
+    text-decoration: none;
+    float: right;
+    margin: 20px;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+table.dataTable.no-footer {
+    border-bottom: inherit;
+}
+.dataTables_wrapper .dataTables_filter {
+    padding: 20px;
+    border: inherit;
+}
+.ListaProdu{
+    margin:  0 auto;
+    padding: 2px;
+    width: 85%;
+}
+ 
+.box-main{
+    width: 80%;
+    margin: 0 auto;
+    /* border: 1px solid black; */
+    padding-top: 3em;
 }
 .box{
     width: 70%;
-    background: rgb(231, 231, 231);
     margin: 0 auto;
-    padding: 1px;
+    padding: 10px;
     border-radius: 15px;
     margin-top: 10px;
 }
 .main{
     border: 1px solid rgb(212, 212, 212);
     width: 98%;
+    padding: 10px;
     margin: 0 auto;
     border-radius: 8px;
 }
-.content-main{
+/* .content-main{
     margin: 0 auto;
     padding: 10px;
     text-align: center;
@@ -27,21 +64,44 @@
     border-radius: 8px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: "box1 encabezado date"
-                        "box2 describe describe"
+    grid-template-rows: "box2 encabezado date"
+                        "box1 describe describe"
                         "box3 box3 box3"
                         "btn";
                         
-    grid-template-areas: "box1 encabezado date"
-                         "box2 describe describe"
+    grid-template-areas: "box2 encabezado date"
+                         "box1 describe describe"
                          "box3 box3 box3"
                          "btn btn btn";
+} */
+.table-info{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+.table-info thead th{
+    background-color: rgb(87, 163, 25);
+    color: #fff;
+    padding: 10px 5px;
+    text-align: center;
+}
+.table-info tbody tr td{
+    padding: 10px 5px;
+    text-align: center;
 }
 .encabezado{
     color: rgb(77, 146, 20);
-    font-size: .91em;
+    font-size: 1.8em;
     grid-area: encabezado;
-    border-bottom: 3px solid rgb(77, 146, 20);
+}
+td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: none;
+    border-width: 0;
+}
+table.dataTable thead th, table.dataTable thead td {
+    padding: 10px 18px;
+    border: none;
 }
 .box1{
     grid-area: box1;
