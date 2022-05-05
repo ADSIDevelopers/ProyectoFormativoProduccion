@@ -38,7 +38,6 @@ controlador.ListaInventario = (req, res) => {
     try{
         var sql = "select id_inventario,stock,fk_codigo_pdto,fk_id_punto_vent, punto_venta.Nombre as nombrePunto, productos.Nombre as nombrePdto, productos.Codigo_pdto as Codigo_pdto, punto_venta.Id_punto_vent as Id_punto_vent  from productos INNER JOIN inventario on fk_codigo_pdto=Codigo_pdto INNER JOIN punto_venta ON Id_punto_vent=fk_id_punto_vent";
         conexion.query(sql, (err, rows) => {
-            console.log(rows);
             if (!err) {
                 res.json(rows);
             } else {
@@ -73,14 +72,13 @@ try{
 controlador.BuscarInvent=(req, res)=>{
     try{
         var identificador = req.body.Identificacion;
-        console.log(identificador);
             let sql = 'select * from  inventario where id_inventario='+identificador;
                 conexion.query(sql,(err, rows)=>{
                     if(!err){
                         res.json(rows);
                     }
                     else{
-                        console.log("No see pudo listar el punto de venta"+error);
+                        console.log("No se logro listar el punto de venta"+error);
                     }
                 });    
     }
@@ -119,7 +117,6 @@ controlador.pdtoinventario =(req, res)=>{
     try{
         let dtoinventario = req.body.idptoinve;
         let sql =`select * from productos  where codigo_pdto=`+dtoinventario;
-        console.log(sql)
             conexion.query(sql,(err, rows)=>{
                 if(!err){   
                     res.json(rows); 
@@ -147,7 +144,6 @@ controlador.ListaProduccion=(req, res)=>{
             ((produccion join productos on ((productos.Codigo_pdto=produccion.fk_codigo_pdto)))
             join unidades_productivas on ((unidades_productivas.codigo_up = productos.fk_codigo_up))
             ) where codigo_pdto='${idprdto}'`;
-        console.log(sql)
         conexion.query(sql,(err, rows)=>{
             if(!err){   
                 res.json(rows); 
@@ -166,7 +162,6 @@ controlador.ListarBodega =(req, res)=>{
     try{
         let idproduccion = req.body.idproducci;
         let sql =`select punto_venta.Nombre as Nombrepunt, bodega.id_bodega as id_bodega, date_format(bodega.fecha, "%d-%m-%Y") as fechabodega, bodega.cantidad as cantidadbodega from produccion  join bodega on fk_produccion=Id_produccion join inventario on fk_inventario=id_inventario join punto_venta on fk_id_punto_vent=Id_punto_vent where fk_produccion='${idproduccion}'`;
-        console.log(sql)
         conexion.query(sql,(err, rows)=>{
             if(!err){   
                 res.json(rows); 
@@ -206,7 +201,6 @@ controlador.valoresproduccion =(req, res)=>{
         (produccion.cantidad - (select sum(bodega.cantidad) from bodega where (bodega.fk_produccion = produccion.Id_produccion))) as Disponible from 
         ((produccion join productos on ((productos.Codigo_pdto=produccion.fk_codigo_pdto)))
         join unidades_productivas on ((unidades_productivas.codigo_up = productos.fk_codigo_up))
-
         ) where Id_produccion='${idproduccion}'`;
         conexion.query(sql,(err, rows)=>{
             if(!err){   

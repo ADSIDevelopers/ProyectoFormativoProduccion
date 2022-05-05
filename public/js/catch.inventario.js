@@ -110,6 +110,7 @@ function Mostrarventana(idpdto,idinv){
     Listarinventarioproduccio(idpdto);
 };
 /* =================================================== */
+
 function Listarinventarioproduccio(idproduccion){
     let datosinvproduccion = new URLSearchParams;
     datosinvproduccion.append("idptoibv",idproduccion);
@@ -131,6 +132,7 @@ function Listarinventarioproduccio(idproduccion){
                     "col-6": element.fecha,
                     "col-7": "<a class='btn-distribucion' onclick='MostrarBodega("+element.Id_produccion+")';>Distribucion</a> <a class='btn-use' onclick='UsarProduccion("+element.Id_produccion+")';>Asignar</a>",
                 }
+                
                 json.push(array);
             });
         $('#tablaproduccion').DataTable({
@@ -233,25 +235,43 @@ function UsarProduccion(idproduc){
 };
 /* =================================================================== */
 function Actualizarinventario(){
+    let pdto = document.getElementById('id_pdto_inventario').value;
     let cantidadinvet = document.getElementById('Stockact').value;
     let numbinventario = document.getElementById('id_invetario').value;
     let numbproduccion = document.getElementById('produccionact').value;
     let tipooperacion = "ActualizarBodega";
-        let datosinvent = new URLSearchParams();
-        datosinvent.append('operacion',tipooperacion);
-        datosinvent.append('cantidad',cantidadinvet);
-        datosinvent.append('fk_produccion',numbproduccion);
-        datosinvent.append('fk_inventario',numbinventario);
-        fetch('/Actualizarinvent',
-        { method:'post',
-            body:datosinvent
-        }).then(res=>res.json())
-        .then(data=>{
-            Swal.fire({
-                title: data.titulo,
-                icon: data.icono,
-                text: data.mensaje,
-                timer: 1500
-                })
-        });
+    if(cantidadinvet == 0 && numbproduccion == 0){
+        alert("Seleccione la Produccion que desea Usar")
+    }
+    else{
+        if(cantidadinvet == 0){
+            alert("Inserte la Cantidad que usara del Stock")
+        }
+        else{
+            if(cantidadinvet > 0 && numbproduccion > 0){
+                let datosinvent = new URLSearchParams();
+                datosinvent.append('operacion',tipooperacion);
+                datosinvent.append('cantidad',cantidadinvet);
+                datosinvent.append('fk_produccion',numbproduccion);
+                datosinvent.append('fk_inventario',numbinventario);
+                fetch('/Actualizarinvent',
+                { method:'post',
+                    body:datosinvent
+                }).then(res=>res.json())
+                .then(data=>{
+                    Swal.fire({
+                        title: data.titulo,
+                        icon: data.icono,
+                        text: data.mensaje,
+                        timer: 1500
+                    });
+                    Listarinventarioproduccio(pdto);
+                });
+            }
+            else{
+                alert("Sucedio Un Error")
+            }
+        }
+    }
+    
 }
