@@ -57,16 +57,12 @@ controlador.Listar_Reservas_Pendientes = (req, res) => {
     try {
         conexion.query(sql1, (err, rows) => {
             if(err) return console.log('error' + err); 
-           //console.log(rows[0]);
+        //    console.log(rows[0]);
             res.json(rows[0]);
         });
     } catch (e) {
         console.log("error sss: " + e)
-    }
-
-
-
-    
+    } 
 }
 
 controlador.Listar_Usuaios_Ficha = (req, res) => {
@@ -135,9 +131,7 @@ controlador.Registrar_Detalle = (req, res) => {
     } catch (err) {
         console.log(err)
     }
-
-
-
+    
 }
 controlador.Eliminar_Detalle = (req, res) => {
     var idDetalle = req.body.id_detalle;
@@ -154,7 +148,4 @@ controlador.Eliminar_Detalle = (req, res) => {
     }
     
 }
-
-
-
 module.exports = controlador;

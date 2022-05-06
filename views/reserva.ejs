@@ -20,7 +20,7 @@
         <div class="body-info-section">
             <div class="contnet-section-info">
                 <div class="row">
-                    <h1 class="InicioReserva">Productos disponibles para reserva</h1>
+                    <h1 class="InicioReserva">Productos disponibles </h1>
                     <div class="col-md-8">
                         <div class="grid-row">
                             <% for(var i=0;i<Productos.length;i++){%>
@@ -35,13 +35,13 @@
                                             <%=Productos[i].descripcion %>
                                         </h5>
                                         <div>
-                                            <p class="card-text" id="precio">Stock : <%=Productos[i].stock %>
+                                            <p class="card-text"><label class="info_pdto">Precio: </label>$<%=Productos[i].precio %>
                                             </p>
-                                            <p class="card-text">Precio:<%=Productos[i].precio %>
+                                            <p class="card-text" id="precio"><label class="info_pdto">Stock: </label> <%=Productos[i].stock %> unidades
                                             </p>
-                                            <p class="card-text">Up:<%=Productos[i].up %>
+                                            <p class="card-text"><label class="info_pdto">UP: </label><%=Productos[i].up %>
                                             </p>
-                                            <p class="card-text">Tienda:<%=Productos[i].pv %>
+                                            <p class="card-text"><label class="info_pdto">Tienda: </label><%=Productos[i].pv %>
                                             </p>
                                         </div>
                                     </div>
@@ -105,11 +105,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="box1">
-
-
                             <select id="persona-reserva" class="form-select">
                                 <option value="" selected="selected" disabled>Selecciona aprendiz</option>
-
                             </select>
                             <div class="form-Reservas">
                                 <div class="borderRese">
@@ -144,7 +141,5 @@
     <script src="js/reserva.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
-
 </body>
-
 </html>

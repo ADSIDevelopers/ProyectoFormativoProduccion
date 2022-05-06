@@ -46,11 +46,11 @@ function Listar_Reservas_Pendientes(){
             tabla +='<tr class=" table-striped"><td>'+data.aprendiz+'</td>';
             tabla +='<td class="centerNombre">'+data.Nombre+'</td>';
             tabla +='<td class="centerNombre">'+data.cantidad+'</td>';
-            tabla +='<td class="centerNombre">'+data.valor+'</td>';
+            tabla +='<td class="centerNombre">'+data.subtotal+'</td>';
             tabla +='<td class="centerNombre"><a class="icon-bin" href=javascript:eliminarDetalle('+data.id_detalle+')></a></td>';
             tabla +='</td>';
 
-            total=total+data.valor;
+            total=total+data.subtotal;
         }
         });
         document.getElementById('tabla-detalles').innerHTML=tabla;
