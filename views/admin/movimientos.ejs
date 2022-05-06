@@ -4,10 +4,9 @@
 <head>
     <%- include('../partials/head'); %>
         <title>SENA</title>
-        <link rel="stylesheet" href="css/modulo-movimientos.css">
-        <link rel="stylesheet" href="css/datatables.min.css">
-        <link rel="stylesheet" href="css/responsive.dataTables.min.css">
-
+        <link rel="stylesheet" href="css/modulo-movimientos.css" />
+        <link rel="stylesheet" href="css/datatables.min.css" />
+        <link rel="stylesheet" href="css/responsive.dataTables.min.css" />
 </head>
 
 <body>
@@ -17,9 +16,11 @@
     <div class="main-contenedor">
         <div class="box">
             <div class="head-table">
-                <h2>Ventas y Reservas</h2><button class="btn btn-primary" id="btn" onclick="nuevaVenta()">Nueva Venta</button>
+                <h2 id="ver-precios">Ventas y Reservas</h2>
+                <button class="btn btn-primary" id="btn" onclick="nuevaVenta()">
+            Nueva Venta
+          </button>
             </div>
-
 
             <div>
                 <table id="tableMovimientos" class="table table-striped">
@@ -33,9 +34,7 @@
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="cuerpo-tabla">
-
-                    </tbody>
+                    <tbody id="cuerpo-tabla"></tbody>
                 </table>
             </div>
         </div>
@@ -71,34 +70,37 @@
                                             <td>$250000</td>
                                             <td>No entregado</td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="registrarUsuario();">Registrar</button>
-                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Actualizar</button>
+                        <button type="button" class="btn btn-secondary" onclick="registrarUsuario();">
+                Registrar
+              </button>
+                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">
+                Actualizar
+              </button>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!---Modal detalle-->
         <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content detalle-Modal">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Detalle de Esta Reserva</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Detalle de Esta Reserva
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post" class="row g-3 needs-validation">
                             <div class="col-md-12" id="contDet">
                                 <table id="cuerpo-tabla-detalle" class="table table-striped">
-
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -109,35 +111,40 @@
                                             <th>Estado de Entrega</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="cuerpo-detalle">
-
-                                    </tbody>
+                                    <tbody id="cuerpo-detalle"></tbody>
                                 </table>
                             </div>
-
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">Facturar</button>
+                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">
+                Facturar
+              </button>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
         <div class="modal fade" id="modalNewVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-fullscreen-xxl-down">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="numVenta">Venta Numero: </h5>
+                        <h5 class="modal-title" id="numVenta">Venta</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
                     <div class="modal-body modal-cart">
-
                         <div class="table-cart">
-                            <input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos">
+                            <div class="row">
+                                <div class="col-md-6" id="divBtnAdd">
+
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Movimiento</label>
+                                    <input type="text" id="id_movimiento" disabled="disabled" class="form-control">
+                                </div>
+                            </div>
+
 
                             <table id="tableCart" class="table table-striped">
                                 <thead>
@@ -150,9 +157,7 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                         <div class="cont-cart">
@@ -160,107 +165,217 @@
                                 <h1>Formulario de Venta</h1>
 
                                 <div class="col-md-10">
-                                    <input type="hidden" id="tusuario">
-                                    <label for="inputPIdCliente" class="form-label">Documento del Cliente</label>
-                                    <input type="number" class="form-control input-style" id="inputPIdCliente">
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="button" onclick="buscarUser();" id="sbutton" value="Buscar">
-                                </div>
-                                <!-- filtro cliente -->
-                                <div class="col-12">
-
-                                    <label for="inputAddress" class="form-label">Nom. Cliente</label>
-                                    <input class="form-control input-style" type="text" id="nombre" disabled>
-                                </div>
-                                <div class="col-6" id="regUserDiv">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary btnreg" value="Registrar">
-                    </div>
-
-
+                                    <input type="hidden" id="tusuario" />
+                                    <label for="inputPIdCliente" class="form-label">Documento del Cliente</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control input-style"
+                      id="inputPIdCliente"
+                    />
+                  </div>
+                  <div class="col-md-2">
+                    <input
+                      type="button"
+                      onclick="buscarUser();"
+                      id="sbutton"
+                      value="Buscar"
+                    />
+                  </div>
+                  <!-- filtro cliente -->
+                  <div class="col-12">
+                    <label for="inputAddress" class="form-label"
+                      >Nom. Cliente</label
+                    >
+                    <input
+                      class="form-control input-style"
+                      type="text"
+                      id="nombre"
+                      disabled
+                    />
+                  </div>
+                  <div class="col-6" id="regUserDiv"></div>
                 </div>
+              </div>
             </div>
+           
+          </div>
         </div>
+      </div>
 
-
-        <div class="modal fade modal-dark" id="modalAddProd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agrega Productos</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-prods">
-                            <table id="tableAddProd" class="display dt-table-cart">
-                                <thead>
-                                    <tr>
-                                        <th>ID. Prod</th>
-                                        <th>Nombre del Producto</th>
-                                        <th>Valor Unit.</th>
-                                        <th>Stock</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="add-prod">
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-primary btndone" onclick="" value="Hecho">
-                    </div>
-
-                </div>
+      <div
+        class="modal fade modal-dark"
+        id="modalAddProd"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Agrega Productos
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-        </div>
-
-
-
-        <div class="modal fade modal-dark" id="modalProductoAgregado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Cantidad</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="precio_prod">
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Confirmar">
-                    </div>
-                </div>
+            <div class="modal-body">
+              <div class="table-prods">
+                <table
+                  class="display dt-table-cart table-striped"
+                  id="tableAddProd"
+                >
+                  <thead>
+                    <tr>
+                      <th>ID. Prod</th>
+                      <th>Nombre del Producto</th>
+                      <th>Valor Unit.</th>
+                      <th>Stock</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="add-prod"></tbody>
+                </table>
+              </div>
             </div>
-        </div>
-        <div class="modal fade modal-dark" id=" modalNuevoUsuario" tabindex="-1" aria-labelledby="modalNuevoUsuario" aria-hidden="true">
-            <div class="modal-dialog modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">MODAL JHON MARIO</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Confirmar">
-                    </div>
-                </div>
+            <div class="modal-footer">
+              <input
+                type="button"
+                class="btn btn-primary btndone"
+                onclick=""
+                value="Hecho"
+              />
             </div>
+          </div>
         </div>
+      </div>
+
+      <div
+        class="modal fade modal-dark"
+        id="modalProductoAgregado"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="hidden" id="id_inventario">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Agregar Cantidad
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="precio_prod"></div>
+            <div class="modal-footer">
+              <input
+                type="button"
+                class="btn btn-primary btnadd"
+                onclick="AregarProductoCliente()"
+                value="Confirmar"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade modal-dark"
+        id=" modalNuevoUsuario"
+        tabindex="-1"
+        aria-labelledby="modalNuevoUsuario"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">MODAL JHON MARIO</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <input
+                type="button"
+                class="btn btn-primary btnadd"
+                onclick=""
+                value="Confirmar"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <%- include('../partials/footer') %>
-        <%- include('../partials/scripts.ejs') %>
-            <script src="js/datatable/datatables.min.js"></script>
-            <script src="js/movimientos.js"></script>
-            <script src="js/bootstrap.min.js"></script>
 
-</body>
 
+
+
+
+
+    <div
+        class="modal fade modal-dark"
+        id="modalInfoProd"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Precio de Los Productos
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="table-prods">
+                <table
+                  class="display dt-table-cart table-striped"
+                  id="tableInfoProducto"
+                >
+                  <thead>
+                    <tr>
+                      <th>Codigo</th>
+                      <th>Nombre del Producto</th>
+                      <th>Stock</th>
+                      <th>Aprendices</th>
+                      <th>Instructores</th>
+                      <th>Administrativos</th>
+                      <th>Externos</th>
+                      <th>Auxiliares</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+    <%- include('../partials/footer') %> <%- include('../partials/scripts.ejs')
+    %>
+    <script src="js/datatable/datatables.min.js"></script>
+    <script src="js/movimientos.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>

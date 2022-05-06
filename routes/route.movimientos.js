@@ -10,6 +10,8 @@ routeMovimientos.get('/addProd', contMovimientos.listarProductos);
 routeMovimientos.post('/consAddProd', contMovimientos.consAggProd);
 routeMovimientos.post('/filtro', contMovimientos.filtro);
 routeMovimientos.post('/genventa', contMovimientos.genVenta);
-routeMovimientos.post('/eliminarDetalle', contMovimientos.eliminarDetalle)
+routeMovimientos.post('/agregarDetalle', contMovimientos.agregarDetalle);
+routeMovimientos.post('/eliminarDetalle', contMovimientos.eliminarDetalle);
+routeMovimientos.get('/listarPrecioProductos', contMovimientos.listarPreciosProductos);
 
 module.exports = routeMovimientos;
