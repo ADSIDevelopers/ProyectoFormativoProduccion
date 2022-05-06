@@ -2,10 +2,10 @@ $(document).ready(function() {
 
 
     $('#tableFacturar').DataTable({
-        "destroy": true,
-        "processing": true,
-        "responsive": true,
-
+        destroy: true,
+        searching: false,
+        paging: false,
+        bInfo: false,
         bFilter: false,
         language: {
             "decimal": ",",
@@ -276,9 +276,10 @@ function addProdVen() { //Tabla del modal donde agregaremos los productos a la v
 
             setTimeout(() => {
                 $('#tableAddProd').DataTable({
-                    "destroy": true,
-                    "processing": true,
-                    "responsive": true,
+                    destroy: true,
+                    searching: false,
+                    paging: false,
+                    bInfo: false,
                     language: {
                         "decimal": ",",
                         "thousands": ".",
@@ -438,8 +439,7 @@ document.getElementById('inputPIdCliente').addEventListener("keydown", function(
 });
 
 function buscarUser() {
-    //var iden = document.getElementById('inputPIdCliente').value;
-    var iden = 1004419254;
+    var iden = document.getElementById('inputPIdCliente').value;
     var datos = new URLSearchParams();
     datos.append('iden', iden);
 
@@ -453,11 +453,13 @@ function buscarUser() {
                 /* ====VARIABLES===== */
             var identificacion = data[0].identificacion;
             var nombre = data[0].Nombres;
+            var tusuario = data[0].Cargo;
             if (identificacion != iden) {
                 document.getElementById('nombre').value = "Usuario no registrado.";
                 document.getElementById('genVenDiv').innerHTML = '<input type="button" class="btn btn-primary btndone" onclick="" value="Registrar Usuario?">';
             } else if (identificacion == iden) {
                 document.getElementById('nombre').value = nombre;
+                document.getElementById('tusuario').value = tusuario;
             }
             generarVenta(iden);
 

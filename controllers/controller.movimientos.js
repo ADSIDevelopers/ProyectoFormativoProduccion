@@ -36,7 +36,6 @@ controladorMovimiento.mostrarDetalle = (req, resp) => {
 
 
 controladorMovimiento.listarProductos = (req, resp) => {
-        let tusuario;
         try {
             let sql = `select * from Lista_Productos`;
             conexion.query(sql, (err, rows) => {
@@ -93,7 +92,21 @@ controladorMovimiento.genVenta = async(req, resp) => {
         });
     } catch (error) {}
 }
+
 controladorMovimiento.eliminarDetalle = async(req, resp) => {
+    let idDetalle = req.body.idDetalle;
+    try {
+        let sql = `delete from detalle where id_detalle = '${idDetalle}'; `
+        conexion.query(sql, (err, rows) => {
+            if (err) return console.log(err);
+            return resp.json({ status: 200 })
+        });
+    } catch (error) {}
+}
+
+
+
+controladorMovimiento.agregarDetalle = async(req, resp) => {
     let idDetalle = req.body.idDetalle;
     try {
         let sql = `delete from detalle where id_detalle = '${idDetalle}'; `
