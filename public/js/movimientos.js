@@ -44,10 +44,13 @@ $(document).ready(function() {
     });
 });
 
+
 var facturar = new bootstrap.Modal(document.getElementById('modalFacturar'), { keyboard: false });
 
+
+
+
 function compranueva() {
-    facturar;
     facturar.toggle();
 }
 
@@ -189,6 +192,7 @@ function mostrarDetalle(Id_movimiento) {
 var addProdList = new bootstrap.Modal(document.getElementById('modalAddProd'), { keyboard: false });
 
 function addProdVen() { //Tabla del modal donde agregaremos los productos a la venta
+    tusuario = 3
     let datos = new URLSearchParams();
     datos.append('idcodigo', tusuario);
 
@@ -434,60 +438,94 @@ document.getElementById('inputPIdCliente').addEventListener("keydown", function(
 });
 
 function buscarUser() {
-    var iden = document.getElementById('inputPIdCliente').value;
-
-    console.log(iden);
+    //var iden = document.getElementById('inputPIdCliente').value;
+    var iden = 1004419254;
     var datos = new URLSearchParams();
     datos.append('iden', iden);
 
-    try {
-        fetch('/filtro', {
+    fetch('/filtro', {
             method: 'post',
             body: datos
-        }).then(res => res.json()).then(data => {
-            var identificacion;
-            var nombre;
-            for (let i = 0; i < data.length; i++) {
-                let numCargo = data[i].Cargo;
-                identificacion = data[i].identificacion;
-                nombre = data[i].Nombres;
-                console.log(identificacion);
-
-            }
+        }).then(res => res.json())
+        .then(data => {
+            // AQUÍ LANZA EL MODAL PARA CREAR USUARIO
+            if (data.length <= 0) return alert('LANZANDO MODAL')
+                /* ====VARIABLES===== */
+            var identificacion = data[0].identificacion;
+            var nombre = data[0].Nombres;
             if (identificacion != iden) {
                 document.getElementById('nombre').value = "Usuario no registrado.";
                 document.getElementById('genVenDiv').innerHTML = '<input type="button" class="btn btn-primary btndone" onclick="" value="Registrar Usuario?">';
-
             } else if (identificacion == iden) {
                 document.getElementById('nombre').value = nombre;
-                document.getElementById('genVenDiv').innerHTML = '<input type="button" class="btn btn-primary btndone" onclick="genVenta();" value="Generar Venta">';
-
             }
+            generarVenta(iden);
 
-
-        });
-    } catch (error) {
-        console.log('Error al listar los Usuario:' + error);
-    }
+        }).catch(e => console.log(e));
+}
+/* =========VENTA============ */
+function eliminarProductoMovimiento(id) {
+    var idenpPersona = 1004419254;
+    var datos = new URLSearchParams();
+    datos.append('idDetalle', id);
+    fetch('/eliminarDetalle', {
+            body: datos,
+            method: 'POST'
+        }).then(res => res.json())
+        .then(res => {
+            if (res.status == 200) {
+                alert('ELIMINADO')
+                generarVenta(idenpPersona)
+            }
+        })
 }
 
-
-function genVenta() {
+function generarVenta(ident) {
     var datos = new URLSearchParams();
-    try {
+    datos.append('iden', ident)
 
-        fetch('/genventa', {
+    fetch('/genventa', {
             method: 'post',
             body: datos
-        }).then(res => res.json()).then(data => {
-
-        });
-
-        document.getElementById('')
-    } catch (error) {
-
-    }
-
-
-
+        }).then(res => res.json())
+        .then(data => {
+            let productosMovimiento = [];
+            let i = 1;
+            data.forEach(producto => {
+                if (producto.id_detalle == null) return;
+                let arrayProducto = {
+                    num: i++,
+                    nombre: producto.Nombre,
+                    cantidad: producto.cantidad,
+                    valor: producto.valor,
+                    subtotal: producto.subtotal,
+                    accion: `<button onclick="eliminarProductoMovimiento('` + producto.id_detalle + `')">
+                        <span class="icon-trash1"></span>
+                    </button>`
+                }
+                productosMovimiento.push(arrayProducto);
+            });
+            $('#tableCart').DataTable({
+                destroy: true,
+                searching: false,
+                paging: false,
+                bInfo: false,
+                data: productosMovimiento,
+                columns: [
+                    { "data": "num" },
+                    { "data": "nombre" },
+                    { "data": "cantidad" },
+                    { "data": "valor" },
+                    { "data": "subtotal" },
+                    { "data": "accion" }
+                ]
+            });
+            console.log(data)
+        }).catch(e => console.log(e));
 }
+$('#tableCart').DataTable({
+    destroy: true,
+    searching: false,
+    paging: false,
+    bInfo: false,
+});

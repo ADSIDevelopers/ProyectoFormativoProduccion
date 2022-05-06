@@ -5,7 +5,8 @@
     <%- include('../partials/head'); %>
         <title>SENA</title>
         <link rel="stylesheet" href="css/modulo-movimientos.css">
-        <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="css/datatables.min.css">
+        <link rel="stylesheet" href="css/datatables.responsive.min.css">
 
 </head>
 
@@ -100,7 +101,7 @@
 
                                     <thead>
                                         <tr>
-                                            <th>ID. Prod</th>
+                                            <th>#</th>
                                             <th>Nombre del Producto</th>
                                             <th>Cantidad</th>
                                             <th>Valor Unit.</th>
@@ -149,7 +150,7 @@
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
-                                <tbody id="cart-prod">
+                                <tbody>
 
                                 </tbody>
                             </table>
@@ -170,9 +171,6 @@
 
                                     <label for="inputAddress" class="form-label">Nom. Cliente</label>
                                     <input class="form-control input-style" type="text" id="nombre" disabled>
-                                </div>
-                                <div class="col-6" id="genVenDiv">
-
                                 </div>
                                 <div class="col-6" id="regUserDiv">
                                 </div>
@@ -232,29 +230,35 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="precio_prod">
-
-
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-primary btnadd" onclick="" value="Confirmar">
                     </div>
-
                 </div>
             </div>
         </div>
-
-
-
+        <div class="modal fade modal-dark" id=" modalNuevoUsuario" tabindex="-1" aria-labelledby="modalNuevoUsuario" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">MODAL JHON MARIO</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-primary btnadd" onclick="" value="Confirmar">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <%- include('../partials/footer') %>
         <%- include('../partials/scripts.ejs') %>
+            <script src="js/datatable/datatables.min.js"></script>
             <script src="js/movimientos.js"></script>
             <script src="js/bootstrap.min.js"></script>
-            <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-            <script srce="https://code.jquery.com/jquery-3.5.1.js"></script>
-            <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
 

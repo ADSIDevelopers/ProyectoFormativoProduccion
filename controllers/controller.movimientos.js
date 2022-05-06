@@ -73,9 +73,7 @@ controladorMovimiento.filtro = (req, resp) => {
     try {
         let sql = "SELECT identificacion, Cargo,Nombres FROM `personas` WHERE identificacion=" + iden;
         conexion.query(sql, (err, rows, fields) => {
-            resp.json(rows);
-            console.log(rows)
-
+            return resp.json(rows);
         });
     } catch (error) {
         console.log('Error al Listar los Productos: ' + error);
@@ -86,18 +84,24 @@ controladorMovimiento.filtro = (req, resp) => {
 controladorMovimiento.genVenta = async(req, resp) => {
     let pPersona = req.body.iden;
     let op1 = 'NuevaVenta';
-    let pEstado = 'Reservado';
-    let pTipo = 'Individual';
+    let movimiento = 0;
     try {
-        let sql = `CALL Administrar_Ventas('${op1}','${pEstado}',${pPersona},'${pTipo}')`;
-        console.log(sql);
+        let sql = `CALL Administrar_Ventas('${op1}',${pPersona},'${movimiento}')`;
         conexion.query(sql, (err, rows) => {
-            resp.json({
-                titulo: "Mensaje",
-                icon: "success",
-                message: "Se registro con exito!"
-            });
+            if (err) return console.log(err);
+            return resp.json(rows[0])
         });
     } catch (error) {}
 }
+controladorMovimiento.eliminarDetalle = async(req, resp) => {
+    let idDetalle = req.body.idDetalle;
+    try {
+        let sql = `delete from detalle where id_detalle = '${idDetalle}'; `
+        conexion.query(sql, (err, rows) => {
+            if (err) return console.log(err);
+            return resp.json({ status: 200 })
+        });
+    } catch (error) {}
+}
+
 module.exports = controladorMovimiento;
