@@ -21,15 +21,15 @@
                         </div>
                         <div class="row-info-box cursor-none">
                             <div class="first-column">IDENTIFICACION</div>
-                            <div class="last-column"><%=profile.identificacion  %> </div>
+                            <div class="last-column">< % =profile.identificacion  %> </div>
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">NOMBRE</div>
-                            <div class="last-column"><%=profile.Nombres  %> </div>
+                            <div class="last-column">< % =profile.Nombres  %> </div>
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">CORREO</div>
-                            <div class="last-column"><%=profile.Correo  %> </div>
+                            <div class="last-column">< % =profile.Correo  %> </div>
                         </div>
                     </div>
                     <div class="border-box pd-none mt-2">
@@ -38,11 +38,11 @@
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">ROL</div>
-                            <div class="last-column"><%=profile.Rol  %></div>
+                            <div class="last-column">< % =profile.Rol  %></div>
                         </div>
                         <div class="row-info-box">
                             <div class="first-column">CARGO</div>
-                            <div class="last-column"><%=profile.Cargo  %> </div>
+                            <div class="last-column">< % =profile.Cargo  %> </div>
                         </div> 
                     </div>
                 </div>
@@ -106,7 +106,7 @@
             let config = {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '+token
                 },
                 body: JSON.stringify(data)
             }

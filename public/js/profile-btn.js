@@ -1,3 +1,4 @@
+let token = localStorage.getItem('token');
 let logoutBtn = document.getElementById('logout');
 let profileBtn = document.getElementById('profile');
 document.addEventListener('click', (e) => {

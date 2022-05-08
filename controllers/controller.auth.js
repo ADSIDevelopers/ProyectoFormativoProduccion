@@ -5,7 +5,7 @@ let jwt = require('jsonwebtoken');
 let controllerAuth = {}
 
 controllerAuth.logIn = (req, res) => {
-    var sql =`select identificacion, Rol from personas WHERE Login = '${req.body.user}' and password = '${req.body.password}'`;
+    var sql =`select identificacion, Rol, Ficha from personas WHERE Login = '${req.body.user}' and password = '${req.body.password}'`;
     try{
         conexion.query(sql,(err,rows)=>{
             if(err) return res.json({status: 'error', message: 'Error with sql query'})
@@ -13,10 +13,11 @@ controllerAuth.logIn = (req, res) => {
             let json = {
                 id: rows[0].identificacion,
                 role: rows[0].Rol,
+                ficha: rows[0].Ficha
             }
             let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
             var decoded = jwt.verify(token, authConfig.secret);
-            storage.setItem('token', token)
+            storage.setItem('token', token);
             return res.json({user:decoded.user, token})
         });
     } catch (e) {
@@ -30,7 +31,7 @@ controllerAuth.profile = (req, res) => {
     let token = storage.getItem('token');
     let decoded = jwt.verify(token, authConfig.secret);
     try{
-        var sql =`select identificacion, Nombres, Correo, cargo.nombre_cargo as Cargo from personas join cargo on Cargo = idcargo WHERE identificacion = '${decoded.user.id}'`;
+        var sql =`select identificacion, Nombres, Correo, cargo.nombre_cargo as Cargo, Ficha from personas join cargo on Cargo = idcargo WHERE identificacion = '${decoded.user.id}'`;
         conexion.query(sql,(err,rows)=>{
             if(err) return res.json({status: 'error', message: 'Error with sql query'})
             if(rows.length <= 0) return res.json({status: 'error', message: 'Unauthorized'})
@@ -63,4 +64,7 @@ controllerAuth.changePassword = (req, res) => {
     }
 }
 
+controllerAuth.prueba = (req, res)=>{
+    return res.json({msg: 'hola'})
+}
 module.exports = controllerAuth;

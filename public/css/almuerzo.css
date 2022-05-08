@@ -1,0 +1,29 @@
+.contenedor-almuerzo {
+    box-shadow: 0 0 2px #636363;
+    display: grid;
+    grid-template: 'imagen nombre       nombre'
+                   'imagen descripcion  descipcion'
+                   'imagen precio       btn-reservar';
+    padding: 5px 10px;
+}
+.imagen{
+    grid-area: imagen;
+}
+.imagen img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+.nombre{grid-area: nombre;}
+.nombre h3 {
+    color: #4e4e4e;
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+.descripcion{grid-area: descripcion;}
+.precio{grid-area: precio;}
+.precio span {
+    font-weight: bold;
+    font-size: 2rem;
+}
+.btn-reservar{grid-area: btn-reservar;}
