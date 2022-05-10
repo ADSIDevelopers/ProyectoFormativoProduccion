@@ -1,4 +1,5 @@
 const conexion = require('../database/conexion');
+const query = require('../database/pool-conexion');
 const controlador = {};
 
 controlador.Vista = (req, res) => {
@@ -10,25 +11,18 @@ controlador.Vista = (req, res) => {
             if (!err) {
                 pdto=rows;
             } else {
-                console.log('error de ejución de la consulta sql '+ err)
+                console.log('error de ejecución de la consulta sql '+ err)
             }
         });
         var sql1 = "select * from punto_venta";
         conexion.query(sql1,(err,rows)=>{
             if (!err) {
-                Pvent=rows;
+                res.render('admin/inventario',{Datos:rows, Productos:pdto, PVenta:rows})
             } else {
-                console.log('error de ejución de la consulta sql '+ err)
+                console.log('error de ejecución de la consulta sql '+ err)
             }
         });
         var sql2 = "select * from inventario"
-        conexion.query(sql2,(err,rows)=>{
-            if (!err) {
-                res.render('admin/inventario',{Datos:rows, Productos:pdto, PVenta:Pvent})
-            } else {
-                console.log('error al redirigir a la vista de puntos de venta ' + err)
-            }
-        });
     }
     catch(e){
         console.log(e);
@@ -41,7 +35,7 @@ controlador.ListaInventario = (req, res) => {
             if (!err) {
                 res.json(rows);
             } else {
-                console.log("No se pudo listar!! "+error);
+                console.log("No se pudo listar!! "+err);
             }
         }); 
     }
@@ -49,13 +43,13 @@ controlador.ListaInventario = (req, res) => {
         console.log(e);
     } 
 };
-controlador.registrarInventario = (req, res)=>{
+controlador.registrarInventario =(req, res)=>{
 try{
     let stock = req.body.stock;
     let pdto = req.body.pdto;
     let Pvent = req.body.Pventa;
     var sql = `insert into inventario(stock,fk_codigo_pdto,fk_id_punto_vent)values('${stock}','${pdto}','${Pvent}')`;
-    conexion.query(sql,(err,rows)=>{
+     conexion.query(sql,(err,rows)=>{
         if (err) return res.json({ titulo : "error",
         icono: "error",
         mensaje : "el inventario no se registro "+ err}) 
@@ -78,7 +72,7 @@ controlador.BuscarInvent=(req, res)=>{
                         res.json(rows);
                     }
                     else{
-                        console.log("No se logro listar el punto de venta"+error);
+                        console.log("No se logro encontrar el inventario"+error);
                     }
                 });    
     }
@@ -86,32 +80,7 @@ controlador.BuscarInvent=(req, res)=>{
     console.log(e);
  }  
 };
-controlador.ActualformInvent=(req, res)=>{
-    try{
-        var identificador = req.body.Identificacion;
-        let stock = req.body.Stock;
-        let producto = req.body.Producto;
-        let puntoVent = req.body.PuntoVent;
-        let sql = `update inventario set stock='${stock}',
-                    fk_codigo_pdto='${producto}',
-                    fk_id_punto_vent='${puntoVent}'  where id_inventario=${identificador}`;
-        conexion.query(sql,(err, rows)=>{
-            if (err) return res.json({ 
-                titulo : "error",
-                icono: "error",
-                mensaje : "el punto de venta no se Actualizo "+ err
-            }); 
-            return res.json({  
-                titulo : "Registro Exitoso",
-                icono: "success",
-                mensaje : "El punto ha sido Actualizado con éxito"
-            });
-        });
-    }
-    catch(e){
-        console.log(e);
-    }
-};
+
 
 controlador.pdtoinventario =(req, res)=>{
     try{
@@ -134,16 +103,8 @@ controlador.pdtoinventario =(req, res)=>{
 controlador.ListaProduccion=(req, res)=>{
     try{
         let idprdto = req.body.idptoibv;
-        let sql =`select produccion.Id_produccion AS Id_produccion,
-            date_format(produccion.fecha, "%d-%m-%Y") AS fecha,
-            productos.Codigo_pdto AS Codigo_pdto,
-            productos.Nombre AS producto,
-            produccion.Cantidad AS Producido,
-            (select sum(bodega.cantidad) from bodega where (bodega.fk_produccion = produccion.Id_produccion)) as Distribuido,
-            (produccion.cantidad - (select sum(bodega.cantidad) from bodega where (bodega.fk_produccion = produccion.Id_produccion))) as Disponible from 
-            ((produccion join productos on ((productos.Codigo_pdto=produccion.fk_codigo_pdto)))
-            join unidades_productivas on ((unidades_productivas.codigo_up = productos.fk_codigo_up))
-            ) where codigo_pdto='${idprdto}'`;
+        let sql =`SELECT lup.Id_produccion,date_format(lup.fecha, "%d-%m-%Y") as fecha,lup.codigo_pdto,lup.producto,lup.Producido,if(lup.distribuido is null,0,Distribuido) as Distribuido,if (lup.Disponible is null,0,Disponible) as Disponible FROM Lista_Produccion_Up lup
+        where lup.codigo_pdto='${idprdto}'`;
         conexion.query(sql,(err, rows)=>{
             if(!err){   
                 res.json(rows); 
@@ -194,14 +155,10 @@ controlador.Nombrepunt  =(req, res)=>{
     }
 }
 
-controlador.valoresproduccion =(req, res)=>{
+controlador.valoresproduccion = (req, res)=>{
     try{
         let idproduccion = req.body.idproduccion;
-        let sql =`select produccion.Id_produccion AS Id_produccion,
-        (produccion.cantidad - (select sum(bodega.cantidad) from bodega where (bodega.fk_produccion = produccion.Id_produccion))) as Disponible from 
-        ((produccion join productos on ((productos.Codigo_pdto=produccion.fk_codigo_pdto)))
-        join unidades_productivas on ((unidades_productivas.codigo_up = productos.fk_codigo_up))
-        ) where Id_produccion='${idproduccion}'`;
+        let sql =`SELECT lup.id_produccion,lup.disponible FROM Lista_Produccion_Up lup where id_produccion='${idproduccion}'`;
         conexion.query(sql,(err, rows)=>{
             if(!err){   
                 res.json(rows); 
@@ -215,12 +172,38 @@ controlador.valoresproduccion =(req, res)=>{
         console.log(e);
     }
 }
-controlador.Actualizarinventario=async(req, res)=>{
+controlador.Actualizarinventario = async(req, res)=>{
     try{
         let operacion = req.body.operacion;
         let cantidad = req.body.cantidad;
         let fkproduccion  = req.body.fk_produccion;
         let fkinventario = req.body.fk_inventario;
+        let validacion = await query(`select Distribuido,  Disponible, Producido from Lista_Produccion_Up where Id_produccion = '${fkproduccion}'`);
+        let distribucion = validacion[0].Distribuido;
+        let disponibles = validacion[0].Disponible;
+        let produccion = validacion[0].Producido;
+        let cantidades = null
+        if(distribucion == cantidades && disponibles == cantidades){
+            if( cantidad > produccion ){
+                return res.json({  
+                    titulo : "Atención",
+                    icono: "warning",
+                    mensaje : "Sobrepasa el stock Producido",
+                    timer : 1800
+                });
+            } 
+        }
+        if(distribucion != cantidades && disponibles != cantidades){
+            if(cantidad > disponibles){
+                return res.json({  
+                    titulo : "Atención",
+                    icono: "warning",
+                    mensaje : "Sobrepasa el Stock Disponible",
+                    timer : 1800
+                });
+            }
+
+        }
         let sql = `CAll Administrar_inventario('${operacion}',${cantidad},${fkproduccion},${fkinventario})`
         await conexion.query(sql,(err, rows)=>{
             if(!err){   
@@ -236,16 +219,15 @@ controlador.Actualizarinventario=async(req, res)=>{
                     mensaje : "El Inventario ha sido Actulizado con éxito",
                     timer : 2000
                 });
-                conexion.end();
             }
             else{
-                console.log("No se logro llamar la Produccion"+err);
+                console.log("No se logro Actualizar el Inventario"+err);
             }
         }); 
+        
     }
     catch(e){
         console.log(e);
     }
 }
-
 module.exports = controlador;

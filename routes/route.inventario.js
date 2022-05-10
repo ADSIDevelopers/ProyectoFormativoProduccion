@@ -6,7 +6,6 @@ ruta_inventario.get("/inventario",controlador_inventario.Vista);
 ruta_inventario.post("/Registrar_inventario",controlador_inventario.registrarInventario);
 ruta_inventario.get("/Lista_Inventario",controlador_inventario.ListaInventario);
 ruta_inventario.post("/Buscar_Invent",controlador_inventario.BuscarInvent);
-ruta_inventario.post("/Actualizar_Invent",controlador_inventario.ActualformInvent);
 ruta_inventario.post("/Lista_produccion",controlador_inventario.ListaProduccion);
 ruta_inventario.post("/idpdto_inventario",controlador_inventario.pdtoinventario);
 ruta_inventario.post("/Lista_Bodega",controlador_inventario.ListarBodega);

@@ -111,9 +111,9 @@ function Mostrarventana(idpdto,idinv){
 };
 /* =================================================== */
 
-function Listarinventarioproduccio(idproduccion){
+function Listarinventarioproduccio(idpdto){
     let datosinvproduccion = new URLSearchParams;
-    datosinvproduccion.append("idptoibv",idproduccion);
+    datosinvproduccion.append("idptoibv",idpdto);
     fetch('/Lista_produccion',
     {
         method:'post',
@@ -132,7 +132,6 @@ function Listarinventarioproduccio(idproduccion){
                     "col-6": element.fecha,
                     "col-7": "<a class='btn-distribucion' onclick='MostrarBodega("+element.Id_produccion+")';>Distribucion</a> <a class='btn-use' onclick='UsarProduccion("+element.Id_produccion+")';>Asignar</a>",
                 }
-                
                 json.push(array);
             });
         $('#tablaproduccion').DataTable({
@@ -192,32 +191,7 @@ function MostrarBodega(idproduccion){
     });
 }
 /* ========================================================================== */
-function ActualizarInv(){
-    let identificadoractul = document.getElementById('id_vent').value;
-    let stockActul = document.getElementById('inventStockAct').value;
-    let productoActul= document.getElementById('fkproductoAct').value;
-    let puntoActul = document.getElementById('fkpuntventaAct').value;
 
-    var datos = new URLSearchParams();
-    datos.append('Identificacion',identificadoractul);
-    datos.append('Stock',stockActul);
-    datos.append('Producto',productoActul);
-    datos.append('PuntoVent',puntoActul);
-  
-    fetch('/Actualizar_Invent',
-    {   method:'post',
-        body : datos}
-    ).then(res=>res.json()).then(data=>{
-        Swal.fire({
-            title: data.titulo,
-            icon: data.icono,
-            text: data.mensaje,
-            timer: 1500
-        });
-        ListarInventario();
-    });
-} 
-/* =================================================== */
 function UsarProduccion(idproduc){
     modalbodega.hide();
     let datesproducci = new URLSearchParams();
@@ -228,11 +202,15 @@ function UsarProduccion(idproduc){
     }).then(res=>res.json())
     .then(data=>{
         data.forEach(produccion => {
-            document.getElementById('Stockact').value=produccion.Disponible;
-            document.getElementById('produccionact').value=produccion.Id_produccion;
+            document.getElementById('Stockact').value=produccion.disponible;
+            document.getElementById('produccionact').value=produccion.id_produccion;
         });
     });
 };
+/* =================================================================== */
+function eliminarstock(){
+    let stoc = document.getElementById('Stockact').value = ""
+}
 /* =================================================================== */
 function Actualizarinventario(){
     let pdto = document.getElementById('id_pdto_inventario').value;
@@ -241,13 +219,11 @@ function Actualizarinventario(){
     let numbproduccion = document.getElementById('produccionact').value;
     let tipooperacion = "ActualizarBodega";
     if(cantidadinvet == 0 && numbproduccion == 0){
-        alert("Seleccione la Produccion que desea Usar")
+        return alert("Seleccione la Produccion que desea Usar")
     }
-    else{
         if(cantidadinvet == 0){
-            alert("Inserte la Cantidad que usara del Stock")
+            return alert("Inserte la Cantidad que usara del Stock")
         }
-        else{
             if(cantidadinvet > 0 && numbproduccion > 0){
                 let datosinvent = new URLSearchParams();
                 datosinvent.append('operacion',tipooperacion);
@@ -266,12 +242,13 @@ function Actualizarinventario(){
                         timer: 1500
                     });
                     Listarinventarioproduccio(pdto);
+                    ListarInventario();
+                    eliminarstock();
                 });
+               
             }
             else{
                 alert("Sucedio Un Error")
             }
-        }
-    }
     
 }
