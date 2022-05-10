@@ -201,6 +201,7 @@ function UsarProduccion(idproduc){
         body:datesproducci
     }).then(res=>res.json())
     .then(data=>{
+        alert("Producto Seleccioando")
         data.forEach(produccion => {
             document.getElementById('Stockact').value=produccion.disponible;
             document.getElementById('produccionact').value=produccion.id_produccion;

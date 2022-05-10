@@ -8,7 +8,9 @@
                    "boton boton" 50px/ 1fr 1fr;
 }
 input[type="text"]:disabled, input[type="number"]:disabled, .cantidad-invent{
-    color: black;
+    color: #3b3c36;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 .line-head, .line-bodega, .line-produccion{
     color: white;
@@ -32,10 +34,7 @@ table.dataTable td{
 tbody > tr{
     text-align: center;
 }
-.word-modal{
-    font-size: 1em;
-    font-weight: bolder;
-}
+
 #id_vent, #id_pdto_inventario, #id_invetario{
     display: none;
 }

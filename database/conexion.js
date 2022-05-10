@@ -4,10 +4,6 @@ let conexion = mysql.createConnection({
     user: 'uxbb2m9uqgkcgbys',
     password: 'rygMdhJgbwHBhjcDDotQ',
     database: 'bsmwpxrcyzptfha22nhe'
-    /* host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'produccion' */
 });
 
 conexion.connect((err) => {
