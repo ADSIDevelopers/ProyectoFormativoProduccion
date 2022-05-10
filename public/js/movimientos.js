@@ -35,7 +35,13 @@ $(document).ready(function() {
         document.getElementById("nombre").value = "";
         document.getElementById("tusuario").value = "";
         document.getElementById("add-prod").innerHTML = "";
-        document.getElementById('genVenDiv').innerHTML = "";
+        document.getElementById("id_movimiento").value = "";
+        let btnProductos = document.getElementById("boton_agregar_productos");
+        btnProductos.disabled = true;
+        btnProductos.setAttribute('id', 'btn-deshabilitado');
+
+
+
 
     });
 });
@@ -414,7 +420,12 @@ function buscarUser() {
         .then((res) => res.json())
         .then((data) => {
             // AQUÍ LANZA EL MODAL PARA CREAR USUARIO
-            if (data.length <= 0) return alert("LANZANDO MODAL");
+            if (data.length <= 0) {
+                let btnProductos = document.getElementById("boton_agregar_productos");
+                btnProductos.disabled = true;
+                btnProductos.setAttribute('id', 'btn-deshabilitado');
+            }
+
             /* ====VARIABLES===== */
             var identificacion = data[0].identificacion;
             var nombre = data[0].Nombres;
@@ -445,7 +456,7 @@ function buscarUser() {
             } else if (identificacion == iden) {
                 document.getElementById("nombre").value = nombre;
                 document.getElementById("tusuario").value = tusuario;
-                document.getElementById('divBtnAdd').innerHTML = '<input type="button" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos" />';
+                document.getElementById('divBtnAdd').innerHTML = '<input type="button" id="boton_agregar_productos" class="btn btn-primary btnadd" onclick="addProdVen();" value="Agregar Productos" />';
 
             }
             generarVenta(iden);
@@ -506,6 +517,21 @@ function generarVenta(ident) {
                 paging: false,
                 bInfo: false,
                 data: productosMovimiento,
+                language: {
+                    decimal: ",",
+                    thousands: ".",
+                    lengthMenu: "Mostrar _MENU_ registros",
+                    zeroRecords: "No se encontraron resultados",
+                    infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                    sSearch: "Buscar:",
+                    oPaginate: {
+                        sFirst: "Primero",
+                        sLast: "Último",
+                        sNext: "Siguiente",
+                        sPrevious: "Anterior",
+                    },
+                    sProcessing: "Cargando...",
+                },
                 columns: [
                     { data: "num" },
                     { data: "nombre" },
@@ -523,6 +549,21 @@ $("#tableCart").DataTable({
     searching: false,
     paging: false,
     bInfo: false,
+    language: {
+        decimal: ",",
+        thousands: ".",
+        lengthMenu: "Mostrar _MENU_ registros",
+        zeroRecords: "No se encontraron resultados",
+        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+        sSearch: "Buscar:",
+        oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: "Siguiente",
+            sPrevious: "Anterior",
+        },
+        sProcessing: "Cargando...",
+    },
 });
 
 function AregarProductoCliente() {
@@ -530,9 +571,12 @@ function AregarProductoCliente() {
     let comprador = document.getElementById('inputPIdCliente').value;
     let movimiento = document.getElementById('id_movimiento').value;
     let inventario = document.getElementById('id_inventario').value;
+    let cargoCod = document.getElementById('tusuario').value
+    console.log('Codigo de cargo: ' + cargoCod);
 
 
     var datos = new URLSearchParams();
+    datos.append('codCargo', cargoCod);
     datos.append("canProd", cantidad);
     datos.append("comprador", comprador);
     datos.append("movimiento", movimiento);
@@ -579,6 +623,21 @@ document.getElementById('ver-precios').addEventListener('click', (e) => {
                     destroy: true,
                     data: infoProductos,
                     dom: 'Bfrtip',
+                    language: {
+                        decimal: ",",
+                        thousands: ".",
+                        lengthMenu: "Mostrar _MENU_ registros",
+                        zeroRecords: "No se encontraron resultados",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                        sSearch: "Buscar:",
+                        oPaginate: {
+                            sFirst: "Primero",
+                            sLast: "Último",
+                            sNext: "Siguiente",
+                            sPrevious: "Anterior",
+                        },
+                        sProcessing: "Cargando...",
+                    },
                     columns: [
                         { data: "codigo" },
                         { data: "nombre" },
@@ -598,3 +657,4 @@ document.getElementById('ver-precios').addEventListener('click', (e) => {
         }).catch((e) => console.log(e));
     infoProductosPrecio.toggle();
 });
+$('#inputPIdCliente').focus();

@@ -108,7 +108,8 @@ controladorMovimiento.agregarDetalle = async(req, resp) => {
     let estadoProd = "No Entregado";
     let comprador = req.body.comprador;
     let movimiento = req.body.movimiento;
-    let sessionCaro = 1;
+    let sessionCaro = parseInt(req.body.codCargo);
+    console.log('Sesion en controlador: ' + sessionCaro);
     let inventario = req.body.id_inventario;
     if (!inventario || inventario == 'undefined') return console.log(inventario)
     try {

@@ -22,14 +22,14 @@
     text-align: center;
 }
 
-.input-s::placeholder {
-    color: rgb(192, 192, 192);
-}
-
 .table tr td {
     height: 20px;
     background: lightgray;
     text-align: center;
+}
+
+.input-s::placeholder {
+    color: rgb(192, 192, 192);
 }
 
 .btn-primary {
@@ -104,12 +104,8 @@ label {
     width: 40%;
     display: flex;
     justify-content: end;
-}
-
-.form-buy {
-    width: 90%;
-    font-size: 0.9em;
-    height: 200px;
+    border-left: 1px lightgray solid;
+    margin-left: 10px;
 }
 
 .dt-table-cart {
@@ -119,6 +115,12 @@ label {
 .dt-table-cart thead tr {
     background: rgb(94, 179, 25);
     color: white;
+}
+
+.form-buy {
+    width: 90%;
+    font-size: 0.9em;
+    height: 200px;
 }
 
 .modal-header {
@@ -167,14 +169,19 @@ label {
 #table-cart,
 #tableAddProd {
     text-align: center;
-}
-
-#tableAddProd {
     width: 100%;
 }
 
 #tableAddProd tr {
     height: 30px;
+}
+
+#tableAddProd tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#tableInfoProducto tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
 .input-Cant {
@@ -268,7 +275,6 @@ label {
 @media (min-width: 576px) {
     .modal-fullscreen-xxl-down {
         max-width: 100%;
-        margin: 1.75rem auto;
     }
 }
 
@@ -302,9 +308,10 @@ label {
     text-align: center;
 }
 
-#tableInfoProducto tr {
+#tableInfoProducto tr,
+#tableInfoProducto td {
     width: 500px;
-    height: 35px;
+    height: 30px;
 }
 
 .agregarButton {
@@ -323,4 +330,27 @@ label {
 
 #modalNewVenta {
     overflow: hidden;
+}
+
+#modalAddProd {
+    overflow: hidden;
+}
+
+input[type=search] {
+    border-color: gray;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.table-cart {
+    overflow: hidden;
+}
+
+#tableCart {
+    width: 100%;
+}
+
+#btn-deshabilitado {
+    background: gray;
+    transition: 0.5s;
 }
