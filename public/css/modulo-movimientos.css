@@ -354,3 +354,7 @@ input[type=search] {
     background: gray;
     transition: 0.5s;
 }
+
+.img-prod {
+    width: 200px;
+}

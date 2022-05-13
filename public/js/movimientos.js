@@ -24,6 +24,7 @@ $(document).ready(function() {
         },
     });
 
+
     $("#modalDetalle").on("hidden.bs.modal", function() {
         document.getElementById("contDet").innerHTML = "";
         alert("Modal Cerrado");
@@ -44,6 +45,7 @@ $(document).ready(function() {
 
 
     });
+
 });
 
 var facturar = new bootstrap.Modal(document.getElementById("modalFacturar"), {
@@ -61,126 +63,13 @@ var newVenta = new bootstrap.Modal(document.getElementById("modalNewVenta"), {
 function nuevaVenta() {
     newVenta.toggle();
 }
-window.onload = listarUser;
 
-function listarUser() {
-    try {
-        fetch("/listarMovimientos", {
-                method: "get",
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                for (let i = 0; i < data.length; i++) {
-                    let tableMov = document.getElementById("cuerpo-tabla");
-
-                    let col1 = document.createElement("tr");
-                    let row1 = document.createElement("td");
-                    let row2 = document.createElement("td");
-                    let row3 = document.createElement("td");
-                    let row4 = document.createElement("td");
-                    let row5 = document.createElement("td");
-                    let row6 = document.createElement("td");
-                    let deleteProd = document.createElement("td");
-                    //Textos de los datos de la tabla
-                    let idMovRow = document.createTextNode(data[i].Id_movimiento);
-                    let clienteRow = document.createTextNode(data[i].personas);
-                    let fechaRow = document.createTextNode(data[i].Fecha);
-                    let totalRow = document.createTextNode(data[i].total);
-                    let estadoRow = document.createTextNode(data[i].Estado);
-                    /* ==========================detalle venta===================================== */
-                    deleteProd.innerHTML =
-                        "<a class='factBtn' href= 'javascript:mostrarDetalle(" +
-                        data[i].Id_movimiento +
-                        ");'><i class='fas fa-user-edit'></i>Facturar</a>";
-                    //Atributos de los td
-                    row2.setAttribute("scope", "row");
-
-                    //Padre de los elementos de la tabla
-                    tableMov.appendChild(col1);
-                    col1.appendChild(row1);
-                    col1.appendChild(row2);
-                    col1.appendChild(row3);
-                    col1.appendChild(row4);
-                    col1.appendChild(row5);
-                    col1.appendChild(row6);
-                    row1.appendChild(idMovRow);
-                    row2.appendChild(clienteRow);
-                    row3.appendChild(fechaRow);
-                    row4.appendChild(totalRow);
-                    row5.appendChild(estadoRow);
-                    row6.appendChild(deleteProd);
-                }
-            });
-    } catch (error) {
-        console.log("Error al listar los movimientos: " + error);
-    }
-}
 
 var detalle = new bootstrap.Modal(document.getElementById("modalDetalle"), {
     keyboard: false,
 });
 
-function mostrarDetalle(Id_movimiento) {
-    detalle.toggle();
-    var datos = new URLSearchParams();
-    datos.append("idcodigo", Id_movimiento);
-    try {
-        let tabla = document.getElementById("cuerpo-detalle");
-        let mainTabla = document.getElementById("contDet");
 
-        tabla.innerHTML = "";
-        fetch("/listarDetalle", {
-                method: "post",
-                body: datos,
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                for (let i = 0; i < data.length; i++) {
-                    /* =============================cuerpo de la tabla detalles del producto============================ */
-
-                    let fila = document.createElement("tr");
-                    let idProducto = document.createElement("td");
-                    let nombreProducto = document.createElement("td");
-                    let cantidad = document.createElement("td");
-                    let valorUnitario = document.createElement("td");
-                    let valorTotal = document.createElement("td");
-                    let estadoEntrega = document.createElement("td");
-                    let contDatosClient = document.createElement("td");
-                    let nombreCliente = document.createElement("label");
-
-                    contDatosClient.setAttribute("id", "divDatosClente");
-                    //==============Datos de la   tabla
-                    let idPro = document.createTextNode(data[i].Codigo_pdto);
-                    let NombreP = document.createTextNode(data[i].Nombre);
-                    let cantidadp = document.createTextNode(data[i].Cantidad);
-                    let Valoru = document.createTextNode(data[i].VlrUnit);
-                    let ValorT = document.createTextNode(data[i].VlrTotal);
-                    let EstadoE = document.createTextNode(data[i].EstadoVenta);
-                    // let cliente = document.createTextNode("Nombre del Cliente: " + data[i].NombrePer);
-                    /* hijos de latabla */
-                    tabla.appendChild(fila);
-                    fila.appendChild(idProducto);
-                    fila.appendChild(nombreProducto);
-                    fila.appendChild(cantidad);
-                    fila.appendChild(valorUnitario);
-                    fila.appendChild(valorTotal);
-                    fila.appendChild(estadoEntrega);
-                    /* ========hijos de la tabla en datos */
-                    idProducto.appendChild(idPro);
-                    nombreProducto.appendChild(NombreP);
-                    cantidad.appendChild(cantidadp);
-                    valorUnitario.appendChild(Valoru);
-                    valorTotal.appendChild(ValorT);
-                    estadoEntrega.appendChild(EstadoE);
-                    mainTabla.appendChild(contDatosClient);
-                    contDatosClient.appendChild(nombreCliente);
-                    // nombreCliente.appendChild(cliente);
-                }
-            });
-    } catch (error) {
-        console.log("Error al listar el detalle: " + error);
-    }
-}
 
 var addProdList = new bootstrap.Modal(document.getElementById("modalAddProd"), {
     keyboard: false,
@@ -191,13 +80,13 @@ function addProdVen() {
     tusuario = document.getElementById('tusuario').value;
     let datos = new URLSearchParams();
     datos.append("idcodigo", tusuario);
-
     try {
         fetch("/addProd", {
                 method: "get",
             })
             .then((res) => res.json())
             .then((data) => {
+
                 for (let i = 0; i < data.length; i++) {
                     let TipoUsuario = parseInt(document.getElementById("tusuario").value);
                     let tableAddprod = document.getElementById("add-prod");
@@ -239,6 +128,7 @@ function addProdVen() {
                         "<a class='agregarButton' href='javascript:agregar(" +
                         data[i].id_inventario +
                         ");'>Agregar</a>";
+
 
                     //Atributos de los td
                     row1.setAttribute("scope", "row");
@@ -309,10 +199,14 @@ function agregar(cod_producto) {
             })
             .then((res) => res.json())
             .then((data) => {
+
                 for (let i = 0; i < data.length; i++) {
                     document.getElementById('id_inventario').value = data[0].id_inventario;
                     let TipoUsuario = parseInt(document.getElementById("tusuario").value);
                     let tusuarioDOM;
+                    let img = data[i].imagen;
+                    console.log(img);
+
 
                     switch (TipoUsuario) {
                         case 1:
@@ -342,6 +236,7 @@ function agregar(cod_producto) {
                     let divsub3 = document.createElement("div");
                     let divsub4 = document.createElement("div");
                     let inputCant = document.createElement("input");
+                    let imgProd = document.createElement("img");
 
                     /* =====Atributos de los elementos=====*/
                     divsub1.setAttribute("class", "divsub1");
@@ -358,6 +253,9 @@ function agregar(cod_producto) {
                     labelNombre.setAttribute("for", "inputCant");
                     labelprecio.setAttribute("class", "lbPrecio");
                     lbTotal.setAttribute("id", "lb-total");
+                    imgProd.setAttribute('class', 'img-prod');
+                    imgProd.setAttribute('src', 'img/products/' + img);
+
 
                     /* =====texto nodos======== */
                     let texto = document.createTextNode(data[i].Producto);
@@ -372,6 +270,7 @@ function agregar(cod_producto) {
                     divsub1.appendChild(labelNombre);
                     divsub2.appendChild(inputCant);
                     divsub2.appendChild(labelprecio);
+                    divsub3.appendChild(imgProd);
                     divsub4.appendChild(lbTotal);
                     lbTotal.appendChild(totaltxt);
                     labelNombre.appendChild(texto);
@@ -419,11 +318,17 @@ function buscarUser() {
         })
         .then((res) => res.json())
         .then((data) => {
-            // AQUÍ LANZA EL MODAL PARA CREAR USUARIO
+            // AQUÍ LANZA EL MODAL PARA CREAR USUARIO============================
             if (data.length <= 0) {
+                alert('Usuario no registraddo');
+                document.getElementById("nombre").value = "Usuario no registrado.";
+                document.getElementById("genVenDiv").innerHTML =
+                    '<input type="button" class="btn btn-primary btndone" onclick="" value="Registrar Usuario?">';
                 let btnProductos = document.getElementById("boton_agregar_productos");
                 btnProductos.disabled = true;
                 btnProductos.setAttribute('id', 'btn-deshabilitado');
+
+
             }
 
             /* ====VARIABLES===== */
@@ -572,7 +477,7 @@ function AregarProductoCliente() {
     let movimiento = document.getElementById('id_movimiento').value;
     let inventario = document.getElementById('id_inventario').value;
     let cargoCod = document.getElementById('tusuario').value
-    console.log('Codigo de cargo: ' + cargoCod);
+
 
 
     var datos = new URLSearchParams();
@@ -586,6 +491,13 @@ function AregarProductoCliente() {
             body: datos
         }).then(res => res.json())
         .then(data => {
+            Swal.fire({
+                title: data.titulo,
+                icon: data.icono,
+                text: data.mensaje,
+                timer: data.timer
+            });
+
             if (data.status == 200) {
                 generarVenta(comprador)
                 productoAgregado.hide();
@@ -650,7 +562,7 @@ document.getElementById('ver-precios').addEventListener('click', (e) => {
 
                     ],
                 });
-                console.log(arrayProducto);
+
 
 
             });

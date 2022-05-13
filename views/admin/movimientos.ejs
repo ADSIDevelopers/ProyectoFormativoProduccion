@@ -4,6 +4,7 @@
 <head>
     <%- include('../partials/head'); %>
         <title>SENA</title>
+        <link rel="stylesheet" href="css/styleWeb.css">
         <link rel="stylesheet" href="css/modulo-movimientos.css" />
         <link rel="stylesheet" href="css/datatables.min.css" />
         <link rel="stylesheet" href="css/responsive.dataTables.min.css" />
@@ -20,21 +21,25 @@
                 <button class="btn btn-primary" id="btn" onclick="nuevaVenta()">Nueva Venta</button>
             </div>
 
+            <!-- lista de reservas -->
             <div>
-                <table id="tableMovimientos" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="col-id">ID Compra</th>
-                            <th scope="col">Comprador</th>
-                            <th scope="col">Fecha</th>
-                            <th scope="col">Valor de la Compra</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpo-tabla"></tbody>
-                </table>
-            </div>
+              <table id="lista" class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th scope="col" class="col-id">ID Compra</th>
+                          <th scope="col">Comprador</th>
+                          <th scope="col">Fecha</th>
+                          <th scope="col">Valor de la Compra</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Acción</th>
+                          <th scope="col">Imprimir</th>
+                      </tr>
+                  </thead>
+                  <tbody id="cuerpo-tabla">
+
+                  </tbody>
+              </table>
+          </div>
         </div>
 
         <!-- Modal -->
@@ -85,43 +90,6 @@
             </div>
         </div>
 
-        <!---Modal detalle-->
-        <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content detalle-Modal">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                            Detalle de Esta Reserva
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#" method="post" class="row g-3 needs-validation">
-                            <div class="col-md-12" id="contDet">
-                                <table id="cuerpo-tabla-detalle" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Nombre del Producto</th>
-                                            <th>Cantidad</th>
-                                            <th>Valor Unit.</th>
-                                            <th>Valor Total</th>
-                                            <th>Estado de Entrega</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="cuerpo-detalle"></tbody>
-                                </table>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="actualizarUser();">
-                Facturar
-              </button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="modal fade" id="modalNewVenta" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-fullscreen-xxl-down">
@@ -315,15 +283,10 @@
           </div>
         </div>
       </div>
-    </div>
-
-
-
-
-
-
+    
 
     <div
+
         class="modal fade modal-dark"
         id="modalInfoProd"
         tabindex="-1"
@@ -368,12 +331,108 @@
            
           </div>
         </div>
+    </div>
+    <!-- ========================parte dossssssssssss=================== -->
+    <!---Modal detalle-->
+    <div class="modal fade" id="modalDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content detalle-Modal">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Detalle de la Compra</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                      <div class="col-md-12">
+                          
+                              <input type="text" id="id-movimiento" class="id" disabled>
+                              <table id="cuerpo-tabla-detalle" class="table table-striped">
+                                  <thead>
+                                      <tr>
+                                          <th>ID. Prod</th>
+                                          <th>Nombre del Producto</th>
+                                          <th>Cantidad</th>
+                                          <th>Valor Unit.</th>
+                                          <th>Valor Total</th>
+                                          <th>Estado de Entrega</th>
+                                          <th></th>
+                                          <th></th>
+                                      </tr>
+                                  </thead>
+                                  <tbody id="cuerpo-detalle">
+                                  </tbody> 
+                                  
+                              </table>
+                              
+                         <!-- precio total -->
+                         <div class="sutbox">
+                          <h4 class="total">Total:</h4>
+                          <P id="total"></P>
+                      </div>
+                      </div>
+                    
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-primary Finalizar" onclick="alertF();">Finalizar Compra</button>
+              </div>
+          </div>
       </div>
+  </div>
+
+  <!-- =====================================editar detalle============================================== -->
+  <div class="modal fade" id="modaleditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content detalle-Modal">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Editar Detalle</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                      <div class="col-md-12">
+                              <div class="row-box">
+                                      <div class="input-group mb-3">
+                                          <span class="input-group-text" id="inputGroup-sizing-default">ID detalle</span>
+                                          <input id="ID_detalle" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                      </div>
+                                      <div class="input-group mb-3">
+                                          <span class="input-group-text" id="inputGroup-sizing-default">Nombre Producto</span>
+                                          <input id="NombrePDT" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+                                      </div>
+                              </div>
+                              <!-- cajas del modal editar -->
+                              <div class="row-box">
+                                  <div class="wrapper-form-data">  
+                                      <div class="input-group mb-3">
+                                          <span class="input-group-text" id="inputGroup-sizing-default">Cntidad Producto</span>
+                                          <input id="cantidad" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                      </div>
+                                  </div>
+                                  <div class="wrapper-form-data">
+                                      <div class="input-data">
+                                          <select id="estado" class="form-select" aria-label="Disabled select example">
+                                              <option value="Entregado">Entregado</option>
+                                              <option value="No Entregado">No Entregado</option>
+                                            </select>
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+              <div class="modal-footer">
+                  <button onclick="EditarDetalle();" class="btn btn-primary Finalizar" >Editar</button>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+
+  </div>
 
     <%- include('../partials/footer') %> <%- include('../partials/scripts.ejs')
     %>
     <script src="js/datatable/datatables.min.js"></script>
     <script src="js/movimientos.js"></script>
+    <script src="js/movimientos.02.js"></script>
+    <script src="js/factura.js"></script>
+    <script src="js/jspdf.debug.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
