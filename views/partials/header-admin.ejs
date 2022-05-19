@@ -1,3 +1,4 @@
+<div id="wrapper-menu"></div>
 <div class="limiter-width-page">
     <div class="header-page">
         <div class="header-logo"></div>
@@ -8,23 +9,21 @@
 <div class="limiter-width-page">
     <header>
         <!-- NAVBAR OCULTABLE -->
-        <nav id="menu">
+        <nav id="main-navbar">
+            <div class="content-button-close">
+                <span class="open-close btn-close-2 icon-cross"></span>
+            </div>
             <ul>
-                <li>
-                    <a href="#" class="bt-close"><span class="icon-cross"></span></a>
+                <li><a href="/"><span class="icon-home"></span>Inicio</a></li>
+                <li><a href="#"><span class="icon-suitcase"></span>Productos</a></li>
+                <li class="submenu"><a href="#"><span class="icon-rocket"></span>Proyectos <span class="icon-cheveron-down"></span></a>
+                    <ul class="children">
+                        <li><a href="#">Subelemento #1<span class="icon-dot-single"></span></a></li>
+                        <li><a href="#">Subelemento #2<span class="icon-dot-single"></span></a></li>
+                        <li><a href="#">Subelemento #3<span class="icon-dot-single"></span></a></li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="/admin">Inicio</a>
-                </li>
-                <li>
-                    <a href="/usuarios">Usuarios</a>
-                </li>
-                <li>
-                    <a href="/admin/productos">Productos</a>
-                </li>
-                <li>
-                    <a href="/admin/punto-venta">Punto de Venta</a>
-                </li>
+                <li><a href="#"><span class="icon-mail"></span>Contacto</a></li>
             </ul>
         </nav>
         <!-- MENU DE USUARIO - SESSIÓN -->
@@ -37,7 +36,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="#" id="profile">< % = profile.Nombres %> </a>
+                        <a href="#" id="profile">< %= profile.Nombres%> </a>
                     </li>
                 </ul>
             </nav>

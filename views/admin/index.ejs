@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <%- include('../partials/head'); %>
-        <title>SENA</title>
+    <title>SENA</title>
 </head>
-
 <body>
     <div class="content-header">
-        <%- include('../partials/header-admin') %>
+        <%- include('../partials/header-admin') %> 
     </div>
     <div class="main-contenedor">
         <section class="body-info-section">
@@ -41,7 +39,19 @@
         </section>
     </div>
     <%- include('../partials/footer') %>
-        <%- include('../partials/scripts.ejs') %>
+    <%- include('../partials/scripts.ejs') %> 
+    <script>
+        fetch('/auth/prueba', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer '+token
+            },
+        }).then(res=> res.json())
+        .then(res => {
+            console.log(res)
+        })
+    </script>
 </body>
-
 </html>
+ 
+

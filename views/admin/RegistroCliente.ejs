@@ -5,10 +5,9 @@
     <%- include('../partials/head'); %>
         <title>Administrar Clientes</title>
         <link rel="stylesheet" href="css/modulo-venta.css">-->
-       
-        <link rel="stylesheet" href="css/JhonMario.css">
+        <link rel="stylesheet" href="css/registroClientes.css">
         <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-
+        
 </head>
 
 <body>
@@ -18,11 +17,13 @@
     <div class="main-contenedor">
         <div class="box">
             <div class="head-table">
-                <h2>Control Usuarios</h2><input type="search" name="busquedaVenta" class="input-s" placeholder="Buscar Usuarios Registrados..." id="busquedaVenta"><button class="btn btn-primary" id="btn" onclick="registroCliente()">Registrar</button>
+                <h2>Administrar Usuarios</h2>
+                <button class="btn btn-primary" id="btn" onclick="registroCliente()"><i class='icon-user2'></i>Nuevo Usuario</button>
+                
             </div>
 <!--=====================Tabla registro==========================================================-->
             <div>
-                <table class="table table-striped">
+                <table id="myTable" class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Identificación</th>
@@ -31,49 +32,19 @@
                             <th scope="col">Direccion</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Cargo</th>
-                            <th scope="col">ID ficha</th>
                             <th scope="col">Rol</th>
+                            <th scope="col">ID ficha</th>
+                            <th scope="col">Estado</th>
                             <th scope="col">Admin</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo-tabla">
-
-                        <tr>
-                            <td id="td">
-                                1004419254
-                            </td>
-                            <td id="td">
-                              Jhon Mario Chilito
-                            </td>
-                            <td id="td">
-                              Whoaomi11@gmail.com
-                             </td>
-                             <td id="td">
-                              carrera4b
-                             </td>
-                             <td id="td">
-                              3115339060
-                            </td>
-                            <td id="td">
-                                Aprendiz
-                            </td>
-                            <td id="td">
-                              2252407
-                            </td>
-                            <td id="td">
-                              Admin
-                            </td>
-                           
-                            <td class="" id="td">
-                              <button id="detalle-link" class="link-actualizar" onclick="ActualizarUsuario();">Actualizar</button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <!-- Modal registro clientes -->
+        <!-- =========================Modal registro clientes -->
         <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -85,7 +56,7 @@
                       <!--===================formulario=======================-->
                       <form>
 
-                        <div class="row">
+                        <div class="row mt-1">
                           <div class="col">
                             <input type="number" id="iden"  class="form-control" placeholder="Numero Identificación">
                           </div>
@@ -94,39 +65,51 @@
                           </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-2">
                           <div class="col">
-                            <input type="text" id="iden"  class="form-control" placeholder="Correo Electronico">
+                            <input type="email" id="corr"  class="form-control" placeholder="Correo Electronico">
                           </div>
                           <div class="col">
-                            <input type="text" id="nomb"  class="form-control" placeholder="Direccion">
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col">
-                            <input type="number" id="iden"  class="form-control" placeholder="Telefono">
-                          </div>
-                          <div class="col">
-                            <input type="number" id="iden"  class="form-control" placeholder="ID ficha">
+                            <input type="text" id="direc"  class="form-control" placeholder="Direccion">
                           </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row mt-2">
                           <div class="col">
-                            <select class="form-select" aria-label="Default select example">
+                            <input type="number" id="tele"  class="form-control" placeholder="Telefono">
+                          </div>
+                          <div class="col">
+                            <input type="number" id="ID"  class="form-control" placeholder="ID ficha" style="display: none;"  >
+                          </div>
+                        </div>
+
+                        <div class="row mt-2">
+                          <div class="col">
+                            <select id="cargo" class="form-select" aria-label="Default select example">
                               <option selected>Seleccione el Cargo</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <% 
+                              for (let u = 0; u < Datos.length; u++) 
+                              {
+                            %>
+                              <option value="<%=Datos[u].idcargo %>">
+                                <%=Datos[u].nombre_cargo %>
+                              </option>
+                            <%
+                              }
+                            %>
+                              
                             </select>
                           </div>
-                          <div class="col">
-                            <select class="form-select" aria-label="Default select example">
-                              <option selected>Seleccione el Rol</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                          <div  class="col">
+                            <select id="rol" class="form-select" aria-label="Default select example">
+                              <option selected>Seleccione el Rol para acceso al sistema</option>
+                              <option value="Invitado">Invitado</option>
+                              <option value="Instructor">Instructor</option>
+                              <option value="Aprendiz">Aprendiz</option>
+                              <option value="Vocero">Vocero</option>
+                              <option value="Admin Lider UP">Admin Lider UP</option>
+                              <option value="Admin Punto Venta">Admin Punto Venta</option>
+                              
                             </select>
                           </div>
                         </div>
@@ -138,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <!-- Modal Actualizar clientes -->
+        <!-- ===============================Modal Actualizar clientes -->
         <div class="modal fade" id="modalActualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
               <div class="modal-content">
@@ -151,48 +134,64 @@
                     <form>
 
                       <div class="row">
-                        <div class="col">
-                          <input type="number" id="iden"  class="form-control" placeholder="Numero Identificación">
+                        <div class="col mt-1">
+                          <input type="number" id="idenR"  class="form-control" placeholder="Numero Identificación">
                         </div>
                         <div class="col">
-                          <input type="text" id="nomb"  class="form-control" placeholder="Nombres">
+                          <input type="text" id="nombR"  class="form-control" placeholder="Nombres">
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row mt-2 ">
                         <div class="col">
-                          <input type="text" id="iden"  class="form-control" placeholder="Correo Electronico">
+                          <input type="email" id="corrR"  class="form-control" placeholder="Correo Electronico">
                         </div>
                         <div class="col">
-                          <input type="text" id="nomb"  class="form-control" placeholder="Direccion">
+                          <input type="text" id="direcR"  class="form-control" placeholder="Direccion">
                         </div>
                       </div>
 
                      
-                      <div class="row">
+                      <div class="row mt-2">
                         <div class="col">
-                          <input type="number" id="iden"  class="form-control" placeholder="Telefono">
+                          <input type="number" id="telR"  class="form-control" placeholder="Telefono">
                         </div>
                         <div class="col">
-                          <input type="number" id="iden"  class="form-control" placeholder="ID ficha">
+                          <input type="number" id="idR"  class="form-control" placeholder="ID ficha" style="display: none;">
                         </div>
                       </div>
 
-                      <div class="row">
+                      <div class="row mt-2">
                         <div class="col">
-                          <select class="form-select" aria-label="Default select example">
-                            <option selected>Seleccione el Cargo</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                          <select id="cargoR" class="form-select" aria-label="Default select example">
+                            <% 
+                            for (let u = 0; u < Datos.length; u++) 
+                            {
+                          %>
+                            <option value="<%=Datos[u].idcargo %>">
+                              <%=Datos[u].nombre_cargo %>
+                            </option>
+                          <%
+                            }
+                          %>
+                            
                           </select>
                         </div>
-                        <div class="col">
-                          <select class="form-select" aria-label="Default select example">
-                            <option selected>Seleccione el Rol</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <div  class="col">
+                          <select id="rolR" class="form-select" aria-label="Default select example">
+                            <option value="Invitado">Invitado</option>
+                            <option value="Aprendiz" >Aprendiz</option>
+                            <option value="Instructor">Instructor</option>
+                            <option value="Vocero">Vocero</option>
+                            <option value="Lider UP">Lider UP</option>
+                            <option value="Punto Venta">Punto Venta</option>
+                          </select>
+                        </div>
+                        <div  class="col">
+                          <select id="estado" class="form-select" aria-label="Default select example">
+                          
+                            <option class="activo" value="1">Activo</option>
+                            <option class="inactivo" value="0">Inactivo</option>
                           </select>
                         </div>
                       </div>
@@ -201,7 +200,7 @@
                   
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn link-actualizar" onclick="ActualizarUsuario();">Actualizar</button>
+                      <button type="button" class="btn link-actualizar" onclick="actualizarRegistro();">Actualizar</button>
                   </div>
               </div>
           </div>
@@ -210,11 +209,48 @@
     </div>
 
     <%- include('../partials/footer') %>
-        <%- include('../partials/scripts.ejs') %>
-            <script src="js/RegistroClientes.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-
+    <%- include('../partials/scripts.ejs') %>
+    <script src="js/RegistroClientes.js"></script>
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>
+
+<script>
+/* ===========selector para el ID FICHA=============== */
+  document.getElementById('cargo').addEventListener('change', (e)=> {
+    var cargo = document.getElementById('cargo').value;
+    
+    if( cargo == 1){
+      div = document.getElementById('ID');
+      div.style.display = 'block';
+      console.log(div);
+    }
+    else{
+      div = document.getElementById('ID');
+      div.style.display = 'none';
+    }
+  })
+  document.getElementById('cargoR').addEventListener('change', (e)=> {
+    var cargo = document.getElementById('cargoR').value;
+ 
+    if( cargo == 1){
+      div = document.getElementById('idR');
+      div.style.display = 'block';
+      console.log(div);
+    }
+    else{
+      div = document.getElementById('idR');
+      div.style.display = 'none';
+    }
+  })
+
+  $(document).ready( function () {
+    setTimeout(() => {
+      $('#myTable').DataTable();
+    },50);
+  
+} );
+
+</script>
+

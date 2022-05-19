@@ -105,5 +105,5 @@ dist
 #Archivo de dependencias de npm
 package-lock.json
 
-
 #Database
+database/conexion.js

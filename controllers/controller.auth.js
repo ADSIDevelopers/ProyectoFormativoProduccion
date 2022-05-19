@@ -4,36 +4,67 @@ const authConfig = require('../config/auth')
 let jwt = require('jsonwebtoken');
 let controllerAuth = {}
 
-controllerAuth.signUp = (req, res) => {},
 controllerAuth.logIn = (req, res) => {
-    var sql =`select identificacion, Rol from personas WHERE Login = '${req.body.user}' and password = '${req.body.password}'`;
-    conexion.query(sql,(err,rows)=>{
-        if(err) return res.json({status: 'error', message: 'Error with sql query'})
-        if(rows.length <= 0) return res.json({status: 'error', message: 'User not found'})
-        let json = {
-            id: rows[0].identificion,
-            role: rows[0].Rol,
-        }
-        let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
-        var decoded = jwt.verify(token, authConfig.secret);
-        storage.setItem('token', token)
-        return res.json({user:decoded.user, token})
-    });
-    
-    
+    var sql =`select identificacion, Rol, Ficha from personas WHERE Login = '${req.body.user}' and password = '${req.body.password}'`;
+    try{
+        conexion.query(sql,(err,rows)=>{
+            if(err) return res.json({status: 'error', message: 'Error with sql query'})
+            if(rows.length <= 0) return res.json({status: 'error', message: 'User not found'})
+            let json = {
+                id: rows[0].identificacion,
+                role: rows[0].Rol,
+                ficha: rows[0].Ficha
+            }
+            let token = jwt.sign({user: json}, authConfig.secret, {expiresIn: authConfig.expires})
+            var decoded = jwt.verify(token, authConfig.secret);
+            storage.setItem('token', token);
+            return res.json({user:decoded.user, token})
+        });
+    } catch (e) {
+        return res.json({status: 'error', message: 'Error with sql query'})
+    } 
 }
 controllerAuth.logOut = (req, res) => {
     return storage.removeItem('token');
 } 
 controllerAuth.profile = (req, res) => {
-    let token = req.body.token;
+    let token = storage.getItem('token');
     let decoded = jwt.verify(token, authConfig.secret);
-    var sql =`select identificacion, Nombres, Correo, Cargo from personas WHERE identificacion = '${decoded.user.id}'`;
-    conexion.query(sql,(err,rows)=>{
-        if(err) return res.json({status: 'error', message: 'Error with sql query'})
-        if(rows.length <= 0) return res.json({status: 'error', message: 'Unauthorized'})
-        return res.json({user: rows[0]})
-    });
+    try{
+        var sql =`select identificacion, Nombres, Correo, cargo.nombre_cargo as Cargo, Ficha from personas join cargo on Cargo = idcargo WHERE identificacion = '${decoded.user.id}'`;
+        conexion.query(sql,(err,rows)=>{
+            if(err) return res.json({status: 'error', message: 'Error with sql query'})
+            if(rows.length <= 0) return res.json({status: 'error', message: 'Unauthorized'})
+            return res.json({user: rows[0]})
+        });
+    } catch(err){
+        console.log(err);
+    }
+}
+controllerAuth.changePassword = (req, res) => {
+    let token = storage.getItem('token');
+    let decoded = jwt.verify(token, authConfig.secret);
+    let actual_password = req.body.actual_password;
+    let new_password = req.body.new_password;
+    if(!new_password) return res.json({status: 'error', message: 'New password cannot be empty'})
+    var sql =`select password from personas WHERE identificacion = '${decoded.user.id}'`;
+    try{
+        conexion.query(sql,(err,rows)=>{
+            if(err) return res.json({status: 'error', message: 'Error with sql query'});
+            if(actual_password != rows[0].password) return res.json({status: 'error', message: "La contraseña actual no coincide"})
+            var sql_update =`update personas set password = '${new_password}' WHERE identificacion = '${decoded.user.id}'`;
+            //=========UPDATE PASSWORD============== 
+            conexion.query(sql_update,(err,rows)=>{
+                if(err) return res.json({status: 'error', message: 'Error with update sql query'});
+                return res.json({status: 'success', message: 'Contraseña editada con éxito'})
+            });
+        });
+    } catch (err) {
+        return res.json({status: 'error', message: err.message});
+    }
 }
 
+controllerAuth.prueba = (req, res)=>{
+    return res.json({msg: 'hola'})
+}
 module.exports = controllerAuth;
